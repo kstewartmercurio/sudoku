@@ -1,4 +1,5 @@
 import {Square} from "./square.js";
+import {Nine} from "./nine.js";
 
 export class Board {
     constructor(puzzle) {
@@ -23,14 +24,40 @@ export class Board {
         this.initCoords();
 
         // set rows, columns, and boxes vectors
+        this.rows = [];
+        this.columns = [];
+        this.boxes = [];
+        this.initNines();
 
         // construct potential vectors
     }
 
     TESTVIEWB() {
+        // SEE NINE OBJECTS
+        console.log();
+        console.log("ROWS:");
+        for (let i = 0; i < this.rows.length; i++) {
+            this.rows[i].TESTVIEWN();
+        }
+        console.log();
+
+        console.log("COLUMNS:");
+        for (let i = 0; i < this.columns.length; i++) {
+            this.columns[i].TESTVIEWN();
+        }
+        console.log();
+
+        console.log("BOXES:");
+        for (let i = 0; i < this.boxes.length; i++) {
+            this.boxes[i].TESTVIEWN();
+        }
+        console.log();
+
+        // SEE SQUARE OBJECTS
         for (let i = 0; i < this.squares.length; i++) {
             this.squares[i].TESTVIEWS();
         }
+        console.log();
     }
 
     initCoords() {
@@ -85,6 +112,31 @@ export class Board {
             }
 
             this.squares[i].setCoord(r, c, b);
+        }
+    }
+
+    initNines() {
+        // add empty Nine objects to this.rows, this.columns, and this.boxes
+        for (let i = 0; i < 9; i++) {
+            let tempRow = new Nine();
+            this.rows.push(tempRow);
+            let tempColumn = new Nine();
+            this.columns.push(tempColumn);
+            let tempBox = new Nine();
+            this.boxes.push(tempBox);
+        }
+
+        // populate those Nine objects based on each squares corresponding
+        // coordinate values
+        for (let i = 0; i < this.squares.length; i++) {
+            let currentSquare = this.squares[i];
+            let rowIndex = this.squares[i].getCoords()[0];
+            let columnIndex = this.squares[i].getCoords()[1];
+            let boxIndex = this.squares[i].getCoords()[2];
+            
+            this.rows[rowIndex].add(currentSquare);
+            this.columns[columnIndex].add(currentSquare);
+            this.boxes[boxIndex].add(currentSquare);
         }
     }
 }

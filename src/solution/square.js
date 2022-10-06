@@ -12,6 +12,14 @@ export class Square {
         console.log(`${this.ind}: [${this.coords}]`);
     }
 
+    getVal() {
+        return this.val;
+    }
+
+    getCoords() {
+        return this.coords;
+    }
+
     setInd(ind) {
         this.ind = ind;
     }
