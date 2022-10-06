@@ -30,6 +30,7 @@ export class Board {
         this.initNines();
 
         // construct potential vectors
+        this.initPotentials();
     }
 
     TESTVIEWB() {
@@ -137,6 +138,34 @@ export class Board {
             this.rows[rowIndex].add(currentSquare);
             this.columns[columnIndex].add(currentSquare);
             this.boxes[boxIndex].add(currentSquare);
+        }
+    }
+
+    initPotentials() {
+        for (let i = 0; i < this.squares.length; i++) {
+            // initialize potential values for squares that don't already have
+            // a value
+            if (this.squares[i].getVal() === null) {
+                let rowIndex = this.squares[i].getCoords()[0];
+                let columnIndex = this.squares[i].getCoords()[1];
+                let boxIndex = this.squares[i].getCoords()[2];
+
+                // check if each potential value is not already in the square's
+                // row, column, and box
+                for (let j = 1; j < 10; j++) {
+                    if ((!this.rows[rowIndex].contains(j)) && 
+                        (!this.columns[columnIndex].contains(j)) &&
+                        (!this.boxes[boxIndex].contains(j))) {
+                        this.squares[i].addPotential(j);
+                    }
+                }
+            }
+
+            // necessary for backtracking algorithm
+            if (this.squares[i].getPotentialVals().length === 
+                this.squares[i].getGuessCount()) {
+                this.squares[i].resetGuessCount();
+            }
         }
     }
 }

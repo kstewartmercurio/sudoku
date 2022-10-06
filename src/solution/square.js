@@ -9,15 +9,23 @@ export class Square {
     }
 
     TESTVIEWS() {
-        console.log(`${this.ind}: [${this.coords}]`);
+        console.log(`${this.ind}: [${this.coords}], [${this.potentialVals}]`);
     }
 
     getVal() {
         return this.val;
     }
 
+    getGuessCount() {
+        return this.guessCount;
+    }
+
     getCoords() {
         return this.coords;
+    }
+
+    getPotentialVals() {
+        return this.potentialVals;
     }
 
     setInd(ind) {
@@ -32,5 +40,13 @@ export class Square {
         this.coords.push(r);
         this.coords.push(c);
         this.coords.push(b);
+    }
+
+    addPotential(n) {
+        this.potentialVals.push(n);
+    }
+
+    resetGuessCount() {
+        this.guessCount = 0;
     }
 }
