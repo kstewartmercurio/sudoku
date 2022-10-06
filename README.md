@@ -1,70 +1,10 @@
-# Getting Started with Create React App
+## Overview
+This is my first project using JavaScript and React. I'm building upon a project I did a couple years ago where I used C++ and Python to solve sudoku puzzles. For that project I used the Zelle Graphics Library to create a GUI with Python and I used C++ to handle all of the puzzle solving logic. The final version of that project was only accessible from the command line so the goal for this project was to create a finished product that could be hosted on a website.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Solution Approach
+Rather than brute forcing a solution, I opt for a DFS approach where squares are filled in until the puzzle is solved or until an impasse is reached, in which case the program will backtrack. Though brute force would be a manageable task for a program, I wanted to emulate the process that a human would go through when trying to solve a sudoku puzzle.
 
-## Available Scripts
+Every empty square will have a set of values that it could potentially store. My program will find a square with the minimum number of potential values and if that minimum number is one potential value then it will fill in that square, if that minimum number is greater than one then it will make a guess with the square's first potential value. Every "move" that is made gets stored in a stack and whenever backtracking is necessary moves will be popped off of the stack and the board's potential values will be updated accordingly. This process will repeat until every square has zero remaining potential values. At this point, if every square has been filled in then the puzzle has been solved, otherwise the puzzle is not solvable.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future Improvements
+I am learning JavaScript and React as I build this project so I undoubtedly have optimizations that I could make in the syntax and structure of my program. Additionally, my solution approach doesn't mimic human behavior exactly. A human might be able to recognize parts of the board as being easier to solve than others.
