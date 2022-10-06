@@ -1,3 +1,5 @@
+import {Board} from "./board.js";
+
 function main() {
     const testPuzzle = ([
         null, 9, null, null, null, null, null, null, 6,
@@ -11,7 +13,8 @@ function main() {
         7, null, null, null, null, null, null, 8, null
     ]);
     
-    
+    const testBoard = new Board(testPuzzle);
+    testBoard.TESTVIEWB();
 }
 
 main();
