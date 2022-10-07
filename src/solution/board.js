@@ -31,8 +31,9 @@ export class Board {
         this.initNines();
 
         // construct potential vectors
-        this.initPotentials();
+        this.initPotentialVals();
 
+        // initialize the moves stack
         this.moves = [];
     }
 
@@ -151,7 +152,7 @@ export class Board {
         }
     }
 
-    initPotentials() {
+    initPotentialVals() {
         for (let i = 0; i < this.squares.length; i++) {
             // initialize potential values for squares that don't already have
             // a value
@@ -185,6 +186,7 @@ export class Board {
             this.squares[i].resetPotentialVals();
         }
     }
+
 
 
     checkSinglesExist() {
@@ -222,11 +224,56 @@ export class Board {
                     // square's potentialVals
                     this.squares[i].setVal(newVal);
                     this.clearPotentialVals();
-                    this.initPotentials();
+                    this.initPotentialVals();
                 }
             }
 
             singlesExist = this.checkSinglesExist();
+        }
+    }
+
+    getMinPotentialValsSize() {
+        // determine what potentialVals array size the square that will be
+        // guessed should have (i.e. no singles exist, the smallest nonempty
+        // potentialVals is of size 3, therefore make a guess on a square with
+        // a potentialVals array of size 3)
+        let minSize = 10;
+        for (let i = 0; i < this.squares.length; i++) {
+            if ((this.squares[i].getPotentialVals().length < minSize) &&
+                (this.squares[i].getPotentialVals().length !== 0)) {
+                minSize = this.squares[i].getPotentialVals().length;
+            }
+        }
+
+        return minSize
+    }
+
+    guess() {
+        for (let i = 0; i < this.squares.length; i++) {
+            if (this.squares[i].getPotentialVals().length === 
+                this.getMinPotentialValsSize()) {
+                let ind = this.squares[i].getInd();
+                let gc = this.squares[i].getGuessCount();
+                let val = this.squares[i].getPotentialVals()[gc];
+                
+                let lastGuess;
+                if (this.squares[i].getPotentialVals().length - 1 === gc) {
+                    lastGuess = true;
+                    this.squares[i].resetGuessCount();
+                } else {
+                    lastGuess = false;
+                    this.squares[i].incrementGuessCount();
+                }
+
+                let tempMove = new Move(ind, val, !lastGuess);
+                this.moves.push(tempMove);
+
+                this.squares[i].setVal(val);
+                this.clearPotentialVals();
+                this.initPotentialVals();
+
+                break;
+            }
         }
     }
 }

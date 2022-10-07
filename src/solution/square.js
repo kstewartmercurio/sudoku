@@ -54,6 +54,10 @@ export class Square {
         this.potentialVals = [];
     }
 
+    incrementGuessCount() {
+        this.guessCount++;
+    }
+
     resetGuessCount() {
         this.guessCount = 0;
     }

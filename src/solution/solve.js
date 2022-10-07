@@ -28,8 +28,11 @@ function main() {
     
     const testBoard = new Board(hardPuzzle);
 
+    testBoard.guess();
     testBoard.solveSingles();
-    
+    testBoard.guess();
+    testBoard.solveSingles();
+
     testBoard.TESTVIEWB();
 }
 
