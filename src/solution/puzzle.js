@@ -1,9 +1,9 @@
 import {Square} from "./square.js";
 import {Nine} from "./nine.js";
 import {Move} from "./move.js";
-import { toBeRequired } from "@testing-library/jest-dom/dist/matchers.js";
+// import { toBeRequired } from "@testing-library/jest-dom/dist/matchers.js";
 
-export class Board {
+export class Puzzle {
     constructor(puzzle) {
         // input puzzle is an array representation of the sudoku puzzle
         this.puzzleArr = puzzle;
@@ -38,7 +38,7 @@ export class Board {
         this.moves = [];
     }
 
-    solve() {
+    solvePuzzle() {
         this.solveSingles();
 
         while (this.complete() === false) {
@@ -50,11 +50,10 @@ export class Board {
             }
         }
 
-        console.log();
-        for (let i = 0; i < this.rows.length; i++) {
-            this.rows[i].TESTVIEWN();
+        for (let i = 0; i < this.puzzleArr.length; i++) {
+            this.puzzleArr[i] = this.squares[i].getVal();
         }
-        console.log();
+        return this.puzzleArr;
     }
 
     initCoords() {
@@ -190,7 +189,6 @@ export class Board {
 
     solveSingles() {
         let singlesExist = this.checkSinglesExist();
-        let k = 0;
 
         while (singlesExist) {
             for (let i = 0; i < this.squares.length; i++) {

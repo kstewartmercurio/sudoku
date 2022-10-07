@@ -1,5 +1,6 @@
 import React from "react";
 import {Square} from "./square";
+import {Puzzle} from "../solution/puzzle.js";
 
 export class Board extends React.Component {
     constructor(props) {
@@ -9,6 +10,7 @@ export class Board extends React.Component {
             selected: 0
         };
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.solve = this.solve.bind(this);
     }
 
     handleKeyPress(e, i) {
@@ -83,6 +85,16 @@ export class Board extends React.Component {
         return retArr
     }
 
+    solve(e) {
+        e.preventDefault();
+
+        let puzzle = new Puzzle(this.state.squares);
+        puzzle = puzzle.solvePuzzle();
+
+        this.setState({squares: puzzle});
+
+    }
+
     render() {
         return (
             <div>
@@ -95,7 +107,9 @@ export class Board extends React.Component {
                 {this.buildSquares()[6]}
                 {this.buildSquares()[7]}
                 {this.buildSquares()[8]}
-                <button type="submit" class="solve">solve</button>
+                <form onSubmit={this.solve}>
+                    <button type="submit" className="solve" onClick={this.solve}>solve</button>
+                </form>
             </div>
         );
     }

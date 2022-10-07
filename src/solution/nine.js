@@ -1,5 +1,3 @@
-import {Square} from "./square.js";
-
 export class Nine {
     constructor() {
         this.contents = []
