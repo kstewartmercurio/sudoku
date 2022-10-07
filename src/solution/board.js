@@ -1,5 +1,6 @@
 import {Square} from "./square.js";
 import {Nine} from "./nine.js";
+import {Move} from "./move.js";
 
 export class Board {
     constructor(puzzle) {
@@ -31,6 +32,8 @@ export class Board {
 
         // construct potential vectors
         this.initPotentials();
+
+        this.moves = [];
     }
 
     TESTVIEWB() {
@@ -51,6 +54,13 @@ export class Board {
         console.log("BOXES:");
         for (let i = 0; i < this.boxes.length; i++) {
             this.boxes[i].TESTVIEWN();
+        }
+        console.log();
+
+        // SEE MOVE OBJECTS
+        console.log("MOVES:");
+        for (let i = (this.moves.length - 1); i >= 0; i--) {
+            this.moves[i].TESTVIEWM();
         }
         console.log();
 
@@ -156,7 +166,7 @@ export class Board {
                     if ((!this.rows[rowIndex].contains(j)) && 
                         (!this.columns[columnIndex].contains(j)) &&
                         (!this.boxes[boxIndex].contains(j))) {
-                        this.squares[i].addPotential(j);
+                        this.squares[i].addPotentialVal(j);
                     }
                 }
             }
@@ -166,6 +176,57 @@ export class Board {
                 this.squares[i].getGuessCount()) {
                 this.squares[i].resetGuessCount();
             }
+        }
+    }
+
+    clearPotentialVals() {
+        // empty all values from every Square object's potentialVals
+        for (let i = 0; i < this.squares.length; i++) {
+            this.squares[i].resetPotentialVals();
+        }
+    }
+
+
+    checkSinglesExist() {
+        // determine whether or not squares with one potentialVal ("singles") 
+        // exist
+        let retBool = false;
+        for (let i = 0; i < this.squares.length; i++) {
+            if (this.squares[i].getPotentialVals().length === 1) {
+                retBool = true;
+                break;
+            }
+        }
+
+        return retBool;
+    }
+
+    solveSingles() {
+        let singlesExist = this.checkSinglesExist();
+        let k = 0;
+
+        while (singlesExist) {
+            for (let i = 0; i < this.squares.length; i++) {
+                if (this.squares[i].getPotentialVals().length === 1) {
+                    // store the index of the single found and store its new
+                    // value
+                    let ind = this.squares[i].getInd();
+                    let newVal = this.squares[i].getPotentialVals()[0];
+
+                    // create a Move object to represent the single being
+                    // filled in
+                    const tempMove = new Move(ind, newVal, false);
+                    this.moves.push(tempMove);
+
+                    // set the square's new value and reinitialize every
+                    // square's potentialVals
+                    this.squares[i].setVal(newVal);
+                    this.clearPotentialVals();
+                    this.initPotentials();
+                }
+            }
+
+            singlesExist = this.checkSinglesExist();
         }
     }
 }

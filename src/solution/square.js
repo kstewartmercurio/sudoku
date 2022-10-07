@@ -12,6 +12,10 @@ export class Square {
         console.log(`${this.ind}: [${this.coords}], [${this.potentialVals}]`);
     }
 
+    getInd() {
+        return this.ind;
+    }
+
     getVal() {
         return this.val;
     }
@@ -42,8 +46,12 @@ export class Square {
         this.coords.push(b);
     }
 
-    addPotential(n) {
+    addPotentialVal(n) {
         this.potentialVals.push(n);
+    }
+
+    resetPotentialVals() {
+        this.potentialVals = [];
     }
 
     resetGuessCount() {

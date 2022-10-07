@@ -11,9 +11,9 @@ export class Nine {
             let val = (this.contents[i].getVal())
 
             if (val === null) {
-                outStr += "null ";
+                outStr += "X ";
             } else {
-                outStr += (" " + val.toString() + "   ");
+                outStr += (val.toString() + " ");
             }
         }
         console.log(outStr);
