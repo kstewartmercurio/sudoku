@@ -9,7 +9,7 @@ export class Square {
     }
 
     TESTVIEWS() {
-        console.log(`${this.ind}: [${this.coords}], [${this.potentialVals}]`);
+        console.log(`${this.ind}: [${this.coords}], ${this.val}, [${this.potentialVals}]`);
     }
 
     getInd() {

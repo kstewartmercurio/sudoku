@@ -5,6 +5,14 @@ export class Move {
         this.checkpoint = checkpoint;
     }
 
+    getInd() {
+        return this.ind;
+    }
+
+    getCheckpoint() {
+        return this.checkpoint;
+    }
+
     TESTVIEWM() {
         let outStr = ("square: " + this.ind.toString() + ", value: " + 
             this.val.toString() + ", checkpoint: ");

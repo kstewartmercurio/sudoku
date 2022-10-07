@@ -251,12 +251,16 @@ export class Board {
 
     guess() {
         for (let i = 0; i < this.squares.length; i++) {
+            // find a square with the minimum potentialVals array size
             if (this.squares[i].getPotentialVals().length === 
                 this.getMinPotentialValsSize()) {
+                // store the index of the square found and store its new value
                 let ind = this.squares[i].getInd();
                 let gc = this.squares[i].getGuessCount();
                 let val = this.squares[i].getPotentialVals()[gc];
                 
+                // determine if this is the last potential value for this square
+                // (this guess is not a guess and thus not a checkpoint)
                 let lastGuess;
                 if (this.squares[i].getPotentialVals().length - 1 === gc) {
                     lastGuess = true;
@@ -266,9 +270,12 @@ export class Board {
                     this.squares[i].incrementGuessCount();
                 }
 
+                // create a Move object to represent the guess being made
                 let tempMove = new Move(ind, val, !lastGuess);
                 this.moves.push(tempMove);
 
+                // set the square's new value and reinitialize every
+                // square's potentialVals
                 this.squares[i].setVal(val);
                 this.clearPotentialVals();
                 this.initPotentialVals();
@@ -306,5 +313,24 @@ export class Board {
         } else {
             return false;
         }
+    }
+
+    backtrack() {
+        // undo moves, and reset the corresponding squares, until a checkpoint
+        // is reached
+        let movesLastIndex = this.moves.length - 1;
+        while (this.moves[movesLastIndex].getCheckpoint() === false) {
+            this.squares[this.moves[movesLastIndex].getInd()].setVal(null);
+            this.moves.pop();
+            movesLastIndex--;
+        }
+
+        // undo the checkpoint move and reset its corresponding square
+        this.squares[this.moves[movesLastIndex].getInd()].setVal(null);
+        this.moves.pop();
+
+        // reinitialize every square's potentialVals
+        this.clearPotentialVals();
+        this.initPotentialVals();
     }
 }
