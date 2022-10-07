@@ -7,10 +7,12 @@ export class Board extends React.Component {
         super(props);
         this.state = {
             squares: Array(81).fill(null),
-            selected: 0
+            selected: 0,
+            status: 0
         };
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.solve = this.solve.bind(this);
+        this.newPuzzle = this.newPuzzle.bind(this);
     }
 
     handleKeyPress(e, i) {
@@ -87,15 +89,38 @@ export class Board extends React.Component {
 
     solve(e) {
         e.preventDefault();
+        // this.setState({status: 1});
 
         let puzzle = new Puzzle(this.state.squares);
         puzzle = puzzle.solvePuzzle();
 
         this.setState({squares: puzzle});
+        this.setState({status: 1});
+    }
 
+    newPuzzle(e) {
+        e.preventDefault();
+
+        this.setState({squares: Array(81).fill(null)});
+        this.setState({status: 0});
     }
 
     render() {
+        let solveStatus;
+        if (this.state.status === 0) {
+            solveStatus = (
+                <form onSubmit={this.solve}>
+                    <button type="submit" className="solve">solve</button>
+                </form>
+            );
+        } else {
+            solveStatus = (
+                <form onSubmit={this.newPuzzle}>
+                    <button type="submit" className="solve">new puzzle</button>
+                </form>
+            );
+        }
+
         return (
             <div>
                 {this.buildSquares()[0]}
@@ -107,9 +132,7 @@ export class Board extends React.Component {
                 {this.buildSquares()[6]}
                 {this.buildSquares()[7]}
                 {this.buildSquares()[8]}
-                <form onSubmit={this.solve}>
-                    <button type="submit" className="solve" onClick={this.solve}>solve</button>
-                </form>
+                {solveStatus}
             </div>
         );
     }
