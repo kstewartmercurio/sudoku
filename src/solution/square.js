@@ -8,10 +8,6 @@ export class Square {
         this.potentialVals = [];
     }
 
-    TESTVIEWS() {
-        console.log(`${this.ind}: [${this.coords}], ${this.val}, [${this.potentialVals}]`);
-    }
-
     getInd() {
         return this.ind;
     }

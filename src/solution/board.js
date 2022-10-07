@@ -38,41 +38,6 @@ export class Board {
         this.moves = [];
     }
 
-    TESTVIEWB() {
-        // SEE NINE OBJECTS
-        console.log();
-        console.log("ROWS:");
-        for (let i = 0; i < this.rows.length; i++) {
-            this.rows[i].TESTVIEWN();
-        }
-        console.log();
-
-        console.log("COLUMNS:");
-        for (let i = 0; i < this.columns.length; i++) {
-            this.columns[i].TESTVIEWN();
-        }
-        console.log();
-
-        console.log("BOXES:");
-        for (let i = 0; i < this.boxes.length; i++) {
-            this.boxes[i].TESTVIEWN();
-        }
-        console.log();
-
-        // SEE MOVE OBJECTS
-        console.log("MOVES:");
-        for (let i = (this.moves.length - 1); i >= 0; i--) {
-            this.moves[i].TESTVIEWM();
-        }
-        console.log();
-
-        // SEE SQUARE OBJECTS
-        for (let i = 0; i < this.squares.length; i++) {
-            this.squares[i].TESTVIEWS();
-        }
-        console.log();
-    }
-
     solve() {
         this.solveSingles();
 

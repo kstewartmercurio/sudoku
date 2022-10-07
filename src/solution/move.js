@@ -12,15 +12,4 @@ export class Move {
     getCheckpoint() {
         return this.checkpoint;
     }
-
-    TESTVIEWM() {
-        let outStr = ("square: " + this.ind.toString() + ", value: " + 
-            this.val.toString() + ", checkpoint: ");
-        if (this.checkpoint === true) {
-            outStr += "true";
-        } else {
-            outStr += "false";
-        }
-        console.log(outStr);
-    }
 }
