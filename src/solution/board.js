@@ -73,6 +73,25 @@ export class Board {
         console.log();
     }
 
+    solve() {
+        this.solveSingles();
+
+        while (this.complete() === false) {
+            this.guess();
+            this.solveSingles();
+
+            if (this.deadend() === true) {
+                this.backtrack();
+            }
+        }
+
+        console.log();
+        for (let i = 0; i < this.rows.length; i++) {
+            this.rows[i].TESTVIEWN();
+        }
+        console.log();
+    }
+
     initCoords() {
         // iterate through each square and assign its corresponding row, column,
         // and box
@@ -303,7 +322,7 @@ export class Board {
         let allPotentialValsEmpty = true;
         for (let i = 0; i < this.squares.length; i++) {
             if ((this.squares[i].getPotentialVals().length > 0) && 
-                (this.squares[i].getVal() !== null)) {
+                (this.squares[i].getVal() === null)) {
                 allPotentialValsEmpty = false;
             }
         }
@@ -318,15 +337,15 @@ export class Board {
     backtrack() {
         // undo moves, and reset the corresponding squares, until a checkpoint
         // is reached
-        let movesLastIndex = this.moves.length - 1;
-        while (this.moves[movesLastIndex].getCheckpoint() === false) {
-            this.squares[this.moves[movesLastIndex].getInd()].setVal(null);
+        // let movesLastIndex = this.moves.length - 1;
+        while (this.moves[(this.moves.length - 1)].getCheckpoint() === false) {
+            this.squares[this.moves[(this.moves.length - 1)].getInd()].setVal(null);
             this.moves.pop();
-            movesLastIndex--;
+            // movesLastIndex--;
         }
 
         // undo the checkpoint move and reset its corresponding square
-        this.squares[this.moves[movesLastIndex].getInd()].setVal(null);
+        this.squares[this.moves[(this.moves.length - 1)].getInd()].setVal(null);
         this.moves.pop();
 
         // reinitialize every square's potentialVals

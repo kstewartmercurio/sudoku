@@ -28,7 +28,7 @@ function main() {
     
     const testBoard = new Board(hardPuzzle);
 
-    testBoard.TESTVIEWB();
+    testBoard.solve();
 }
 
 main();
