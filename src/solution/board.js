@@ -276,4 +276,15 @@ export class Board {
             }
         }
     }
+
+    complete() {
+        // determine if the puzzle is complete
+        for (let i = 0; i < this.squares.length; i++) {
+            if (this.squares[i].getVal() === null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
