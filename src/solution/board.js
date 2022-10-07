@@ -1,6 +1,7 @@
 import {Square} from "./square.js";
 import {Nine} from "./nine.js";
 import {Move} from "./move.js";
+import { toBeRequired } from "@testing-library/jest-dom/dist/matchers.js";
 
 export class Board {
     constructor(puzzle) {
@@ -286,5 +287,24 @@ export class Board {
         }
 
         return true;
+    }
+
+    deadend() {
+        // determine if a deadend has been reached/if backtracking is necessary
+        // (i.e. if there is a null value square with a nonempty potentialVals 
+        // array and the puzzle is not yet complete)
+        let allPotentialValsEmpty = true;
+        for (let i = 0; i < this.squares.length; i++) {
+            if ((this.squares[i].getPotentialVals().length > 0) && 
+                (this.squares[i].getVal() !== null)) {
+                allPotentialValsEmpty = false;
+            }
+        }
+
+        if ((allPotentialValsEmpty === true) && (this.complete() === false)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
