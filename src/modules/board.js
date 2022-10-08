@@ -1,131 +1,119 @@
-import React from "react";
+import React, {useState} from "react";
 import {Square} from "./square";
 import {Puzzle} from "../solution/puzzle.js";
 
-export class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            squares: Array(81).fill(null),
-            selected: 0,
-            status: "solve",
-        };
-        this.handleKeyPress = this.handleKeyPress.bind(this);
-        this.solve = this.solve.bind(this);
-        this.newPuzzle = this.newPuzzle.bind(this);
-    }
+export function Board() {
+    const [squares, setSquares] = useState(Array(81).fill(null));
+    const [status, setStatus] = useState("solve");
 
-    handleKeyPress(e, i) {
-        const squares = this.state.squares.slice();
+    const renderSquare = (i) => {
+        return (
+            <Square key={i.toString()} val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}/>
+        );
+    };
 
+    const buildRows = () => {
+        // return an array of rows, each containing 9 Square objects
+        let rows = [];
+
+        for (let i = 0; i < 9; i++) {
+            let j = i * 9;
+
+            rows.push(
+                <div className="board-row">
+                    {renderSquare(j)}
+                    {renderSquare(j + 1)}
+                    {renderSquare(j + 2)}
+                    {renderSquare(j + 3)}
+                    {renderSquare(j + 4)}
+                    {renderSquare(j + 5)}
+                    {renderSquare(j + 6)}
+                    {renderSquare(j + 7)}
+                    {renderSquare(j + 8)}
+                </div>
+            );
+        }
+
+        return rows
+    };
+
+    const handleKeyPress = (e, i) => {
+        // create a copy of the board and update it with valid user input
+        let s = squares.slice();
+        
         switch (e.key) {
             case "1":
-                squares[i] = 1;
-                break;
+                s[i] = 1;
+                break;            
             case "2":
-                squares[i] = 2;
+                s[i] = 2;
                 break;
             case "3":
-                squares[i] = 3;
+                s[i] = 3;
                 break;
             case "4":
-                squares[i] = 4;
+                s[i] = 4;
                 break;
             case "5":
-                squares[i] = 5;
+                s[i] = 5;
                 break;
             case "6":
-                squares[i] = 6;
+                s[i] = 6;
                 break;
             case "7":
-                squares[i] = 7;
+                s[i] = 7;
                 break;
             case "8":
-                squares[i] = 8;
+                s[i] = 8;
                 break;
             case "9":
-                squares[i] = 9;
+                s[i] = 9;
                 break;
             case "-":
-                squares[i] = null;
+                s[i] = null;
                 break;
             default:
                 break;
         };
 
-        this.setState({squares: squares});
+        // replace the actual board with its copy
+        setSquares(s)
     }
 
-    renderSquare(i) {
-        return <Square
-            val={this.state.squares[i]}
-            onKeyPress={(e) => this.handleKeyPress(e, i)}
-        />;
-    }
-
-    buildSquares() {
-        const retArr = [];
-
-        for (let i = 0; i < 9; i++) {
-            let j = i * 9;
-
-            retArr.push(
-                <div className="board-row">
-                    {this.renderSquare(j)}
-                    {this.renderSquare(j + 1)}
-                    {this.renderSquare(j + 2)}
-                    {this.renderSquare(j + 3)}
-                    {this.renderSquare(j + 4)}
-                    {this.renderSquare(j + 5)}
-                    {this.renderSquare(j + 6)}
-                    {this.renderSquare(j + 7)}
-                    {this.renderSquare(j + 8)}
-                </div>
-            );
-        }
-
-        return retArr
-    }
-
-    solve(e) {
+    const solve = (e) => {
         e.preventDefault();
 
-        let puzzle = new Puzzle(this.state.squares);
+        // take user input, create a corresponding Puzzle object, and solve
+        let puzzle = new Puzzle(squares);
         puzzle = puzzle.solvePuzzle();
 
-        this.setState({squares: puzzle});
-        this.setState({status: "new puzzle"});
+        // output the solved sudoku to the user and update the button text
+        setSquares(puzzle);
+        setStatus("new puzzle");
     }
 
-    newPuzzle(e) {
+    const newPuzzle = (e) => {
         e.preventDefault();
 
-        this.setState({squares: Array(81).fill(null)});
-        this.setState({status: "solve"});
+        // reset the puzzle input and button text
+        setSquares(Array(81).fill(null));
+        setStatus("solve");
     }
 
-    render() {
-        return (
-            <div>
-                {this.buildSquares()[0]}
-                {this.buildSquares()[1]}
-                {this.buildSquares()[2]}
-                {this.buildSquares()[3]}
-                {this.buildSquares()[4]}
-                {this.buildSquares()[5]}
-                {this.buildSquares()[6]}
-                {this.buildSquares()[7]}
-                {this.buildSquares()[8]}
-                <button className="sub" onClick={(e) => {
-                    if (this.state.status === "solve") {
-                        this.solve(e);
-                    } else {
-                        this.newPuzzle(e);
-                    }
-                }}>
-                    {this.state.status}
-                </button>
-            </div>
-        );
-    }
+    return (
+        <div>
+            {/* display each row */}
+            {buildRows().map(row => row)}
+            {/* display the solve/new puzzle button */}
+            <button className="sub" onClick={(e) => {
+                if (status === "solve") {
+                    solve(e);
+                } else {
+                    newPuzzle(e);
+                }
+            }}>
+                {status}
+            </button>
+        </div>
+    );
 }
