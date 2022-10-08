@@ -8,7 +8,7 @@ export class Board extends React.Component {
         this.state = {
             squares: Array(81).fill(null),
             selected: 0,
-            status: 0
+            status: "solve",
         };
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.solve = this.solve.bind(this);
@@ -89,38 +89,22 @@ export class Board extends React.Component {
 
     solve(e) {
         e.preventDefault();
-        // this.setState({status: 1});
 
         let puzzle = new Puzzle(this.state.squares);
         puzzle = puzzle.solvePuzzle();
 
         this.setState({squares: puzzle});
-        this.setState({status: 1});
+        this.setState({status: "new puzzle"});
     }
 
     newPuzzle(e) {
         e.preventDefault();
 
         this.setState({squares: Array(81).fill(null)});
-        this.setState({status: 0});
+        this.setState({status: "solve"});
     }
 
     render() {
-        let solveStatus;
-        if (this.state.status === 0) {
-            solveStatus = (
-                <form onSubmit={this.solve}>
-                    <button type="submit" className="solve">solve</button>
-                </form>
-            );
-        } else {
-            solveStatus = (
-                <form onSubmit={this.newPuzzle}>
-                    <button type="submit" className="solve">new puzzle</button>
-                </form>
-            );
-        }
-
         return (
             <div>
                 {this.buildSquares()[0]}
@@ -132,7 +116,15 @@ export class Board extends React.Component {
                 {this.buildSquares()[6]}
                 {this.buildSquares()[7]}
                 {this.buildSquares()[8]}
-                {solveStatus}
+                <button className="sub" onClick={(e) => {
+                    if (this.state.status === "solve") {
+                        this.solve(e);
+                    } else {
+                        this.newPuzzle(e);
+                    }
+                }}>
+                    {this.state.status}
+                </button>
             </div>
         );
     }

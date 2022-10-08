@@ -25,6 +25,18 @@ function main() {
         null, null, 6, 9, 5, null, null, null, 2,
         null, null, 1, null, null, 6, null, null, 8
     ]);
+    // not an instant solve
+    let longPuzzle = ([
+        null, null, null, null, 1, null, 4, 5, null,
+        null, null, 2, 3, null, null, null, null, null,
+        null, 8, null, null, null, null, 7, null, null,
+        null, null, null, 8, null, null, null, 3, 2,
+        7, 6, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null,
+        5, null, null, null, 7, null, 6, null, null,
+        null, null, null, null, null, 1, null, null, null,
+        null, null, 3, null, null, null, null, null, null
+    ]);
     
     const testBoard = new Puzzle(hardPuzzle);
 
