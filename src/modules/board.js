@@ -39,45 +39,45 @@ export function Board() {
 
     const handleKeyPress = (e, i) => {
         // create a copy of the board and update it with valid user input
-        let s = squares.slice();
+        let squaresCopy = squares.slice();
         
         switch (e.key) {
             case "1":
-                s[i] = 1;
+                squaresCopy[i] = 1;
                 break;            
             case "2":
-                s[i] = 2;
+                squaresCopy[i] = 2;
                 break;
             case "3":
-                s[i] = 3;
+                squaresCopy[i] = 3;
                 break;
             case "4":
-                s[i] = 4;
+                squaresCopy[i] = 4;
                 break;
             case "5":
-                s[i] = 5;
+                squaresCopy[i] = 5;
                 break;
             case "6":
-                s[i] = 6;
+                squaresCopy[i] = 6;
                 break;
             case "7":
-                s[i] = 7;
+                squaresCopy[i] = 7;
                 break;
             case "8":
-                s[i] = 8;
+                squaresCopy[i] = 8;
                 break;
             case "9":
-                s[i] = 9;
+                squaresCopy[i] = 9;
                 break;
             case "-":
-                s[i] = null;
+                squaresCopy[i] = null;
                 break;
             default:
                 break;
         };
 
         // replace the actual board with its copy
-        setSquares(s)
+        setSquares(squaresCopy)
     }
 
     const solve = (e) => {
