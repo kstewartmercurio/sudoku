@@ -1,7 +1,6 @@
 import {Square} from "./square.js";
 import {Nine} from "./nine.js";
 import {Move} from "./move.js";
-// import { toBeRequired } from "@testing-library/jest-dom/dist/matchers.js";
 
 export class Puzzle {
     constructor(puzzle) {

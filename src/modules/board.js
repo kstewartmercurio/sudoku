@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Square} from "./square";
-import {Puzzle} from "../solution/puzzle.js";
+import {Puzzle} from "../solver/puzzle.js";
+import {generatePuzzleJSON} from "../generator/gen.js";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -100,20 +101,38 @@ export function Board() {
         setStatus("solve");
     }
 
+    const generatePuzzle = (e) => {
+        e.preventDefault();
+
+        setSquares(Array(81).fill(null));
+        setStatus("solve");
+
+        const puzzleObj = generatePuzzleJSON("hard");
+        const puzzleStr = JSON.parse(puzzleObj)["puzzle"];
+        console.log(puzzleStr);
+    }
+
     return (
-        <div>
+        <>
             {/* display each row */}
             {buildRows().map(row => row)}
             {/* display the solve/new puzzle button */}
-            <button className="sub" onClick={(e) => {
-                if (status === "solve") {
-                    solve(e);
-                } else {
-                    newPuzzle(e);
-                }
-            }}>
-                {status}
-            </button>
-        </div>
+            <div className="btnBar">
+                <button className="sub" onClick={(e) => {
+                    if (status === "solve") {
+                        solve(e);
+                    } else {
+                        newPuzzle(e);
+                    }
+                }}>
+                    {status}
+                </button>
+                <button className="gen" onClick={(e) => {
+                    generatePuzzle(e);
+                }}>
+                    generate puzzle
+                </button>
+            </div>
+        </>
     );
 }
