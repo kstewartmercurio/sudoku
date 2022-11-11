@@ -1,8 +1,10 @@
 import React from "react";
 
 export function Square(props) {
+    const idStr = "s" + props.idStr;
+
     return (
-        <button className="square" onKeyPress={props.onKeyPress}>
+        <button className="square" id={idStr} onKeyPress={props.onKeyPress}>
             {props.val}
         </button>
     );

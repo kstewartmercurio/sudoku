@@ -10,7 +10,7 @@ export function Board() {
 
     const renderSquare = (i) => {
         return (
-            <Square key={i.toString()} val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}/>
+            <Square idStr={i.toString()} val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}/>
         );
     };
 
@@ -21,8 +21,10 @@ export function Board() {
         for (let i = 0; i < 9; i++) {
             let j = i * 9;
 
+            let classStr = "board-row-" + i.toString();
+
             rows.push(
-                <div className="board-row">
+                <div className={classStr}>
                     {renderSquare(j)}
                     {renderSquare(j + 1)}
                     {renderSquare(j + 2)}
@@ -143,7 +145,10 @@ export function Board() {
             {/* display the solve/new puzzle button */}
             <div className="btnBar">
                 <button className="solveBtn" onClick={(e) => {
-                    solve(e);
+                    // just to prevent a status warning, not necessary
+                    if (status) {
+                        solve(e);
+                    }
                 }}>
                     solve
                 </button>
@@ -158,7 +163,6 @@ export function Board() {
                     clear board
                 </button>
             </div>
-            <p id="tempTxt">{status}</p>
         </>
     );
 }

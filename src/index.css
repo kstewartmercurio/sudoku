@@ -17,6 +17,23 @@ body {
     text-align: center;
 }
 
+.board-row-0, .board-row-3, .board-row-6 {
+    border-top: 3px solid;
+}
+
+.board-row-8 {
+    border-bottom: 3px solid;
+}
+
+#s0, #s9, #s18, #s27, #s36, #s45, #s54, #s63, #s72, #s3, #s12, #s21, #s30, #s39,
+#s48, #s57, #s66, #s75, #s6, #s15, #s24, #s33, #s42, #s51, #s60, #s69, #s78 {
+    border-left: 3px solid;
+}
+
+#s8, #s17, #s26, #s35, #s44, #s53, #s62, #s71, #s80 {
+    border-right: 3px solid;
+}
+
 .solveBtn {
     margin-top: 10px;
     margin-right: 5px;
