@@ -17,7 +17,22 @@ body {
     text-align: center;
 }
 
-.sub {
+.solveBtn {
     margin-top: 10px;
     margin-right: 5px;
+}
+
+.genBtn {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.clearBtn {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+#tempTxt {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
 }

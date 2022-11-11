@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import {Square} from "./square";
 import {Puzzle} from "../solver/puzzle.js";
-import {generatePuzzleJSON} from "../generator/gen.js";
+// import {generatePuzzleJSON} from "../generator/gen.js";
+import axios from "axios";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
-    const [status, setStatus] = useState("solve");
+    const [status, setStatus] = useState("ready to solve");
 
     const renderSquare = (i) => {
         return (
@@ -90,26 +91,49 @@ export function Board() {
 
         // output the solved sudoku to the user and update the button text
         setSquares(puzzle);
-        setStatus("new puzzle");
-    }
-
-    const newPuzzle = (e) => {
-        e.preventDefault();
-
-        // reset the puzzle input and button text
-        setSquares(Array(81).fill(null));
-        setStatus("solve");
+        setStatus("solved");
     }
 
     const generatePuzzle = (e) => {
         e.preventDefault();
 
+        // reset the puzzle
         setSquares(Array(81).fill(null));
-        setStatus("solve");
 
-        const puzzleObj = generatePuzzleJSON("hard");
-        const puzzleStr = JSON.parse(puzzleObj)["puzzle"];
-        console.log(puzzleStr);
+        // retrieving new puzzle from Sudoku Generator API
+        const options = {
+        method: 'GET',
+        url: 'https://sudoku-generator1.p.rapidapi.com/sudoku/generate',
+        params: {difficulty: "hard"},
+        headers: {
+            'X-RapidAPI-Key': '2138fedc77msh0d37375d64802d5p130230jsn41094285e5fe',
+            'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
+        }
+        };
+    
+        axios.request(options).then(function (response) {
+            let puzzleArr = [];
+            for (let i = 0; i < response.data.puzzle.length; i++) {
+                if (response.data.puzzle[i] === ".") {
+                    puzzleArr.push(null);
+                } else {
+                    puzzleArr.push(parseInt(response.data.puzzle[i]));
+                }
+            }
+
+            setSquares(puzzleArr);
+            setStatus("ready to solve");
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
+    const clearBoard = (e) => {
+        e.preventDefault();
+
+        // reset the puzzle
+        setSquares(Array(81).fill(null));
+        setStatus("ready to solve");
     }
 
     return (
@@ -118,21 +142,23 @@ export function Board() {
             {buildRows().map(row => row)}
             {/* display the solve/new puzzle button */}
             <div className="btnBar">
-                <button className="sub" onClick={(e) => {
-                    if (status === "solve") {
-                        solve(e);
-                    } else {
-                        newPuzzle(e);
-                    }
+                <button className="solveBtn" onClick={(e) => {
+                    solve(e);
                 }}>
-                    {status}
+                    solve
                 </button>
-                <button className="gen" onClick={(e) => {
+                <button className="genBtn" onClick={(e) => {
                     generatePuzzle(e);
                 }}>
                     generate puzzle
                 </button>
+                <button className="clearBtn" onClick={(e) => {
+                    clearBoard(e);
+                }}>
+                    clear board
+                </button>
             </div>
+            <p id="tempTxt">{status}</p>
         </>
     );
 }
