@@ -144,7 +144,7 @@ export function Board() {
             {buildRows().map(row => row)}
             {/* display the solve/new puzzle button */}
             <div className="btnBar">
-                <button className="solveBtn" onClick={(e) => {
+                <button className="btn" id="solveBtn" onClick={(e) => {
                     // just to prevent a status warning, not necessary
                     if (status) {
                         solve(e);
@@ -152,12 +152,12 @@ export function Board() {
                 }}>
                     solve
                 </button>
-                <button className="genBtn" onClick={(e) => {
+                <button className="btn" id="genBtn" onClick={(e) => {
                     generatePuzzle(e);
                 }}>
                     generate puzzle
                 </button>
-                <button className="clearBtn" onClick={(e) => {
+                <button className="btn" id="clearBtn" onClick={(e) => {
                     clearBoard(e);
                 }}>
                     clear board

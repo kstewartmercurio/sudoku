@@ -1,5 +1,5 @@
 body {
-    background-color: white;
+    background-color: #464d66;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -13,6 +13,7 @@ body {
     vertical-align: top;
     height: 50px;
     width: 50px;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
     text-align: center;
 }
@@ -34,22 +35,18 @@ body {
     border-right: 3px solid;
 }
 
-.solveBtn {
-    margin-top: 10px;
-    margin-right: 5px;
+.btnBar {
+    position: relative;
+    left: 10.5%;
 }
 
-.genBtn {
+.btn {
     margin-top: 10px;
     margin-right: 5px;
-}
-
-.clearBtn {
-    margin-top: 10px;
-    margin-right: 5px;
-}
-
-#tempTxt {
+    padding: 8px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
+    font-size: 16px;
+    background-color: #e0513e;
+    border: 0;
+    border-radius: 16px;
 }
