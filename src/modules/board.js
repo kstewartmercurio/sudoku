@@ -10,7 +10,7 @@ export function Board() {
 
     const renderSquare = (i) => {
         return (
-            <Square idStr={i.toString()} val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}/>
+            <Square key={i} idStr={i.toString()} val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}/>
         );
     };
 
@@ -24,7 +24,7 @@ export function Board() {
             let classStr = "board-row-" + i.toString();
 
             rows.push(
-                <div className={classStr}>
+                <div key={i} className={classStr}>
                     {renderSquare(j)}
                     {renderSquare(j + 1)}
                     {renderSquare(j + 2)}
