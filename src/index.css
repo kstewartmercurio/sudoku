@@ -7,7 +7,8 @@ body {
 }
 
 .square {
-    background-color: white;
+    color: black;
+    background-color: #3d4359;
     border: .85px solid black;
     padding: 0;
     vertical-align: top;
@@ -16,23 +17,28 @@ body {
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
     text-align: center;
+    outline: none;
+}
+
+#selected {
+    border: 3px solid #cfcfcf;
 }
 
 .board-row-0, .board-row-3, .board-row-6 {
-    border-top: 3px solid;
+    border-top: 3px solid black;
 }
 
 .board-row-8 {
-    border-bottom: 3px solid;
+    border-bottom: 3px solid black;
 }
 
 #s0, #s9, #s18, #s27, #s36, #s45, #s54, #s63, #s72, #s3, #s12, #s21, #s30, #s39,
 #s48, #s57, #s66, #s75, #s6, #s15, #s24, #s33, #s42, #s51, #s60, #s69, #s78 {
-    border-left: 3px solid;
+    border-left: 3px solid black;
 }
 
 #s8, #s17, #s26, #s35, #s44, #s53, #s62, #s71, #s80 {
-    border-right: 3px solid;
+    border-right: 3px solid black;
 }
 
 .btnBar {

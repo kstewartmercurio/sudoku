@@ -1,21 +1,27 @@
 import React, {useState} from "react";
 import {Square} from "./square";
 import {Puzzle} from "../solver/puzzle.js";
-// import {generatePuzzleJSON} from "../generator/gen.js";
 import axios from "axios";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [status, setStatus] = useState("ready to solve");
-    // selected stores the index of the selected square, if applicable
     const [selected, setSelected] = useState(null);
 
     const renderSquare = (i) => {
-        return (
-            <Square key={i} idStr={i.toString()} val={squares[i]} 
-                onKeyPress={(e) => handleKeyPress(e, i)}
-                onClick={(e) => handleClick(e, i)}/>
-        );
+        if (selected === i) {
+            return (
+                <Square key={i} idStr={i.toString()} val={squares[i]} 
+                    onKeyPress={(e) => handleKeyPress(e, i)}
+                    onClick={(e) => handleClick(e, i)} sel={true}/>
+            )
+        } else {
+            return (
+                <Square key={i} idStr={i.toString()} val={squares[i]} 
+                    onKeyPress={(e) => handleKeyPress(e, i)}
+                    onClick={(e) => handleClick(e, i)} sel={false}/>
+            );
+        }
     };
 
     const buildRows = () => {
@@ -46,46 +52,49 @@ export function Board() {
     };
 
     const handleKeyPress = (e, i) => {
-        // create a copy of the board and update it with valid user input
-        let squaresCopy = squares.slice();
-        
-        switch (e.key) {
-            case "1":
-                squaresCopy[i] = 1;
-                break;            
-            case "2":
-                squaresCopy[i] = 2;
-                break;
-            case "3":
-                squaresCopy[i] = 3;
-                break;
-            case "4":
-                squaresCopy[i] = 4;
-                break;
-            case "5":
-                squaresCopy[i] = 5;
-                break;
-            case "6":
-                squaresCopy[i] = 6;
-                break;
-            case "7":
-                squaresCopy[i] = 7;
-                break;
-            case "8":
-                squaresCopy[i] = 8;
-                break;
-            case "9":
-                squaresCopy[i] = 9;
-                break;
-            case "-":
-                squaresCopy[i] = null;
-                break;
-            default:
-                break;
-        };
+        if (selected === i) {
+            // create a copy of the board and update it with valid user input
+            let squaresCopy = squares.slice();
+            
+            switch (e.key) {
+                case "1":
+                    squaresCopy[i] = 1;
+                    break;            
+                case "2":
+                    squaresCopy[i] = 2;
+                    break;
+                case "3":
+                    squaresCopy[i] = 3;
+                    break;
+                case "4":
+                    squaresCopy[i] = 4;
+                    break;
+                case "5":
+                    squaresCopy[i] = 5;
+                    break;
+                case "6":
+                    squaresCopy[i] = 6;
+                    break;
+                case "7":
+                    squaresCopy[i] = 7;
+                    break;
+                case "8":
+                    squaresCopy[i] = 8;
+                    break;
+                case "9":
+                    squaresCopy[i] = 9;
+                    break;
+                case "-":
+                    squaresCopy[i] = null;
+                    break;
+                default:
+                    break;
+            };
 
-        // replace the actual board with its copy
-        setSquares(squaresCopy)
+            // replace the actual board with its copy
+            setSquares(squaresCopy)
+            setSelected(null)
+        }
     }
 
     const handleClick = (e, i) => {
@@ -104,6 +113,7 @@ export function Board() {
         // output the solved sudoku to the user and update the button text
         setSquares(puzzle);
         setStatus("solved");
+        setSelected(null);
     }
 
     const generatePuzzle = (e) => {
@@ -135,6 +145,7 @@ export function Board() {
 
             setSquares(puzzleArr);
             setStatus("ready to solve");
+            setSelected(null);
         }).catch(function (error) {
             console.error(error);
         });
@@ -146,6 +157,7 @@ export function Board() {
         // reset the puzzle
         setSquares(Array(81).fill(null));
         setStatus("ready to solve");
+        setSelected(null);
     }
 
     return (
