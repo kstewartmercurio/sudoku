@@ -7,10 +7,14 @@ import axios from "axios";
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [status, setStatus] = useState("ready to solve");
+    // selected stores the index of the selected square, if applicable
+    const [selected, setSelected] = useState(null);
 
     const renderSquare = (i) => {
         return (
-            <Square key={i} idStr={i.toString()} val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}/>
+            <Square key={i} idStr={i.toString()} val={squares[i]} 
+                onKeyPress={(e) => handleKeyPress(e, i)}
+                onClick={(e) => handleClick(e, i)}/>
         );
     };
 
@@ -82,6 +86,12 @@ export function Board() {
 
         // replace the actual board with its copy
         setSquares(squaresCopy)
+    }
+
+    const handleClick = (e, i) => {
+        e.preventDefault();
+
+        setSelected(i);
     }
 
     const solve = (e) => {
