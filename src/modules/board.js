@@ -166,24 +166,26 @@ export function Board() {
             {buildRows().map(row => row)}
             {/* display the solve/new puzzle button */}
             <div className="btnBar">
-                <button className="btn" id="solveBtn" onClick={(e) => {
-                    // just to prevent a status warning, not necessary
-                    if (status) {
-                        solve(e);
-                    }
-                }}>
-                    solve
-                </button>
-                <button className="btn" id="genBtn" onClick={(e) => {
-                    generatePuzzle(e);
-                }}>
-                    generate puzzle
-                </button>
-                <button className="btn" id="clearBtn" onClick={(e) => {
-                    clearBoard(e);
-                }}>
-                    clear board
-                </button>
+                <div className="btnGrp">
+                    <button className="btn" id="solveBtn" onClick={(e) => {
+                        // just to prevent a status warning, not necessary
+                        if (status) {
+                            solve(e);
+                        }
+                    }}>
+                        solve
+                    </button>
+                    <button className="btn" id="genBtn" onClick={(e) => {
+                        generatePuzzle(e);
+                    }}>
+                        generate puzzle
+                    </button>
+                    <button className="btn" id="clearBtn" onClick={(e) => {
+                        clearBoard(e);
+                    }}>
+                        clear board
+                    </button>
+                </div>
             </div>
         </>
     );

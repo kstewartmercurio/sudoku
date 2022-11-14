@@ -1,5 +1,23 @@
+/*
+backgroundColor - background color
+squareColor - sub alt
+squareTextColor - error
+buttonColor - main
+hoverColor - text
+*/
+
+:root {
+    --backgroundColor: #292929;
+    --boardColor: #99b898;
+    --squareColor: #616161;
+    --squareTextColor: #fecea8;
+    --buttonColor: #2a363b;
+    --buttonTextColor: #fecea8;
+    --selectedColor: #fecea8;
+}
+
 body {
-    background-color: #464d66;
+    background-color: var(--backgroundColor);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -7,9 +25,9 @@ body {
 }
 
 .square {
-    color: black;
-    background-color: #3d4359;
-    border: .85px solid black;
+    color: var(--squareTextColor);
+    background-color: var(--squareColor);
+    border: .5px solid var(--boardColor);
     padding: 0;
     vertical-align: top;
     height: 50px;
@@ -21,38 +39,78 @@ body {
 }
 
 #selected {
-    border: 3px solid #cfcfcf;
+    border: 3px solid var(--selectedColor);
 }
 
-.board-row-0, .board-row-3, .board-row-6 {
-    border-top: 3px solid black;
+/* board outline */
+.board-row-0 {
+    border-top: 5px solid var(--boardColor);
+}
+
+.board-row-3, .board-row-6 {
+    border-top: 2.5px solid var(--boardColor);
 }
 
 .board-row-8 {
-    border-bottom: 3px solid black;
+    border-bottom: 5px solid var(--boardColor);
 }
 
-#s0, #s9, #s18, #s27, #s36, #s45, #s54, #s63, #s72, #s3, #s12, #s21, #s30, #s39,
+.board-row-2, .board-row-5 {
+    border-bottom: 2.5px solid var(--boardColor);
+}
+
+#s0, #s9, #s18, #s27, #s36, #s45, #s54, #s63, #s72 {
+    border-left: 5px solid var(--boardColor);
+}
+
+#s3, #s12, #s21, #s30, #s39,
 #s48, #s57, #s66, #s75, #s6, #s15, #s24, #s33, #s42, #s51, #s60, #s69, #s78 {
-    border-left: 3px solid black;
+    border-left: 2.5px solid var(--boardColor);
 }
 
 #s8, #s17, #s26, #s35, #s44, #s53, #s62, #s71, #s80 {
-    border-right: 3px solid black;
+    border-right: 5px solid var(--boardColor);
 }
 
+#s2, #s11, #s20, #s29, #s38, #s47, #s56, #s65, #s74, #s5, #s14, #s23, #s32,
+#s41, #s50, #s59, #s68, #s77 {
+    border-right: 2.5px solid var(--boardColor);
+}
+
+/* button styling */
 .btnBar {
+    background-color: var(--backgroundColor);
+    width: 100%;
     position: relative;
-    left: 10.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+.btnGrp {
+    display: flex;
+    justify-content: center;
+}
+
+.btn:hover {
+    color: var(--buttonColor);
+    background-color: var(--buttonTextColor);
+    transition: .3s;
 }
 
 .btn {
-    margin-top: 10px;
-    margin-right: 5px;
-    padding: 8px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 16px;
-    background-color: #e0513e;
+    color: var(--buttonTextColor);
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 8px 14px;
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto Mono";
+    font-size: 1em;
+    gap: .25em;
+    background-color: var(--buttonColor);
     border: 0;
-    border-radius: 16px;
+    border-radius: 8px;
+    transition: .3s;
 }
