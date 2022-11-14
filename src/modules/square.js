@@ -14,7 +14,7 @@ export function Square(props) {
         return (
             <button className="square" id={idStr} onKeyPress={props.onKeyPress}
                 onClick={props.onClick}>
-                {props.idStr}
+                {props.val}
             </button>
         );
     }
