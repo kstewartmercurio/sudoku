@@ -1,9 +1,11 @@
 /*
 backgroundColor - background color
-squareColor - sub alt
-squareTextColor - error
-buttonColor - main
-hoverColor - text
+boardColor - main
+squareColor - sub
+squareTextColor - text
+buttonColor - sub alt
+buttonTextColor - text
+selectedColor - error
 */
 
 :root {
@@ -13,7 +15,7 @@ hoverColor - text
     --squareTextColor: #fecea8;
     --buttonColor: #2a363b;
     --buttonTextColor: #fecea8;
-    --selectedColor: #fecea8;
+    --selectedColor: rgba(255, 105, 97, 0.35);
 }
 
 body {
@@ -22,6 +24,46 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* board outline */
+.board-row-0 {
+    border-top: 5px solid var(--boardColor) !important;
+}
+
+.board-row-3, .board-row-6 {
+    border-top: 2.5px solid var(--boardColor) !important;
+}
+
+.board-row-8{
+    border-bottom: 5px solid var(--boardColor) !important;
+}
+
+.board-row-2, .board-row-5 {
+    border-bottom: 2.5px solid var(--boardColor) !important;
+}
+
+.board-column-0 {
+    border-left: 5px solid var(--boardColor) !important;
+}
+
+.board-column-3, .board-column-6 {
+    border-left: 2.5px solid var(--boardColor) !important;
+}
+
+.board-column-8 {
+    border-right: 5px solid var(--boardColor) !important;
+}
+
+.board-column-2, .board-column-5 {
+    border-right: 2.5px solid var(--boardColor) !important;
+}
+/* end of board outline */
+
+
+#selected {
+    background-color: var(--selectedColor) !important;
+    transition: .3s;
 }
 
 .square {
@@ -36,45 +78,7 @@ body {
     font-size: 24px;
     text-align: center;
     outline: none;
-}
-
-#selected {
-    border: 3px solid var(--selectedColor);
-}
-
-/* board outline */
-.board-row-0 {
-    border-top: 5px solid var(--boardColor);
-}
-
-.board-row-3, .board-row-6 {
-    border-top: 2.5px solid var(--boardColor);
-}
-
-.board-row-8 {
-    border-bottom: 5px solid var(--boardColor);
-}
-
-.board-row-2, .board-row-5 {
-    border-bottom: 2.5px solid var(--boardColor);
-}
-
-#s0, #s9, #s18, #s27, #s36, #s45, #s54, #s63, #s72 {
-    border-left: 5px solid var(--boardColor);
-}
-
-#s3, #s12, #s21, #s30, #s39,
-#s48, #s57, #s66, #s75, #s6, #s15, #s24, #s33, #s42, #s51, #s60, #s69, #s78 {
-    border-left: 2.5px solid var(--boardColor);
-}
-
-#s8, #s17, #s26, #s35, #s44, #s53, #s62, #s71, #s80 {
-    border-right: 5px solid var(--boardColor);
-}
-
-#s2, #s11, #s20, #s29, #s38, #s47, #s56, #s65, #s74, #s5, #s14, #s23, #s32,
-#s41, #s50, #s59, #s68, #s77 {
-    border-right: 2.5px solid var(--boardColor);
+    transition: .3s;
 }
 
 /* button styling */
@@ -113,4 +117,6 @@ body {
     border: 0;
     border-radius: 8px;
     transition: .3s;
+    cursor: pointer;
 }
+/* end of button styling */

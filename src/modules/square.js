@@ -5,15 +5,15 @@ export function Square(props) {
 
     if (props.sel === true) {
         return (
-            <button className="square" id="selected" onKeyPress={props.onKeyPress}
-                onClick={props.onClick}>
+            <button className={props.className} id="selected" 
+                onKeyPress={props.onKeyPress} onClick={props.onClick}>
                 {props.val}
             </button>
         )
     } else {
         return (
-            <button className="square" id={idStr} onKeyPress={props.onKeyPress}
-                onClick={props.onClick}>
+            <button className={props.className} id={idStr} 
+                onKeyPress={props.onKeyPress} onClick={props.onClick}>
                 {props.val}
             </button>
         );

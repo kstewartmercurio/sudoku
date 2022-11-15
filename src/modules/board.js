@@ -11,13 +11,15 @@ export function Board() {
     const renderSquare = (i) => {
         if (selected === i) {
             return (
-                <Square key={i} idStr={i.toString()} val={squares[i]} 
+                <Square className={"square board-column-" + (i % 9).toString()}
+                    key={i} idStr={i.toString()} val={squares[i]} 
                     onKeyPress={(e) => handleKeyPress(e, i)}
                     onClick={(e) => handleClick(e, i)} sel={true}/>
             )
         } else {
             return (
-                <Square key={i} idStr={i.toString()} val={squares[i]} 
+                <Square className={"square board-column-" + (i % 9).toString()}
+                    key={i} idStr={i.toString()} val={squares[i]} 
                     onKeyPress={(e) => handleKeyPress(e, i)}
                     onClick={(e) => handleClick(e, i)} sel={false}/>
             );
@@ -30,7 +32,7 @@ export function Board() {
 
         for (let i = 0; i < 9; i++) {
             let j = i * 9;
-
+            
             let classStr = "board-row-" + i.toString();
 
             rows.push(
