@@ -9,13 +9,13 @@ selectedColor - error
 */
 
 :root {
-    --backgroundColor: #292929;
-    --boardColor: #99b898;
-    --squareColor: #616161;
-    --squareTextColor: #fecea8;
-    --buttonColor: #2a363b;
-    --buttonTextColor: #fecea8;
-    --selectedColor: rgba(255, 105, 97, 0.35);
+    --backgroundColor: #c6b294;
+    --boardColor: #405a52;
+    --squareColor: #8a785b;
+    --squareTextColor: #64374d;
+    --buttonColor: #b4a389;
+    --buttonTextColor: #091914;
+    --selectedColor: #64374d8d;
 }
 
 body {

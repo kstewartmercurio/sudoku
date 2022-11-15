@@ -32,7 +32,7 @@ export function Board() {
 
         for (let i = 0; i < 9; i++) {
             let j = i * 9;
-            
+
             let classStr = "board-row-" + i.toString();
 
             rows.push(
@@ -128,7 +128,7 @@ export function Board() {
         const options = {
         method: 'GET',
         url: 'https://sudoku-generator1.p.rapidapi.com/sudoku/generate',
-        params: {difficulty: "hard"},
+        params: {difficulty: "easy"},
         headers: {
             'X-RapidAPI-Key': '2138fedc77msh0d37375d64802d5p130230jsn41094285e5fe',
             'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
