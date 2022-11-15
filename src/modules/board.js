@@ -9,49 +9,63 @@ export function Board() {
     const [selected, setSelected] = useState(null);
 
     const renderSquare = (i) => {
+        // const classNameStr = "square board-column-" + (i % 9).toString();
+        const classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
+        let selBool;
         if (selected === i) {
-            return (
-                <Square className={"square board-column-" + (i % 9).toString()}
-                    key={i} idStr={i.toString()} val={squares[i]} 
-                    onKeyPress={(e) => handleKeyPress(e, i)}
-                    onClick={(e) => handleClick(e, i)} sel={true}/>
-            )
+            selBool = true;
         } else {
-            return (
-                <Square className={"square board-column-" + (i % 9).toString()}
-                    key={i} idStr={i.toString()} val={squares[i]} 
-                    onKeyPress={(e) => handleKeyPress(e, i)}
-                    onClick={(e) => handleClick(e, i)} sel={false}/>
-            );
+            selBool = false;
         }
+
+        return (
+            <Square className={classNameStr} key={i} idStr={i.toString()}
+                val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}
+                onClick={(e) => handleClick(e, i)} sel={selBool}/>
+        )
     };
 
-    const buildRows = () => {
-        // return an array of rows, each containing 9 Square objects
-        let rows = [];
+    const buildSquares = () => {
+        let elementLst = [];
 
-        for (let i = 0; i < 9; i++) {
-            let j = i * 9;
+        for (let i = 0; i < 81; i++) {
+            elementLst.push(renderSquare(i));
 
-            let classStr = "board-row-" + i.toString();
+            if (i % 9 === 8) {
+                const brKey = "br-" + Math.floor(i / 9).toString();
+                elementLst.push(<br key={brKey} />)
+            }
+        }
 
-            rows.push(
-                <div key={i} className={classStr}>
-                    {renderSquare(j)}
-                    {renderSquare(j + 1)}
-                    {renderSquare(j + 2)}
-                    {renderSquare(j + 3)}
-                    {renderSquare(j + 4)}
-                    {renderSquare(j + 5)}
-                    {renderSquare(j + 6)}
-                    {renderSquare(j + 7)}
-                    {renderSquare(j + 8)}
+        return elementLst;
+    }
+
+    const buildBottomBtnBar = () => {
+        return (
+            <div className="btnBar">
+                <div className="btnGrp">
+                    <button className="btn" id="solveBtn" onClick={(e) => {
+                        // just to prevent a status warning, not necessary
+                        if (status) {
+                            solve(e);
+                        }
+                    }}>
+                        solve
+                    </button>
+                    <button className="btn" id="genBtn" onClick={(e) => {
+                        generatePuzzle(e);
+                    }}>
+                        generate puzzle
+                    </button>
+                    <button className="btn" id="clearBtn" onClick={(e) => {
+                        clearBoard(e);
+                    }}>
+                        clear board
+                    </button>
                 </div>
-            );
-        }
-
-        return rows
-    };
+            </div>
+        );
+    }
 
     const handleKeyPress = (e, i) => {
         if (selected === i) {
@@ -164,31 +178,12 @@ export function Board() {
 
     return (
         <>
-            {/* display each row */}
-            {buildRows().map(row => row)}
-            {/* display the solve/new puzzle button */}
-            <div className="btnBar">
-                <div className="btnGrp">
-                    <button className="btn" id="solveBtn" onClick={(e) => {
-                        // just to prevent a status warning, not necessary
-                        if (status) {
-                            solve(e);
-                        }
-                    }}>
-                        solve
-                    </button>
-                    <button className="btn" id="genBtn" onClick={(e) => {
-                        generatePuzzle(e);
-                    }}>
-                        generate puzzle
-                    </button>
-                    <button className="btn" id="clearBtn" onClick={(e) => {
-                        clearBoard(e);
-                    }}>
-                        clear board
-                    </button>
-                </div>
+            {/* display all squares */}
+            <div>
+                {buildSquares().map(ele => ele)}
             </div>
+            {/* display the solve/new puzzle button */}
+            {buildBottomBtnBar()}
         </>
     );
 }
