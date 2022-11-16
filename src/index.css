@@ -112,6 +112,11 @@ body {
     height: 22.195px;
 }
 
+#noteBtnOn, #difficultyBtn {
+    color: var(--boardColor);
+    transition: .3s;
+}
+
 .navBtn {
     color: var(--squareTextColor);
     background-color: var(--buttonColor);

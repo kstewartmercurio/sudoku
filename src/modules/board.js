@@ -7,6 +7,8 @@ export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [status, setStatus] = useState("ready to solve");
     const [selected, setSelected] = useState(null);
+    const [note, setNote] = useState(false);
+    const [difficulty, setDifficulty] = useState("easy");
 
     const renderSquare = (i) => {
         // const classNameStr = "square board-column-" + (i % 9).toString();
@@ -41,27 +43,46 @@ export function Board() {
     }
 
     const buildNavBar = () => {
+        let noteIdStr = "noteBtnOff";
+        if (note === true) {
+            noteIdStr = "noteBtnOn";
+        }
+
+        let easyIdStr = "easyBtn";
+        let medIdStr = "medBtn";
+        let hardIdStr = "hardBtn";
+        if (difficulty === "easy") {
+            easyIdStr = "difficultyBtn";
+        } else if (difficulty === "medium") {
+            medIdStr = "difficultyBtn";
+        } else {
+            hardIdStr = "difficultyBtn";
+        }
+
         return (
             <>
-                <button className="navBtn">
+                <button className="navBtn" id={noteIdStr} onClick={(e) =>
+                    handleNoteClick(e)
+                }>
                     note
                 </button>
-                {/* spacer */}
-
                 <span className="spacer"></span>
-
-                <button className="navBtn">
+                <button className="navBtn" id={easyIdStr} onClick={(e) => 
+                    handleDifficultyClick(e, "easy")
+                }>
                     easy
                 </button>
-                <button className="navBtn">
+                <button className="navBtn" id={medIdStr} onClick={(e) =>
+                    handleDifficultyClick(e, "medium")
+                }>
                     medium
                 </button>
-                <button className="navBtn">
+                <button className="navBtn" id={hardIdStr} onClick={(e) =>
+                    handleDifficultyClick(e, "hard")
+                }>
                     hard
                 </button>
-                
                 <span className="spacer"></span>
-
                 <button className="navBtn" onClick={(e) => {
                     if (status) {
                         solve(e);
@@ -188,6 +209,18 @@ export function Board() {
         setSelected(i);
     }
 
+    const handleNoteClick = (e) => {
+        e.preventDefault();
+
+        setNote(!note);
+    }
+
+    const handleDifficultyClick = (e, diff) => {
+        e.preventDefault();
+
+        setDifficulty(diff);
+    }
+
     const handleNumBtnClick = (e, n) => {
         e.preventDefault();
 
@@ -222,7 +255,7 @@ export function Board() {
         const options = {
         method: 'GET',
         url: 'https://sudoku-generator1.p.rapidapi.com/sudoku/generate',
-        params: {difficulty: "easy"},
+        params: {difficulty: difficulty},
         headers: {
             'X-RapidAPI-Key': '2138fedc77msh0d37375d64802d5p130230jsn41094285e5fe',
             'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
