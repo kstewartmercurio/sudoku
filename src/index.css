@@ -146,6 +146,10 @@ body {
     justify-content: center;
 }
 
+#erase-btn {
+    padding: 8px 10.8px;
+}
+
 .num-btn {
     color: var(--buttonTextColor);
     background-color: var(--buttonColor);

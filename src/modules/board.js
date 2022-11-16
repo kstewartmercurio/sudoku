@@ -152,6 +152,11 @@ export function Board() {
                 }}>
                     9
                 </button>
+                <button className="num-btn" id="erase-btn" onClick={(e) => {
+                    handleNumBtnClick(e, 0);
+                }}>
+                    <i className="bi bi-eraser-fill"></i>
+                </button>
             </div>
         );
     }
@@ -225,7 +230,13 @@ export function Board() {
 
         if (selected !== null) {
             let squaresCopy = squares.slice();
-            squaresCopy[selected] = n;
+
+            if (n === 0) {
+                squaresCopy[selected] = null;
+            } else {
+                squaresCopy[selected] = n;
+            }
+            
             setSquares(squaresCopy);
             setSelected(null);
         }
@@ -289,7 +300,7 @@ export function Board() {
     }
 
     return (
-        <>
+        <div className="background">
             <div className="navbar">
                 {buildNavBar()}
             </div>
@@ -301,6 +312,6 @@ export function Board() {
             <div className="num-bar">
                 {buildNumBar()}
             </div>
-        </>
+        </div>
     );
 }
