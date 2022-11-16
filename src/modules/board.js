@@ -40,29 +40,98 @@ export function Board() {
         return elementLst;
     }
 
-    const buildBottomBtnBar = () => {
+    const buildNavBar = () => {
         return (
-            <div className="btnBar">
-                <div className="btnGrp">
-                    <button className="btn" id="solveBtn" onClick={(e) => {
-                        // just to prevent a status warning, not necessary
-                        if (status) {
-                            solve(e);
-                        }
-                    }}>
-                        solve
-                    </button>
-                    <button className="btn" id="genBtn" onClick={(e) => {
-                        generatePuzzle(e);
-                    }}>
-                        generate puzzle
-                    </button>
-                    <button className="btn" id="clearBtn" onClick={(e) => {
-                        clearBoard(e);
-                    }}>
-                        clear board
-                    </button>
-                </div>
+            <>
+                <button className="navBtn">
+                    note
+                </button>
+                {/* spacer */}
+
+                <span className="spacer"></span>
+
+                <button className="navBtn">
+                    easy
+                </button>
+                <button className="navBtn">
+                    medium
+                </button>
+                <button className="navBtn">
+                    hard
+                </button>
+                
+                <span className="spacer"></span>
+
+                <button className="navBtn" onClick={(e) => {
+                    if (status) {
+                        solve(e);
+                    }
+                }}>
+                    solve
+                </button>
+                <button className="navBtn" onClick={(e) => {
+                    generatePuzzle(e);
+                }}>
+                    generate
+                </button>
+                <button className="navBtn" onClick={(e) => {
+                    clearBoard(e);
+                }}>
+                    clear
+                </button>
+
+            </>
+        )
+    }
+
+    const buildNumBar = () => {
+        return (
+            <div className="numBtnGrp">
+                <button className="numBtn" id="1btn" onClick={(e) => {
+                    handleNumBtnClick(e, 1);
+                }}>
+                    1
+                </button>
+                <button className="numBtn" id="2btn" onClick={(e) => {
+                    handleNumBtnClick(e, 2);
+                }}>
+                    2
+                </button>
+                <button className="numBtn" id="3btn" onClick={(e) => {
+                    handleNumBtnClick(e, 3);
+                }}>
+                    3
+                </button>
+                <button className="numBtn" id="4btn" onClick={(e) => {
+                    handleNumBtnClick(e, 4);
+                }}>
+                    4
+                </button>
+                <button className="numBtn" id="5btn" onClick={(e) => {
+                    handleNumBtnClick(e, 5);
+                }}>
+                    5
+                </button>
+                <button className="numBtn" id="6btn" onClick={(e) => {
+                    handleNumBtnClick(e, 6);
+                }}>
+                    6
+                </button>
+                <button className="numBtn" id="7btn" onClick={(e) => {
+                    handleNumBtnClick(e, 7);
+                }}>
+                    7
+                </button>
+                <button className="numBtn" id="8btn" onClick={(e) => {
+                    handleNumBtnClick(e, 8);
+                }}>
+                    8
+                </button>
+                <button className="numBtn" id="9btn" onClick={(e) => {
+                    handleNumBtnClick(e, 9);
+                }}>
+                    9
+                </button>
             </div>
         );
     }
@@ -117,6 +186,17 @@ export function Board() {
         e.preventDefault();
 
         setSelected(i);
+    }
+
+    const handleNumBtnClick = (e, n) => {
+        e.preventDefault();
+
+        if (selected !== null) {
+            let squaresCopy = squares.slice();
+            squaresCopy[selected] = n;
+            setSquares(squaresCopy);
+            setSelected(null);
+        }
     }
 
     const solve = (e) => {
@@ -178,12 +258,21 @@ export function Board() {
 
     return (
         <>
-            {/* display all squares */}
-            <div>
+            <div className="navbar">
+                {buildNavBar()}
+            </div>
+
+            {/* <div className="btnBar">
+                {buildTopBtnBar()}
+            </div> */}
+
+            <div className="board">
                 {buildSquares().map(ele => ele)}
             </div>
-            {/* display the solve/new puzzle button */}
-            {buildBottomBtnBar()}
+            
+            <div className="numBar">
+                {buildNumBar()}
+            </div>
         </>
     );
 }

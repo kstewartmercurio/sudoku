@@ -24,6 +24,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 /* board outline */
@@ -58,8 +59,11 @@ body {
 .board-column-2, .board-column-5 {
     border-right: 2.5px solid var(--boardColor) !important;
 }
-/* end of board outline */
 
+.board {
+    display: inline-block;
+}
+/* end of board outline */
 
 #selected {
     background-color: var(--selectedColor) !important;
@@ -81,18 +85,57 @@ body {
     transition: .3s;
 }
 
-/* button styling */
-.btnBar {
+/* navbar styling */
+.navbar {
+    overflow: hidden;
+    background-color: var(--buttonColor);
+    height: 38.195px;
+    /* width of navbar = sum of widths of navbuttons and spacers */
+    width: 464px; 
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-family: "Roboto Mono";
+}
+
+.navBtn:hover {
+    color: var(--buttonTextColor);
+    transition: .3s;
+}
+
+.spacer {
     background-color: var(--backgroundColor);
+    border-left: 2px solid var(--backgroundColor);
+    border-right: 2px solid var(--backgroundColor);
+    border-radius: 2px;
+    margin: 8px 0;
+    width: 4px;
+    height: 22.195px;
+}
+
+.navBtn {
+    color: var(--squareTextColor);
+    background-color: var(--buttonColor);
+    border: none;
+    padding: 0 12px;
+    margin: auto 0;
+    height: 38.195px;
+    font-family: "Roboto Mono";
+    cursor: pointer;
+    transition: .3s;
+}
+/* end of navbar styling */
+
+/* top button styling */
+.btnBar {
     width: 100%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 15px;
-    border-radius: 8px;
+    margin-bottom: 12.5px;
+    display: inline-block;
 }
 
-.btnGrp {
+.topBtnGrp {
     display: flex;
     justify-content: center;
 }
@@ -105,18 +148,55 @@ body {
 
 .btn {
     color: var(--buttonTextColor);
-    margin-left: 3px;
-    margin-right: 3px;
+    background-color: var(--buttonColor);
+    margin: 0px 3px;
     padding: 8px 14px;
-    display: flex;
-    justify-content: center;
     font-family: "Roboto Mono";
     font-size: 1em;
     gap: .25em;
-    background-color: var(--buttonColor);
     border: 0;
     border-radius: 8px;
-    transition: .3s;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: .3s;
 }
-/* end of button styling */
+/* end of top button styling */
+
+/* bottom button styling */
+.numBar {
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12.5px;
+    display: inline-block;
+}
+
+.numBtnGrp {
+    display: flex;
+    justify-content: center;
+}
+
+.numBtn {
+    color: var(--buttonTextColor);
+    background-color: var(--buttonColor);
+    margin: 0px 4px;
+    padding: 8px 14px;
+    font-family: "Roboto Mono";
+    font-size: 1em;
+    gap: .25em;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: .3s;
+}
+
+.numBtn:hover {
+    color: var(--buttonColor);
+    background-color: var(--buttonTextColor);
+    transition: .3s;
+}
+/* end of bottom button styling */
