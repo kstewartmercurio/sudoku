@@ -11,7 +11,6 @@ export function Board() {
     const [difficulty, setDifficulty] = useState("easy");
 
     const renderSquare = (i) => {
-        // const classNameStr = "square board-column-" + (i % 9).toString();
         const classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
         let selBool;
         if (selected === i) {
@@ -23,9 +22,72 @@ export function Board() {
         return (
             <Square className={classNameStr} key={i} idStr={i.toString()}
                 val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}
-                onClick={(e) => handleClick(e, i)} sel={selBool}/>
+                onClick={(e) => handleSquareClick(e, i)} sel={selBool}/>
         )
     };
+
+    const buildNavBar = () => {
+        let noteIdStr = "note-btn-off";
+        if (note === true) {
+            noteIdStr = "note-btn-on";
+        }
+
+        let easyIdStr = "easy-btn";
+        let medIdStr = "med-btn";
+        let hardIdStr = "hard-btn";
+        if (difficulty === "easy") {
+            easyIdStr = "difficulty-btn";
+        } else if (difficulty === "medium") {
+            medIdStr = "difficulty-btn";
+        } else {
+            hardIdStr = "difficulty-btn";
+        }
+
+        return (
+            <>
+                <button className="nav-btn" id={noteIdStr} onClick={(e) =>
+                    handleNoteClick(e)
+                }>
+                    note
+                </button>
+                <span className="spacer"></span>
+                <button className="nav-btn" id={easyIdStr} onClick={(e) => 
+                    handleDifficultyClick(e, "easy")
+                }>
+                    easy
+                </button>
+                <button className="nav-btn" id={medIdStr} onClick={(e) =>
+                    handleDifficultyClick(e, "medium")
+                }>
+                    medium
+                </button>
+                <button className="nav-btn" id={hardIdStr} onClick={(e) =>
+                    handleDifficultyClick(e, "hard")
+                }>
+                    hard
+                </button>
+                <span className="spacer"></span>
+                <button className="nav-btn" onClick={(e) => {
+                    if (status) {
+                        solve(e);
+                    }
+                }}>
+                    solve
+                </button>
+                <button className="nav-btn" onClick={(e) => {
+                    generatePuzzle(e);
+                }}>
+                    generate
+                </button>
+                <button className="nav-btn" onClick={(e) => {
+                    clearBoard(e);
+                }}>
+                    clear
+                </button>
+
+            </>
+        )
+    }
 
     const buildSquares = () => {
         let elementLst = [];
@@ -42,113 +104,50 @@ export function Board() {
         return elementLst;
     }
 
-    const buildNavBar = () => {
-        let noteIdStr = "noteBtnOff";
-        if (note === true) {
-            noteIdStr = "noteBtnOn";
-        }
-
-        let easyIdStr = "easyBtn";
-        let medIdStr = "medBtn";
-        let hardIdStr = "hardBtn";
-        if (difficulty === "easy") {
-            easyIdStr = "difficultyBtn";
-        } else if (difficulty === "medium") {
-            medIdStr = "difficultyBtn";
-        } else {
-            hardIdStr = "difficultyBtn";
-        }
-
-        return (
-            <>
-                <button className="navBtn" id={noteIdStr} onClick={(e) =>
-                    handleNoteClick(e)
-                }>
-                    note
-                </button>
-                <span className="spacer"></span>
-                <button className="navBtn" id={easyIdStr} onClick={(e) => 
-                    handleDifficultyClick(e, "easy")
-                }>
-                    easy
-                </button>
-                <button className="navBtn" id={medIdStr} onClick={(e) =>
-                    handleDifficultyClick(e, "medium")
-                }>
-                    medium
-                </button>
-                <button className="navBtn" id={hardIdStr} onClick={(e) =>
-                    handleDifficultyClick(e, "hard")
-                }>
-                    hard
-                </button>
-                <span className="spacer"></span>
-                <button className="navBtn" onClick={(e) => {
-                    if (status) {
-                        solve(e);
-                    }
-                }}>
-                    solve
-                </button>
-                <button className="navBtn" onClick={(e) => {
-                    generatePuzzle(e);
-                }}>
-                    generate
-                </button>
-                <button className="navBtn" onClick={(e) => {
-                    clearBoard(e);
-                }}>
-                    clear
-                </button>
-
-            </>
-        )
-    }
-
     const buildNumBar = () => {
         return (
-            <div className="numBtnGrp">
-                <button className="numBtn" id="1btn" onClick={(e) => {
+            <div className="num-btn-grp">
+                <button className="num-btn" id="1btn" onClick={(e) => {
                     handleNumBtnClick(e, 1);
                 }}>
                     1
                 </button>
-                <button className="numBtn" id="2btn" onClick={(e) => {
+                <button className="num-btn" id="2btn" onClick={(e) => {
                     handleNumBtnClick(e, 2);
                 }}>
                     2
                 </button>
-                <button className="numBtn" id="3btn" onClick={(e) => {
+                <button className="num-btn" id="3btn" onClick={(e) => {
                     handleNumBtnClick(e, 3);
                 }}>
                     3
                 </button>
-                <button className="numBtn" id="4btn" onClick={(e) => {
+                <button className="num-btn" id="4btn" onClick={(e) => {
                     handleNumBtnClick(e, 4);
                 }}>
                     4
                 </button>
-                <button className="numBtn" id="5btn" onClick={(e) => {
+                <button className="num-btn" id="5btn" onClick={(e) => {
                     handleNumBtnClick(e, 5);
                 }}>
                     5
                 </button>
-                <button className="numBtn" id="6btn" onClick={(e) => {
+                <button className="num-btn" id="6btn" onClick={(e) => {
                     handleNumBtnClick(e, 6);
                 }}>
                     6
                 </button>
-                <button className="numBtn" id="7btn" onClick={(e) => {
+                <button className="num-btn" id="7btn" onClick={(e) => {
                     handleNumBtnClick(e, 7);
                 }}>
                     7
                 </button>
-                <button className="numBtn" id="8btn" onClick={(e) => {
+                <button className="num-btn" id="8btn" onClick={(e) => {
                     handleNumBtnClick(e, 8);
                 }}>
                     8
                 </button>
-                <button className="numBtn" id="9btn" onClick={(e) => {
+                <button className="num-btn" id="9btn" onClick={(e) => {
                     handleNumBtnClick(e, 9);
                 }}>
                     9
@@ -203,7 +202,7 @@ export function Board() {
         }
     }
 
-    const handleClick = (e, i) => {
+    const handleSquareClick = (e, i) => {
         e.preventDefault();
 
         setSelected(i);
@@ -295,15 +294,11 @@ export function Board() {
                 {buildNavBar()}
             </div>
 
-            {/* <div className="btnBar">
-                {buildTopBtnBar()}
-            </div> */}
-
             <div className="board">
                 {buildSquares().map(ele => ele)}
             </div>
             
-            <div className="numBar">
+            <div className="num-bar">
                 {buildNumBar()}
             </div>
         </>

@@ -97,7 +97,7 @@ body {
     font-family: "Roboto Mono";
 }
 
-.navBtn:hover {
+.nav-btn:hover {
     color: var(--buttonTextColor);
     transition: .3s;
 }
@@ -112,12 +112,12 @@ body {
     height: 22.195px;
 }
 
-#noteBtnOn, #difficultyBtn {
+#note-btn-on, #difficulty-btn {
     color: var(--boardColor);
     transition: .3s;
 }
 
-.navBtn {
+.nav-btn {
     color: var(--squareTextColor);
     background-color: var(--buttonColor);
     border: none;
@@ -130,46 +130,8 @@ body {
 }
 /* end of navbar styling */
 
-/* top button styling */
-.btnBar {
-    width: 100%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-bottom: 12.5px;
-    display: inline-block;
-}
-
-.topBtnGrp {
-    display: flex;
-    justify-content: center;
-}
-
-.btn:hover {
-    color: var(--buttonColor);
-    background-color: var(--buttonTextColor);
-    transition: .3s;
-}
-
-.btn {
-    color: var(--buttonTextColor);
-    background-color: var(--buttonColor);
-    margin: 0px 3px;
-    padding: 8px 14px;
-    font-family: "Roboto Mono";
-    font-size: 1em;
-    gap: .25em;
-    border: 0;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    transition: .3s;
-}
-/* end of top button styling */
-
-/* bottom button styling */
-.numBar {
+/* number button styling */
+.num-bar {
     width: 100%;
     position: relative;
     left: 50%;
@@ -178,12 +140,12 @@ body {
     display: inline-block;
 }
 
-.numBtnGrp {
+.num-btn-grp {
     display: flex;
     justify-content: center;
 }
 
-.numBtn {
+.num-btn {
     color: var(--buttonTextColor);
     background-color: var(--buttonColor);
     margin: 0px 4px;
@@ -199,7 +161,7 @@ body {
     transition: .3s;
 }
 
-.numBtn:hover {
+.num-btn:hover {
     color: var(--buttonColor);
     background-color: var(--buttonTextColor);
     transition: .3s;
