@@ -16,6 +16,7 @@ selectedColor - error
     --buttonColor: #b4a389;
     --buttonTextColor: #091914;
     --selectedColor: #64374db9;
+    --unchangeableColor: #2e403b;
 }
 
 body {
@@ -68,6 +69,10 @@ body {
 #selected {
     background-color: var(--selectedColor) !important;
     transition: .3s;
+}
+
+.unchangeable {
+    color: var(--unchangeableColor) !important;
 }
 
 .square {

@@ -5,13 +5,18 @@ import axios from "axios";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
+    const [changeable, setChangeable] = useState(Array(81).fill(false));
     const [status, setStatus] = useState("ready to solve");
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
     const [difficulty, setDifficulty] = useState("easy");
 
     const renderSquare = (i) => {
-        const classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
+        let classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
+        if (changeable[i] === false) {
+            classNameStr += " unchangeable";
+        }
+        
         let selBool;
         if (selected === i) {
             selBool = true;
@@ -162,7 +167,7 @@ export function Board() {
     }
 
     const handleKeyPress = (e, i) => {
-        if (selected === i) {
+        if ((selected === i) && changeable[selected] === true) {
             // create a copy of the board and update it with valid user input
             let squaresCopy = squares.slice();
             
@@ -203,8 +208,9 @@ export function Board() {
 
             // replace the actual board with its copy
             setSquares(squaresCopy)
-            setSelected(null)
         }
+
+        setSelected(null)
     }
 
     const handleSquareClick = (e, i) => {
@@ -228,7 +234,7 @@ export function Board() {
     const handleNumBtnClick = (e, n) => {
         e.preventDefault();
 
-        if (selected !== null) {
+        if ((selected !== null) && (changeable[selected] === true)) {
             let squaresCopy = squares.slice();
 
             if (n === 0) {
@@ -238,8 +244,9 @@ export function Board() {
             }
             
             setSquares(squaresCopy);
-            setSelected(null);
         }
+
+        setSelected(null);
     }
 
     const solve = (e) => {
@@ -274,15 +281,19 @@ export function Board() {
     
         axios.request(options).then(function (response) {
             let puzzleArr = [];
+            let changeableArr = [];
             for (let i = 0; i < response.data.puzzle.length; i++) {
                 if (response.data.puzzle[i] === ".") {
                     puzzleArr.push(null);
+                    changeableArr.push(true);
                 } else {
                     puzzleArr.push(parseInt(response.data.puzzle[i]));
+                    changeableArr.push(false);
                 }
             }
 
             setSquares(puzzleArr);
+            setChangeable(changeableArr);
             setStatus("ready to solve");
             setSelected(null);
         }).catch(function (error) {
@@ -300,7 +311,7 @@ export function Board() {
     }
 
     return (
-        <div className="background">
+        <>
             <div className="navbar">
                 {buildNavBar()}
             </div>
@@ -312,6 +323,6 @@ export function Board() {
             <div className="num-bar">
                 {buildNumBar()}
             </div>
-        </div>
+        </>
     );
 }
