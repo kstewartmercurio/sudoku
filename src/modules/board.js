@@ -50,10 +50,16 @@ export function Board() {
 
         return (
             <>
+                <button className="nav-btn" id="undo-btn">
+                    undo <i className="bi bi-arrow-counterclockwise"></i>
+                </button>
+                <button className="nav-btn" id="hint-btn">
+                    hint <i className="bi bi-lightbulb"></i>
+                </button>
                 <button className="nav-btn" id={noteIdStr} onClick={(e) =>
                     handleNoteClick(e)
                 }>
-                    note
+                    note <i className="bi bi-pencil"></i>
                 </button>
                 <span className="spacer"></span>
                 <button className="nav-btn" id={easyIdStr} onClick={(e) => 
