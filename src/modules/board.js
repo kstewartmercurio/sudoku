@@ -26,8 +26,8 @@ export function Board() {
 
         return (
             <Square className={classNameStr} key={i} idStr={i.toString()}
-                val={squares[i]} onKeyPress={(e) => handleKeyPress(e, i)}
-                onClick={(e) => handleSquareClick(e, i)} sel={selBool}/>
+                val={squares[i]} onClick={(e) => handleSquareClick(e, i)} 
+                sel={selBool}/>
         )
     };
 
@@ -90,7 +90,7 @@ export function Board() {
                 }}>
                     generate
                 </button>
-                <button className="nav-btn" onClick={(e) => {
+                <button className="nav-btn" id="clear-btn" onClick={(e) => {
                     clearBoard(e);
                 }}>
                     clear
@@ -172,53 +172,6 @@ export function Board() {
         );
     }
 
-    const handleKeyPress = (e, i) => {
-        if ((selected === i) && changeable[selected] === true) {
-            // create a copy of the board and update it with valid user input
-            let squaresCopy = squares.slice();
-            
-            switch (e.key) {
-                case "1":
-                    squaresCopy[i] = 1;
-                    break;            
-                case "2":
-                    squaresCopy[i] = 2;
-                    break;
-                case "3":
-                    squaresCopy[i] = 3;
-                    break;
-                case "4":
-                    squaresCopy[i] = 4;
-                    break;
-                case "5":
-                    squaresCopy[i] = 5;
-                    break;
-                case "6":
-                    squaresCopy[i] = 6;
-                    break;
-                case "7":
-                    squaresCopy[i] = 7;
-                    break;
-                case "8":
-                    squaresCopy[i] = 8;
-                    break;
-                case "9":
-                    squaresCopy[i] = 9;
-                    break;
-                case "-":
-                    squaresCopy[i] = null;
-                    break;
-                default:
-                    break;
-            };
-
-            // replace the actual board with its copy
-            setSquares(squaresCopy)
-        }
-
-        setSelected(null)
-    }
-
     const handleSquareClick = (e, i) => {
         e.preventDefault();
 
@@ -264,6 +217,7 @@ export function Board() {
 
         // output the solved sudoku to the user and update the button text
         setSquares(puzzle);
+        setChangeable(Array(81).fill(false));
         setStatus("solved");
         setSelected(null);
     }
@@ -312,6 +266,7 @@ export function Board() {
 
         // reset the puzzle
         setSquares(Array(81).fill(null));
+        setChangeable(Array(81).fill(true));
         setStatus("ready to solve");
         setSelected(null);
     }

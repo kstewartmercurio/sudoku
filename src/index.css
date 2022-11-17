@@ -33,7 +33,6 @@ body {
     overflow: hidden;
     background-color: var(--buttonColor);
     height: 38.195px;
-    /* width of navbar = sum of widths of navbuttons and spacers */
     width: 100%; 
     margin-bottom: 20px;
     border-radius: 8px;
@@ -54,6 +53,18 @@ body {
     margin: 8px 0;
     width: 4px;
     height: 22.195px;
+}
+
+#undo-btn {
+    padding-left: 41px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#clear-btn {
+    padding-right: 41px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 #note-btn-on, #difficulty-btn {
