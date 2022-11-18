@@ -20,8 +20,7 @@ selectedColor - error
 }
 
 body {
-    /* background-color: var(--backgroundColor); */
-    background-color: lime;
+    background-color: var(--backgroundColor);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -29,10 +28,17 @@ body {
 }
 
 #root {
-    background-color: green;
+    background-color: var(--backgroundColor);
     width: 100%;
     height: 100%;
     text-align: center;
+}
+
+.center-content {
+    background-color: var(--backgroundColor);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* navbar styling */
@@ -40,7 +46,7 @@ body {
     overflow: hidden;
     background-color: var(--buttonColor);
     height: 38.195px;
-    width: 100%; 
+    width: 62.5%; 
     margin-bottom: 20px;
     border-radius: 8px;
     font-family: "Roboto Mono";
@@ -67,14 +73,14 @@ body {
     height: 22.195px;
 }
 
-#undo-btn {
-    padding-left: 41px;
+#note-btn-on, #note-btn-off {
+    padding-left: 18px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
 }
 
 #clear-btn {
-    padding-right: 41px;
+    padding-right: 18px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }

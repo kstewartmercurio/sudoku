@@ -5,7 +5,7 @@ import axios from "axios";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
-    const [changeable, setChangeable] = useState(Array(81).fill(false));
+    const [changeable, setChangeable] = useState(Array(81).fill(true));
     const [status, setStatus] = useState("ready to solve");
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
@@ -281,7 +281,7 @@ export function Board() {
     }
 
     return (
-        <div className="test-div">
+        <div className="center-content">
             <div className="navbar">
                 {buildNavBar()}
             </div>
