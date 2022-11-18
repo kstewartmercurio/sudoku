@@ -40,9 +40,9 @@ export function Board() {
         let easyIdStr = "easy-btn";
         let medIdStr = "med-btn";
         let hardIdStr = "hard-btn";
-        if (difficulty === "easy") {
+        if (difficulty === "1") {
             easyIdStr = "difficulty-btn";
-        } else if (difficulty === "medium") {
+        } else if (difficulty === "2") {
             medIdStr = "difficulty-btn";
         } else {
             hardIdStr = "difficulty-btn";
@@ -50,12 +50,6 @@ export function Board() {
 
         return (
             <div className="nav-btn-grp">
-                {/* <button className="nav-btn" id="undo-btn">
-                    undo <i className="bi bi-arrow-counterclockwise"></i>
-                </button>
-                <button className="nav-btn" id="hint-btn">
-                    hint <i className="bi bi-lightbulb"></i>
-                </button> */}
                 <button className="nav-btn" id={noteIdStr} onClick={(e) =>
                     handleNoteClick(e)
                 }>
@@ -64,25 +58,25 @@ export function Board() {
                 <span className="spacer"></span>
 
                 <button className="nav-btn">
-                    time <i class="bi bi-stopwatch"></i>
+                    time <i className="bi bi-stopwatch"></i>
                 </button>
                 <button className="nav-btn">
-                    progress <i class="bi bi-percent"></i>
+                    progress <i className="bi bi-percent"></i>
                 </button>
 
                 <span className="spacer"></span>
                 <button className="nav-btn" id={easyIdStr} onClick={(e) => 
-                    handleDifficultyClick(e, "easy")
+                    handleDifficultyClick(e, "1")
                 }>
                     easy
                 </button>
                 <button className="nav-btn" id={medIdStr} onClick={(e) =>
-                    handleDifficultyClick(e, "medium")
+                    handleDifficultyClick(e, "2")
                 }>
                     medium
                 </button>
                 <button className="nav-btn" id={hardIdStr} onClick={(e) =>
-                    handleDifficultyClick(e, "hard")
+                    handleDifficultyClick(e, "3")
                 }>
                     hard
                 </button>
@@ -234,40 +228,40 @@ export function Board() {
     const generatePuzzle = (e) => {
         e.preventDefault();
 
-        // reset the puzzle
         setSquares(Array(81).fill(null));
-
-        // retrieving new puzzle from Sudoku Generator API
+        
         const options = {
-        method: 'GET',
-        url: 'https://sudoku-generator1.p.rapidapi.com/sudoku/generate',
-        params: {difficulty: difficulty},
-        headers: {
-            'X-RapidAPI-Key': '2138fedc77msh0d37375d64802d5p130230jsn41094285e5fe',
-            'X-RapidAPI-Host': 'sudoku-generator1.p.rapidapi.com'
-        }
-        };
-    
-        axios.request(options).then(function (response) {
-            let puzzleArr = [];
-            let changeableArr = [];
-            for (let i = 0; i < response.data.puzzle.length; i++) {
-                if (response.data.puzzle[i] === ".") {
-                    puzzleArr.push(null);
-                    changeableArr.push(true);
-                } else {
-                    puzzleArr.push(parseInt(response.data.puzzle[i]));
-                    changeableArr.push(false);
-                }
+            method: 'GET',
+            url: 'https://sudoku-board.p.rapidapi.com/new-board',
+            params: {diff: difficulty, stype: 'string', solu: 'true'},
+            headers: {
+              'X-RapidAPI-Key': '2138fedc77msh0d37375d64802d5p130230jsn41094285e5fe',
+              'X-RapidAPI-Host': 'sudoku-board.p.rapidapi.com'
             }
+          };
+          
+          axios.request(options).then(function (response) {
+              console.log(response.data["response"]["unsolved-sudoku"]);
 
-            setSquares(puzzleArr);
-            setChangeable(changeableArr);
-            setStatus("ready to solve");
-            setSelected(null);
-        }).catch(function (error) {
-            console.error(error);
-        });
+              let puzzleArr = [];
+              let changeableArr = [];
+              for (let i = 0; i < response.data["response"]["unsolved-sudoku"].length; i++) {
+                  if (response.data["response"]["unsolved-sudoku"][i] === ".") {
+                      puzzleArr.push(null);
+                      changeableArr.push(true);
+                  } else {
+                      puzzleArr.push(parseInt(response.data["response"]["unsolved-sudoku"][i]));
+                      changeableArr.push(false);
+                  }
+              }  
+
+              setSquares(puzzleArr);
+              setChangeable(changeableArr);
+              setStatus("ready to solve");
+              setSelected(null);
+          }).catch(function (error) {
+              console.error(error);
+          });
     }
 
     const clearBoard = (e) => {
