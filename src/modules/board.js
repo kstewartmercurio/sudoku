@@ -49,18 +49,27 @@ export function Board() {
         }
 
         return (
-            <>
-                <button className="nav-btn" id="undo-btn">
+            <div className="nav-btn-grp">
+                {/* <button className="nav-btn" id="undo-btn">
                     undo <i className="bi bi-arrow-counterclockwise"></i>
                 </button>
                 <button className="nav-btn" id="hint-btn">
                     hint <i className="bi bi-lightbulb"></i>
-                </button>
+                </button> */}
                 <button className="nav-btn" id={noteIdStr} onClick={(e) =>
                     handleNoteClick(e)
                 }>
                     note <i className="bi bi-pencil"></i>
                 </button>
+                <span className="spacer"></span>
+
+                <button className="nav-btn">
+                    time <i class="bi bi-stopwatch"></i>
+                </button>
+                <button className="nav-btn">
+                    progress <i class="bi bi-percent"></i>
+                </button>
+
                 <span className="spacer"></span>
                 <button className="nav-btn" id={easyIdStr} onClick={(e) => 
                     handleDifficultyClick(e, "easy")
@@ -96,7 +105,7 @@ export function Board() {
                     clear
                 </button>
 
-            </>
+            </div>
         )
     }
 
@@ -272,7 +281,7 @@ export function Board() {
     }
 
     return (
-        <>
+        <div className="test-div">
             <div className="navbar">
                 {buildNavBar()}
             </div>
@@ -284,6 +293,6 @@ export function Board() {
             <div className="num-bar">
                 {buildNumBar()}
             </div>
-        </>
+        </div>
     );
 }
