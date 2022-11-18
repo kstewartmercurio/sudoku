@@ -9,7 +9,7 @@ export function Board() {
     const [status, setStatus] = useState("ready to solve");
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
-    const [difficulty, setDifficulty] = useState("easy");
+    const [difficulty, setDifficulty] = useState("1");
 
     const renderSquare = (i) => {
         let classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
