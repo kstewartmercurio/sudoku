@@ -33,7 +33,7 @@ body {
     text-align: center;
 }
 
-#win {
+#window {
     background-color: var(--backgroundColor);
     height: 100%;
 }
@@ -57,8 +57,10 @@ body {
 .nav-btn-grp {
     /* display: flex;
     justify-content: center; */
+    overflow: visible;
     background-color: var(--buttonColor);
-    width: 61%;
+    max-width: 42.5%;
+    min-width: 42.5%;
     height: 100%;
     position: relative;
     left: 50%;

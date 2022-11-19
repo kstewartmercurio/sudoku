@@ -7,6 +7,7 @@ export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [changeable, setChangeable] = useState(Array(81).fill(true));
     const [status, setStatus] = useState("ready to solve");
+    const [windowClick, setWindowClick] = useState(true);
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
     const [metric, setMetric] = useState("time");
@@ -27,7 +28,9 @@ export function Board() {
 
         return (
             <Square className={classNameStr} key={i} idStr={i.toString()}
-                val={squares[i]} onClick={(e) => handleSquareClick(e, i)} 
+                val={squares[i]} onClick={(e) => {
+                    setWindowClick(false);
+                    handleSquareClick(e, i)}} 
                 sel={selBool}/>
         )
     };
@@ -298,10 +301,11 @@ export function Board() {
     }
 
     return (
-        <div id="win" onClick={(e) => {
-            if (selected !== null) {
+        <div id="window" onClick={(e) => {
+            if ((windowClick === true) && (selected !== null)) {
                 setSelected(null);
             }
+            setWindowClick(true);
         }}>
             <div id="center-content">
                 <div className="navbar">
