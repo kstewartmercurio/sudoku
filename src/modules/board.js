@@ -39,11 +39,11 @@ export function Board() {
         }
 
         let timeIdStr = "time-btn-off";
-        let progressIdStr = "progress-btn-off";
+        let zenIdStr = "zen-btn-off";
         if (metric === "time") {
             timeIdStr = "time-btn-on";
         } else {
-            progressIdStr = "progress-btn-on";
+            zenIdStr = "zen-btn-on";
         }
 
         let easyIdStr = "easy-btn";
@@ -71,10 +71,10 @@ export function Board() {
                 }>
                     time <i className="bi bi-stopwatch"></i>
                 </button>
-                <button className="nav-btn" id={progressIdStr} onClick={(e) =>
+                <button className="nav-btn" id={zenIdStr} onClick={(e) =>
                     handleMetricClick(e)
                 }>
-                    progress <i className="bi bi-percent"></i>
+                    zen <i className="bi bi-tree"></i>
                 </button>
 
                 <span className="spacer"></span>
@@ -204,11 +204,10 @@ export function Board() {
         e.preventDefault();
 
         if (metric === "time") {
-            setMetric("progress");
+            setMetric("zen");
         } else {
             setMetric("time");
         }
-        console.log(metric);
     }
 
     const handleDifficultyClick = (e, diff) => {

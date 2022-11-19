@@ -93,7 +93,7 @@ body {
     border-bottom-right-radius: 8px;
 }
 
-#note-btn-on, #time-btn-on, #progress-btn-on, #difficulty-btn {
+#note-btn-on, #time-btn-on, #zen-btn-on, #difficulty-btn {
     color: var(--boardColor);
     transition: .3s;
 }
