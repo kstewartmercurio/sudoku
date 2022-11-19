@@ -9,6 +9,7 @@ export function Board() {
     const [status, setStatus] = useState("ready to solve");
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
+    const [metric, setMetric] = useState("time");
     const [difficulty, setDifficulty] = useState("1");
 
     const renderSquare = (i) => {
@@ -37,6 +38,14 @@ export function Board() {
             noteIdStr = "note-btn-on";
         }
 
+        let timeIdStr = "time-btn-off";
+        let progressIdStr = "progress-btn-off";
+        if (metric === "time") {
+            timeIdStr = "time-btn-on";
+        } else {
+            progressIdStr = "progress-btn-on";
+        }
+
         let easyIdStr = "easy-btn";
         let medIdStr = "med-btn";
         let hardIdStr = "hard-btn";
@@ -57,10 +66,14 @@ export function Board() {
                 </button>
                 <span className="spacer"></span>
 
-                <button className="nav-btn">
+                <button className="nav-btn" id={timeIdStr} onClick={(e) =>
+                    handleMetricClick(e)
+                }>
                     time <i className="bi bi-stopwatch"></i>
                 </button>
-                <button className="nav-btn">
+                <button className="nav-btn" id={progressIdStr} onClick={(e) =>
+                    handleMetricClick(e)
+                }>
                     progress <i className="bi bi-percent"></i>
                 </button>
 
@@ -185,6 +198,17 @@ export function Board() {
         e.preventDefault();
 
         setNote(!note);
+    }
+
+    const handleMetricClick = (e) => {
+        e.preventDefault();
+
+        if (metric === "time") {
+            setMetric("progress");
+        } else {
+            setMetric("time");
+        }
+        console.log(metric);
     }
 
     const handleDifficultyClick = (e, diff) => {
