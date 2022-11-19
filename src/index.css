@@ -8,6 +8,10 @@ buttonTextColor - text
 selectedColor - error
 */
 
+html {
+    scroll-snap-align: start;
+}
+
 :root {
     --backgroundColor: #c6b294;
     --boardColor: #405a52;
@@ -33,7 +37,7 @@ body {
     text-align: center;
 }
 
-#window {
+#board-window {
     background-color: var(--backgroundColor);
     height: 100%;
 }

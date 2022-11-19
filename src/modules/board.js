@@ -299,7 +299,7 @@ export function Board() {
     }
 
     return (
-        <div id="window" onClick={(e) => {
+        <div id="board-window" onClick={(e) => {
             if ((windowClick === true) && (selected !== null)) {
                 setSelected(null);
             }
