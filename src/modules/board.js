@@ -299,17 +299,23 @@ export function Board() {
     }
 
     return (
-        <div className="center-content">
-            <div className="navbar">
-                {buildNavBar()}
-            </div>
+        <div id="win" onClick={(e) => {
+            if (selected !== null) {
+                setSelected(null);
+            }
+        }}>
+            <div id="center-content">
+                <div className="navbar">
+                    {buildNavBar()}
+                </div>
 
-            <div className="board">
-                {buildSquares().map(ele => ele)}
-            </div>
-            
-            <div className="num-bar">
-                {buildNumBar()}
+                <div className="board">
+                    {buildSquares().map(ele => ele)}
+                </div>
+                
+                <div className="num-bar">
+                    {buildNumBar()}
+                </div>
             </div>
         </div>
     );
