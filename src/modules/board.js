@@ -7,11 +7,12 @@ export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [changeable, setChangeable] = useState(Array(81).fill(true));
     const [status, setStatus] = useState("ready to solve");
-    const [windowClick, setWindowClick] = useState(true);
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
     const [metric, setMetric] = useState("time");
     const [difficulty, setDifficulty] = useState("1");
+
+    let windowClick = true;
 
     const renderSquare = (i) => {
         let classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
@@ -29,8 +30,8 @@ export function Board() {
         return (
             <Square className={classNameStr} key={i} idStr={i.toString()}
                 val={squares[i]} onClick={(e) => {
-                    setWindowClick(false);
-                    handleSquareClick(e, i)}} 
+                    handleSquareClick(e, i);
+                }} 
                 sel={selBool}/>
         )
     };
@@ -194,18 +195,21 @@ export function Board() {
     const handleSquareClick = (e, i) => {
         e.preventDefault();
 
+        windowClick = false;
         setSelected(i);
     }
 
     const handleNoteClick = (e) => {
         e.preventDefault();
 
+        windowClick = false;
         setNote(!note);
     }
 
     const handleMetricClick = (e) => {
         e.preventDefault();
 
+        windowClick = false;
         if (metric === "time") {
             setMetric("zen");
         } else {
@@ -216,6 +220,7 @@ export function Board() {
     const handleDifficultyClick = (e, diff) => {
         e.preventDefault();
 
+        windowClick = false;
         setDifficulty(diff);
     }
 
@@ -305,7 +310,8 @@ export function Board() {
             if ((windowClick === true) && (selected !== null)) {
                 setSelected(null);
             }
-            setWindowClick(true);
+            // setWindowClick(true);
+            windowClick = true;
         }}>
             <div id="center-content">
                 <div className="navbar">
