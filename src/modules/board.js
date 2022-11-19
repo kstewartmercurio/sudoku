@@ -6,7 +6,6 @@ import axios from "axios";
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [changeable, setChangeable] = useState(Array(81).fill(true));
-    const [status, setStatus] = useState("ready to solve");
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
     const [metric, setMetric] = useState("time");
@@ -99,9 +98,7 @@ export function Board() {
                 </button>
                 <span className="spacer"></span>
                 <button className="nav-btn" onClick={(e) => {
-                    if (status) {
-                        solve(e);
-                    }
+                    solve(e);
                 }}>
                     solve
                 </button>
@@ -252,7 +249,6 @@ export function Board() {
         // output the solved sudoku to the user and update the button text
         setSquares(puzzle);
         setChangeable(Array(81).fill(false));
-        setStatus("solved");
         setSelected(null);
     }
 
@@ -288,7 +284,6 @@ export function Board() {
 
               setSquares(puzzleArr);
               setChangeable(changeableArr);
-              setStatus("ready to solve");
               setSelected(null);
           }).catch(function (error) {
               console.error(error);
@@ -298,10 +293,8 @@ export function Board() {
     const clearBoard = (e) => {
         e.preventDefault();
 
-        // reset the puzzle
         setSquares(Array(81).fill(null));
         setChangeable(Array(81).fill(true));
-        setStatus("ready to solve");
         setSelected(null);
     }
 
@@ -310,7 +303,6 @@ export function Board() {
             if ((windowClick === true) && (selected !== null)) {
                 setSelected(null);
             }
-            // setWindowClick(true);
             windowClick = true;
         }}>
             <div id="center-content">
