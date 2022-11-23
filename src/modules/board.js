@@ -300,13 +300,13 @@ export function Board() {
 
     return (
         <>
-            <div className="section" id="board-window" onClick={(e) => {
+            <div className="section" onClick={(e) => {
                 if ((windowClick === true) && (selected !== null)) {
                     setSelected(null);
                 }
                 windowClick = true;
             }}>
-                <div className="center-content">
+                <div className="center-content" id="board-window">
                     <div className="navbar">
                         {buildNavBar()}
                     </div>

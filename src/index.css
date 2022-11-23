@@ -17,6 +17,8 @@ selectedColor - error
     --buttonTextColor: #091914;
     --selectedColor: #64374db9;
     --unchangeableColor: #2e403b;
+
+    --screenHeight: 100vh;
 }
 
 body {
@@ -52,13 +54,18 @@ body {
 .section {
     background-color: var(--backgroundColor);
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    height: var(--screenHeight);
     text-align: center;
     scroll-snap-align: center;
 }
 
 .center-content {
+    border: 1px solid white;
     position: relative;
+    width: 100%;
+    /* height: 100%; */
+    /* padding: calc((var(--screenHeight) - 100%) / 2) 0; */
     top: 50%;
     transform: translateY(-50%);
 }
