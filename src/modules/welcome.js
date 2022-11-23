@@ -5,7 +5,9 @@ export function Welcome() {
         <>
             <div className="section">
                 <div className="center-content" id="welcome-page">
-                    <p>welcome</p>
+                    <div id="welcome-content">
+                        <p>welcome</p>
+                    </div>
                 </div>
             </div>
         </>

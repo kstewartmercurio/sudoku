@@ -5,7 +5,9 @@ export function Settings() {
         <>
             <div className="section">
                 <div className="center-content" id="settings-page">
-                    <p>settings</p>
+                    <div id="settings-content">
+                        <p>settings</p>
+                    </div>
                 </div>
             </div>
         </>

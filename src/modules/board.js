@@ -306,17 +306,19 @@ export function Board() {
                 }
                 windowClick = true;
             }}>
-                <div className="center-content" id="board-window">
-                    <div className="navbar">
-                        {buildNavBar()}
-                    </div>
+                <div className="center-content" id="board-page">
+                    <div id="board-content">
+                        <div className="navbar">
+                            {buildNavBar()}
+                        </div>
 
-                    <div className="board">
-                        {buildSquares().map(ele => ele)}
-                    </div>
-                    
-                    <div className="num-bar">
-                        {buildNumBar()}
+                        <div className="board">
+                            {buildSquares().map(ele => ele)}
+                        </div>
+                        
+                        <div className="num-bar">
+                            {buildNumBar()}
+                        </div>
                     </div>
                 </div>
             </div>
