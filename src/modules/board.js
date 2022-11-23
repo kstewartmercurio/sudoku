@@ -300,25 +300,23 @@ export function Board() {
 
     return (
         <>
-            <div className="section" onClick={(e) => {
+            <div className="section" id="board-page" onClick={(e) => {
                 if ((windowClick === true) && (selected !== null)) {
                     setSelected(null);
                 }
                 windowClick = true;
             }}>
-                <div className="center-content" id="board-page">
-                    <div id="board-content">
-                        <div className="navbar">
-                            {buildNavBar()}
-                        </div>
+                <div id="board-content">
+                    <div className="navbar">
+                        {buildNavBar()}
+                    </div>
 
-                        <div className="board">
-                            {buildSquares().map(ele => ele)}
-                        </div>
-                        
-                        <div className="num-bar">
-                            {buildNumBar()}
-                        </div>
+                    <div className="board">
+                        {buildSquares().map(ele => ele)}
+                    </div>
+                    
+                    <div className="num-bar">
+                        {buildNumBar()}
                     </div>
                 </div>
             </div>
