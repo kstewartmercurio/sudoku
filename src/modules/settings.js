@@ -1,11 +1,11 @@
 import React from "react";
 
-export function Welcome() {
+export function Settings() {
     return (
         <>
-            <div className="section" id="welcome-page">
+            <div className="section" id="settings-page">
                 <div className="center-content">
-                    <p>welcome</p>
+                    <p>settings</p>
                 </div>
             </div>
         </>
