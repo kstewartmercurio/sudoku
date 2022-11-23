@@ -16,7 +16,7 @@ selectedColor - error
     --buttonColor: #b4a389;
     --buttonTextColor: #091914;
     --selectedColor: #64374db9;
-    --unchangeableColor: #2e403b;
+    --initialSquareColor: #2e403b;
 
     --screenHeight: 100vh;
 }
@@ -41,21 +41,22 @@ body {
     text-align: center;
 }
 
-#board-content, #welcome-content, #settings-content {
-    color: black;
-    font-family: "Roboto Mono";
-    border: 1px solid salmon;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .section {
     background-color: var(--backgroundColor);
     width: 100%;
     height: var(--screenHeight);
     text-align: center;
     scroll-snap-align: center;
+    display: inline-block;
+}
+
+#board-content, #welcome-content, #settings-content {
+    color: black;
+    border: 4px solid salmon;
+    font-family: "Roboto Mono";
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* navbar styling */
@@ -171,8 +172,8 @@ body {
     transition: .3s;
 }
 
-.unchangeable {
-    color: var(--unchangeableColor) !important;
+.initial {
+    color: var(--initialSquareColor) !important;
 }
 
 .square {
@@ -181,8 +182,8 @@ body {
     border: .75px solid var(--boardColor);
     padding: 0;
     vertical-align: top;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
     text-align: center;

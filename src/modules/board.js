@@ -1,11 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Square} from "./square";
 import {Puzzle} from "../solver/puzzle.js";
 import axios from "axios";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
-    const [changeable, setChangeable] = useState(Array(81).fill(true));
+    const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);
     const [note, setNote] = useState(false);
     const [metric, setMetric] = useState("time");
@@ -13,10 +13,15 @@ export function Board() {
 
     let windowClick = true;
 
+    // useEffect(() => {
+    //     console.log("running effect");
+    //     console.log(squares, "in effect");
+    // }, [squares]);
+
     const renderSquare = (i) => {
         let classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
-        if (changeable[i] === false) {
-            classNameStr += " unchangeable";
+        if (initial[i] === true) {
+            classNameStr += " initial";
         }
         
         let selBool;
@@ -62,12 +67,12 @@ export function Board() {
 
         return (
             <div className="nav-btn-grp">
-                <button className="nav-btn" id={noteIdStr} onClick={(e) =>
+                {/* <button className="nav-btn" id={noteIdStr} onClick={(e) =>
                     handleNoteClick(e)
                 }>
                     note <i className="bi bi-pencil"></i>
                 </button>
-                <span className="spacer"></span>
+                <span className="spacer"></span> */}
 
                 <button className="nav-btn" id={timeIdStr} onClick={(e) =>
                     handleMetricClick(e)
@@ -224,7 +229,7 @@ export function Board() {
     const handleNumBtnClick = (e, n) => {
         e.preventDefault();
 
-        if ((selected !== null) && (changeable[selected] === true)) {
+        if ((selected !== null) && (initial[selected] === false)) {
             let squaresCopy = squares.slice();
 
             if (n === 0) {
@@ -248,7 +253,7 @@ export function Board() {
 
         // output the solved sudoku to the user and update the button text
         setSquares(puzzle);
-        setChangeable(Array(81).fill(false));
+        setInitial(initial.slice());
         setSelected(null);
     }
 
@@ -267,34 +272,32 @@ export function Board() {
             }
           };
           
-          axios.request(options).then(function (response) {
-              console.log(response.data["response"]["unsolved-sudoku"]);
+        axios.request(options).then(function (response) {
+            let puzzleArr = [];
+            let initialArr = [];
+            for (let i = 0; i < response.data["response"]["unsolved-sudoku"].length; i++) {
+                if (response.data["response"]["unsolved-sudoku"][i] === ".") {
+                    puzzleArr.push(null);
+                    initialArr.push(false);
+                } else {
+                    puzzleArr.push(parseInt(response.data["response"]["unsolved-sudoku"][i]));
+                    initialArr.push(true);
+                }
+            }  
 
-              let puzzleArr = [];
-              let changeableArr = [];
-              for (let i = 0; i < response.data["response"]["unsolved-sudoku"].length; i++) {
-                  if (response.data["response"]["unsolved-sudoku"][i] === ".") {
-                      puzzleArr.push(null);
-                      changeableArr.push(true);
-                  } else {
-                      puzzleArr.push(parseInt(response.data["response"]["unsolved-sudoku"][i]));
-                      changeableArr.push(false);
-                  }
-              }  
-
-              setSquares(puzzleArr);
-              setChangeable(changeableArr);
-              setSelected(null);
-          }).catch(function (error) {
-              console.error(error);
-          });
+            setSquares(puzzleArr);
+            setInitial(initialArr);
+            setSelected(null);
+        }).catch(function (error) {
+            console.error(error);
+        });
     }
 
     const clearBoard = (e) => {
         e.preventDefault();
 
         setSquares(Array(81).fill(null));
-        setChangeable(Array(81).fill(true));
+        setInitial(Array(81).fill(false));
         setSelected(null);
     }
 
