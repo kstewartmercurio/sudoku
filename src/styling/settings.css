@@ -7,6 +7,7 @@
     height: 98%;
     border-radius: 22px;
     vertical-align: top;
+    transition: background-color .3s;
 }
 
 #affix-selector {
@@ -48,35 +49,12 @@
     margin-top: 22px;   
 }
 
-#fleuriste {
-    color: #405a52;
-    background-color: #c6b294;
-    margin-left: 0;
-}
-
-#fledgling {
-    color: #fc6e83;
-    background-color: #3b363f;
-}
-
-#passionfruit {
-    color: #c5a100;
-    background-color: #7c2142;
-}
-
-#hedge {
-    color: #6a994e;
-    background-color: #386641;
-    margin-right: 0;
-}
-
 .theme-btn:hover {
     transform: scale(1.1);
     transition: .15s;
 }
 
 .theme-btn {
-    background-color: red;
     font-family: "Roboto Mono";
     border: none;
     border-radius: 8px;
@@ -86,4 +64,14 @@
     height: 38.227px;
     cursor: pointer;
     transition: .15s;
+}
+
+#manatee {
+    color: #5d5e6f;
+    background-color: #9c9c9e;
+}
+
+#antique-brass {
+    color: #777868;
+    background-color: #ce826f;
 }
