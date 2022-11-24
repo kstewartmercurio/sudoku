@@ -1,13 +1,13 @@
-.navbar {
-    overflow: hidden;
+.top-btn-bar {
+    /* overflow: hidden; */
     height: 38.195px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-family: "Roboto Mono";
     display: inline-block;
 }
 
-.nav-btn-grp {
+.top-btn-bar-btn-grp {
     overflow: visible;
     background-color: var(--buttonColor);
     max-width: 42.5%;
@@ -19,7 +19,7 @@
     border-radius: 8px;
 }
 
-.nav-btn:hover {
+.top-btn-bar-btn:hover {
     color: var(--buttonTextColor);
     transition: .3s;
 }
@@ -46,12 +46,12 @@
     border-bottom-right-radius: 8px;
 }
 
-#note-btn-on, #time-btn-on, #zen-btn-on, #difficulty-btn {
+#note-btn-on, #time-btn-on, #zen-btn-on, #active-difficulty-btn {
     color: var(--boardColor);
     transition: .3s;
 }
 
-.nav-btn {
+.top-btn-bar-btn {
     color: var(--squareTextColor);
     background-color: var(--buttonColor);
     border: none;

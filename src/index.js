@@ -8,7 +8,7 @@ import "./styling/boardPage/numBtnBar.css";
 import "./styling/welcome.css";
 import "./styling/settings.css";
 
-import {Board} from "./modules/board";
+import {Board} from "./modules/boardPage/board";
 import {Welcome} from "./modules/welcome";
 import {Settings} from "./modules/settings";
 

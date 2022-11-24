@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {Square} from "./square";
-import {Puzzle} from "../solver/puzzle.js";
+import {Square} from "../square";
+import {Puzzle} from "../../solver/puzzle.js";
+import {TopBtnBar} from "./topBtnBar";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -252,6 +253,20 @@ export function Board() {
         setSelected(null);
     }
 
+    const pullDifficulty = (diff) => {
+        switch (diff) {
+            case "easy":
+                setDifficulty(1);
+                break;
+            case "medium":
+                setDifficulty(2);
+                break;
+            default:
+                setDifficulty(3);
+                break;
+        }
+    }
+
     const generatePuzzle = (e) => {
         e.preventDefault();
 
@@ -268,6 +283,7 @@ export function Board() {
           };
           
         axios.request(options).then(function (response) {
+            console.log(response.data);
             let puzzleArr = [];
             let initialArr = [];
             for (let i = 0; i < response.data["response"]["unsolved-sudoku"].length; i++) {
@@ -305,9 +321,10 @@ export function Board() {
                 windowClick = true;
             }}>
                 <div id="board-content">
-                    <div className="navbar">
-                        {buildNavBar()}
-                    </div>
+                    <TopBtnBar solveClicked={(e) => solve(e)}
+                        pullDifficulty={pullDifficulty}
+                        generateClicked={(e) => generatePuzzle(e)}
+                        clearClicked={(e) => clearBoard(e)}/>
 
                     <div className="board">
                         {buildSquares().map(ele => ele)}
