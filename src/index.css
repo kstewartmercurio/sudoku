@@ -1,11 +1,12 @@
 /*
 backgroundColor - background color
 boardColor - main
-squareColor - sub
-squareTextColor - text
+squareColor - caret
+squareTextColor - sub
 buttonColor - sub alt
 buttonTextColor - text
-selectedColor - error
+selectedColor - sub but transparent
+initialSquareColor - darker main
 */
 
 :root {

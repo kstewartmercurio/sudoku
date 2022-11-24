@@ -6,6 +6,7 @@ export function Themes() {
         console.log(newTheme);
 
         let newVal = [];
+        // [backgroundColor, boardColor, squareColor, squareTextColor, buttonColor, buttonTextColor, selectedColor, initialSquareColor]
         switch (newTheme) {
             case "fleuriste":
                 newVal = ["#c6b294", "#405a52", "#8a785b", "#64374d", "#b4a389",
@@ -14,7 +15,8 @@ export function Themes() {
             case "fledgling":
                 break;
             case "passionfruit":
-                newVal = ["#7c2142"];
+                newVal = ["#7c2142", "#c5a100", "#833c5e", "#9994b8", "#833c5e",
+                    "#d8d8d8", "#9994b8b9", "#d8d8d8"];
                 break;
             case "hedge":
                 break;
@@ -24,6 +26,13 @@ export function Themes() {
 
         var r = document.querySelector(":root");
         r.style.setProperty("--backgroundColor", newVal[0]);
+        r.style.setProperty("--boardColor", newVal[1]);
+        r.style.setProperty("--squareColor", newVal[2]);
+        r.style.setProperty("--squareTextColor", newVal[3]);
+        r.style.setProperty("--buttonColor", newVal[4]);
+        r.style.setProperty("--buttonTextColor", newVal[5]);
+        r.style.setProperty("--selectedColor", newVal[6]);
+        r.style.setProperty("--initialSquareColor", newVal[7]);
     }
 
     return (
