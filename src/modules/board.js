@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
+import axios from "axios";
 import {Square} from "./square";
 import {Puzzle} from "../solver/puzzle.js";
-import axios from "axios";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -12,11 +12,6 @@ export function Board() {
     const [difficulty, setDifficulty] = useState("1");
 
     let windowClick = true;
-
-    // useEffect(() => {
-    //     console.log("running effect");
-    //     console.log(squares, "in effect");
-    // }, [squares]);
 
     const renderSquare = (i) => {
         let classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
@@ -67,12 +62,12 @@ export function Board() {
 
         return (
             <div className="nav-btn-grp">
-                {/* <button className="nav-btn" id={noteIdStr} onClick={(e) =>
+                <button className="nav-btn" id={noteIdStr} onClick={(e) =>
                     handleNoteClick(e)
                 }>
                     note <i className="bi bi-pencil"></i>
                 </button>
-                <span className="spacer"></span> */}
+                <span className="spacer"></span>
 
                 <button className="nav-btn" id={timeIdStr} onClick={(e) =>
                     handleMetricClick(e)

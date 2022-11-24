@@ -1,0 +1,64 @@
+.navbar {
+    overflow: hidden;
+    height: 38.195px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: "Roboto Mono";
+    display: inline-block;
+}
+
+.nav-btn-grp {
+    overflow: visible;
+    background-color: var(--buttonColor);
+    max-width: 42.5%;
+    min-width: 42.5%;
+    height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+}
+
+.nav-btn:hover {
+    color: var(--buttonTextColor);
+    transition: .3s;
+}
+
+.spacer {
+    background-color: var(--backgroundColor);
+    border-left: 2px solid var(--backgroundColor);
+    border-right: 2px solid var(--backgroundColor);
+    border-radius: 2px;
+    margin: 8px 4px;
+    width: 1px;
+    height: 22.195px;
+}
+
+#note-btn-on, #note-btn-off {
+    padding-left: 18px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+#clear-btn {
+    padding-right: 18px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#note-btn-on, #time-btn-on, #zen-btn-on, #difficulty-btn {
+    color: var(--boardColor);
+    transition: .3s;
+}
+
+.nav-btn {
+    color: var(--squareTextColor);
+    background-color: var(--buttonColor);
+    border: none;
+    padding: 0 6px;
+    margin: auto 0;
+    height: 38.195px;
+    font-family: "Roboto Mono";
+    cursor: pointer;
+    transition: .3s;
+}

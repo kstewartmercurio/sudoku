@@ -1,0 +1,7 @@
+#settings-content {
+    color: black;
+    font-family: "Roboto Mono";
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

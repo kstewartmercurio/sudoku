@@ -1,0 +1,40 @@
+.num-bar {
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12.5px;
+    display: inline-block;
+}
+
+.num-btn-grp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#erase-btn {
+    padding: 8px 10.8px;
+}
+
+.num-btn {
+    color: var(--buttonTextColor);
+    background-color: var(--buttonColor);
+    margin: 0px 4px;
+    padding: 8px 14px;
+    font-family: "Roboto Mono";
+    font-size: 1em;
+    gap: .25em;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transition: .3s;
+}
+
+.num-btn:hover {
+    color: var(--buttonColor);
+    background-color: var(--buttonTextColor);
+    transition: .3s;
+}
