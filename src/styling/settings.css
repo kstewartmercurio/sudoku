@@ -3,13 +3,13 @@
     font-family: "Roboto Mono";
     background-color: var(--buttonColor);
     margin: .75%;
-    width: 23.5%;
+    width: 18%;
     height: 98%;
     border-radius: 22px;
     vertical-align: top;
 }
 
-#theme-btn {
+#theme-selector {
     margin-top: 22px;
 }
 
@@ -25,16 +25,64 @@
     border: none;
     font-family: "Roboto Mono";
     width: 100%;
-    height: 7%;
+    height: 5%;
     transition: .3s;
     cursor: pointer;
 }
 
 #settings-content {
+    color: salmon;
     display: inline-block;
     font-family: "Roboto Mono";
     background-color: rgb(0, 0, 66);
+    /* background-color: var(--backgroundColor); */
     margin: .75%;
-    width: 73.5%;
+    border-radius: 22px;
+    width: 79%;
     height: 98%;
+}
+
+#theme-set {
+    position: relative;
+    margin-top: 22px;   
+}
+
+#fleuriste {
+    color: #405a52;
+    background-color: #c6b294;
+    margin-left: 0;
+}
+
+#fledgling {
+    color: #fc6e83;
+    background-color: #3b363f;
+}
+
+#passionfruit {
+    color: #deb80b;
+    background-color: #7c2142;
+}
+
+#hedge {
+    color: #6a994e;
+    background-color: #386641;
+    margin-right: 0;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+    transition: .15s;
+}
+
+.theme-btn {
+    background-color: red;
+    font-family: "Roboto Mono";
+    border: none;
+    border-radius: 8px;
+    margin: 0 4px;
+    margin-bottom: 8px;
+    width: 22.35%;
+    height: 38.227px;
+    cursor: pointer;
+    transition: .15s;
 }

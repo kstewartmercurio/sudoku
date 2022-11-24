@@ -10,7 +10,7 @@ import "./styling/settings.css";
 
 import {Board} from "./modules/boardPage/board";
 import {Welcome} from "./modules/welcome";
-import {Settings} from "./modules/settings";
+import {Settings} from "./modules/settingsPage/settings";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
