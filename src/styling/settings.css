@@ -9,7 +9,7 @@
     vertical-align: top;
 }
 
-#theme-selector {
+#affix-selector {
     margin-top: 22px;
 }
 
@@ -28,6 +28,7 @@
     height: 5%;
     transition: .3s;
     cursor: pointer;
+    outline: none;
 }
 
 #settings-content {

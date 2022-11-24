@@ -1,32 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
+import {Themes} from "./themes";
 
 export function Settings() {
-    // const [activeSetting, setActiveSetting] = useState("theme");
-    const activeSetting = "theme";
-
-    const renderThemes = () => {
-        return (
-            <div id="theme-set">
-                <button className="theme-btn" id="fleuriste">
-                    fleuriste
-                </button>
-                <button className="theme-btn" id="fledgling">
-                    fledgling
-                </button>
-                <button className="theme-btn" id="passionfruit">
-                    passionfruit
-                </button>
-                <button className="theme-btn" id="hedge">
-                    hedge
-                </button>
-            </div>
-        )
-    }
+    const [activeSetting, setActiveSetting] = useState("theme");
 
     const renderActiveSetting = () => {
         switch (activeSetting) {
             case "theme":
-                return renderThemes();
+                return <Themes/>
             default:
                 break;
         }
@@ -36,7 +17,16 @@ export function Settings() {
         <>
             <div className="section" id="settings-page">
                 <div id="settings-nav-column">
-                    <button className="settings-nav-btn" id="theme-selector">
+                    <button className="settings-nav-btn" id="affix-selector"
+                        onClick={(e) => {
+                            setActiveSetting("affix")
+                    }}>
+                        affix
+                    </button>
+                    <button className="settings-nav-btn" id="theme-selector"
+                        onClick={() => {
+                            setActiveSetting("theme");
+                    }}>
                         theme
                     </button>
                 </div>
