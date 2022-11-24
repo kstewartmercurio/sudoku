@@ -24,7 +24,6 @@ export function Themes() {
 
         var r = document.querySelector(":root");
         r.style.setProperty("--backgroundColor", newVal[0]);
-
     }
 
     return (
