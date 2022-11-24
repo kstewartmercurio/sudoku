@@ -8,8 +8,6 @@ export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);
-    const [note, setNote] = useState(false);
-    const [metric, setMetric] = useState("time");
     const [difficulty, setDifficulty] = useState("1");
 
     let windowClick = true;
@@ -35,88 +33,6 @@ export function Board() {
                 sel={selBool}/>
         )
     };
-
-    const buildNavBar = () => {
-        let noteIdStr = "note-btn-off";
-        if (note === true) {
-            noteIdStr = "note-btn-on";
-        }
-
-        let timeIdStr = "time-btn-off";
-        let zenIdStr = "zen-btn-off";
-        if (metric === "time") {
-            timeIdStr = "time-btn-on";
-        } else {
-            zenIdStr = "zen-btn-on";
-        }
-
-        let easyIdStr = "easy-btn";
-        let medIdStr = "med-btn";
-        let hardIdStr = "hard-btn";
-        if (difficulty === "1") {
-            easyIdStr = "difficulty-btn";
-        } else if (difficulty === "2") {
-            medIdStr = "difficulty-btn";
-        } else {
-            hardIdStr = "difficulty-btn";
-        }
-
-        return (
-            <div className="nav-btn-grp">
-                <button className="nav-btn" id={noteIdStr} onClick={(e) =>
-                    handleNoteClick(e)
-                }>
-                    note <i className="bi bi-pencil"></i>
-                </button>
-                <span className="spacer"></span>
-
-                <button className="nav-btn" id={timeIdStr} onClick={(e) =>
-                    handleMetricClick(e)
-                }>
-                    time <i className="bi bi-stopwatch"></i>
-                </button>
-                <button className="nav-btn" id={zenIdStr} onClick={(e) =>
-                    handleMetricClick(e)
-                }>
-                    zen <i className="bi bi-tree"></i>
-                </button>
-
-                <span className="spacer"></span>
-                <button className="nav-btn" id={easyIdStr} onClick={(e) => 
-                    handleDifficultyClick(e, "1")
-                }>
-                    easy
-                </button>
-                <button className="nav-btn" id={medIdStr} onClick={(e) =>
-                    handleDifficultyClick(e, "2")
-                }>
-                    medium
-                </button>
-                <button className="nav-btn" id={hardIdStr} onClick={(e) =>
-                    handleDifficultyClick(e, "3")
-                }>
-                    hard
-                </button>
-                <span className="spacer"></span>
-                <button className="nav-btn" onClick={(e) => {
-                    solve(e);
-                }}>
-                    solve
-                </button>
-                <button className="nav-btn" onClick={(e) => {
-                    generatePuzzle(e);
-                }}>
-                    generate
-                </button>
-                <button className="nav-btn" id="clear-btn" onClick={(e) => {
-                    clearBoard(e);
-                }}>
-                    clear
-                </button>
-
-            </div>
-        )
-    }
 
     const buildSquares = () => {
         let elementLst = [];
@@ -195,31 +111,6 @@ export function Board() {
 
         windowClick = false;
         setSelected(i);
-    }
-
-    const handleNoteClick = (e) => {
-        e.preventDefault();
-
-        windowClick = false;
-        setNote(!note);
-    }
-
-    const handleMetricClick = (e) => {
-        e.preventDefault();
-
-        windowClick = false;
-        if (metric === "time") {
-            setMetric("zen");
-        } else {
-            setMetric("time");
-        }
-    }
-
-    const handleDifficultyClick = (e, diff) => {
-        e.preventDefault();
-
-        windowClick = false;
-        setDifficulty(diff);
     }
 
     const handleNumBtnClick = (e, n) => {
