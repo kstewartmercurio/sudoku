@@ -1,4 +1,4 @@
-.num-bar {
+.num-btn-bar {
     width: 100%;
     position: relative;
     left: 50%;
@@ -7,7 +7,7 @@
     display: inline-block;
 }
 
-.num-btn-grp {
+.num-btn-bar-btn-grp {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@
     padding: 8px 10.8px;
 }
 
-.num-btn {
+.num-btn-bar-btn {
     color: var(--buttonTextColor);
     background-color: var(--buttonColor);
     margin: 0px 4px;
@@ -33,7 +33,7 @@
     transition: .3s;
 }
 
-.num-btn:hover {
+.num-btn-bar-btn:hover {
     color: var(--buttonColor);
     background-color: var(--buttonTextColor);
     transition: .3s;

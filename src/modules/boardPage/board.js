@@ -3,6 +3,7 @@ import axios from "axios";
 import {Square} from "../square";
 import {Puzzle} from "../../solver/puzzle.js";
 import {TopBtnBar} from "./topBtnBar";
+import {NumBtnBar} from "./numBtnBar";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -49,86 +50,11 @@ export function Board() {
         return elementLst;
     }
 
-    const buildNumBar = () => {
-        return (
-            <div className="num-btn-grp">
-                <button className="num-btn" id="1btn" onClick={(e) => {
-                    handleNumBtnClick(e, 1);
-                }}>
-                    1
-                </button>
-                <button className="num-btn" id="2btn" onClick={(e) => {
-                    handleNumBtnClick(e, 2);
-                }}>
-                    2
-                </button>
-                <button className="num-btn" id="3btn" onClick={(e) => {
-                    handleNumBtnClick(e, 3);
-                }}>
-                    3
-                </button>
-                <button className="num-btn" id="4btn" onClick={(e) => {
-                    handleNumBtnClick(e, 4);
-                }}>
-                    4
-                </button>
-                <button className="num-btn" id="5btn" onClick={(e) => {
-                    handleNumBtnClick(e, 5);
-                }}>
-                    5
-                </button>
-                <button className="num-btn" id="6btn" onClick={(e) => {
-                    handleNumBtnClick(e, 6);
-                }}>
-                    6
-                </button>
-                <button className="num-btn" id="7btn" onClick={(e) => {
-                    handleNumBtnClick(e, 7);
-                }}>
-                    7
-                </button>
-                <button className="num-btn" id="8btn" onClick={(e) => {
-                    handleNumBtnClick(e, 8);
-                }}>
-                    8
-                </button>
-                <button className="num-btn" id="9btn" onClick={(e) => {
-                    handleNumBtnClick(e, 9);
-                }}>
-                    9
-                </button>
-                <button className="num-btn" id="erase-btn" onClick={(e) => {
-                    handleNumBtnClick(e, 0);
-                }}>
-                    <i className="bi bi-eraser-fill"></i>
-                </button>
-            </div>
-        );
-    }
-
     const handleSquareClick = (e, i) => {
         e.preventDefault();
 
         windowClick = false;
         setSelected(i);
-    }
-
-    const handleNumBtnClick = (e, n) => {
-        e.preventDefault();
-
-        if ((selected !== null) && (initial[selected] === false)) {
-            let squaresCopy = squares.slice();
-
-            if (n === 0) {
-                squaresCopy[selected] = null;
-            } else {
-                squaresCopy[selected] = n;
-            }
-            
-            setSquares(squaresCopy);
-        }
-
-        setSelected(null);
     }
 
     const solve = (e) => {
@@ -203,6 +129,22 @@ export function Board() {
         setSelected(null);
     }
 
+    const shareNumClick = (n) => {
+        if ((selected !== null) && (initial[selected] === false)) {
+            let squaresCopy = squares.slice();
+
+            if (n === 0) {
+                squaresCopy[selected] = null;
+            } else {
+                squaresCopy[selected] = n;
+            }
+            
+            setSquares(squaresCopy);
+        }
+
+        setSelected(null);
+    }
+
     return (
         <>
             <div className="section" id="board-page" onClick={(e) => {
@@ -211,7 +153,7 @@ export function Board() {
                 }
                 windowClick = true;
             }}>
-                <div id="board-content">
+                <div id="board-page-content">
                     <TopBtnBar solveClicked={(e) => solve(e)}
                         pullDifficulty={pullDifficulty}
                         generateClicked={(e) => generatePuzzle(e)}
@@ -220,10 +162,8 @@ export function Board() {
                     <div className="board">
                         {buildSquares().map(ele => ele)}
                     </div>
-                    
-                    <div className="num-bar">
-                        {buildNumBar()}
-                    </div>
+                
+                    <NumBtnBar shareNumClick={shareNumClick}/>
                 </div>
             </div>
         </>
