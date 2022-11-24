@@ -18,6 +18,7 @@ initialSquareColor - darker main
     --buttonTextColor: #091914;
     --selectedColor: #64374db9;
     --initialSquareColor: #2e403b;
+    transition: .3s;
 }
 
 #root {

@@ -6,13 +6,14 @@ export function Themes() {
         console.log(newTheme);
 
         let newVal = [];
-        // [backgroundColor, boardColor, squareColor, squareTextColor, buttonColor, buttonTextColor, selectedColor, initialSquareColor]
         switch (newTheme) {
             case "fleuriste":
                 newVal = ["#c6b294", "#405a52", "#8a785b", "#64374d", "#b4a389",
                     "#091914", "#64374db9", "2e403b"];
                 break;
             case "fledgling":
+                newVal = ["#3b363f", "#fc6e83", "#383838", "#8e5568", "#332e38",
+                    "#e6d5d3", "red", "#e6d5d3"];
                 break;
             case "passionfruit":
                 newVal = ["#7c2142", "#c5a100", "#833c5e", "#9994b8", "#833c5e",

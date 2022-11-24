@@ -35,8 +35,8 @@
     color: salmon;
     display: inline-block;
     font-family: "Roboto Mono";
-    background-color: rgb(0, 0, 66);
-    /* background-color: var(--backgroundColor); */
+    /* background-color: rgb(0, 0, 66); */
+    background-color: var(--backgroundColor);
     margin: .75%;
     border-radius: 22px;
     width: 79%;
