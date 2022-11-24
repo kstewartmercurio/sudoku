@@ -16,17 +16,17 @@
 .settings-nav-btn:hover {
     color: var(--buttonColor);
     background-color: var(--buttonTextColor);
-    transition: .3s;
+    transition: background-color .3s;
 }
 
 .settings-nav-btn {
     color: var(--buttonTextColor);
-    background-color: var(--buttonColor);
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     font-family: "Roboto Mono";
     width: 100%;
     height: 5%;
-    transition: .3s;
+    transition: background-color .3s;
     cursor: pointer;
     outline: none;
 }
