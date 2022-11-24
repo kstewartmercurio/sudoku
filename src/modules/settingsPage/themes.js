@@ -12,14 +12,16 @@ export function Themes() {
                     "#091914", "#64374db9", "2e403b"];
                 break;
             case "fledgling":
-                newVal = ["#3b363f", "#fc6e83", "#383838", "#8e5568", "#332e38",
-                    "#e6d5d3", "red", "#e6d5d3"];
+                newVal = ["#3b363f", "#fc6e83", "#383838", "#bf738d", "#332e38",
+                    "#e6d5d3", "#bf738db9", "#e6d5d3"];
                 break;
             case "passionfruit":
                 newVal = ["#7c2142", "#c5a100", "#833c5e", "#9994b8", "#833c5e",
                     "#d8d8d8", "#9994b8b9", "#d8d8d8"];
                 break;
             case "hedge":
+                newVal = ["#415e31", "#6a994e", "#38502a", "#ede5b4", "#38502a",
+                    "#f7f1d6", "#ede5b4b9", "#e6d37f"];
                 break;
             default:
                 break;
