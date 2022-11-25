@@ -35,10 +35,10 @@ export function Themes() {
 
     return (
         <div id="theme-set">
-            <button className="theme-btn" id="manatee" onClick={(e) => {
-                updateTheme(e, "manatee")
+            <button className="theme-btn" id="brunswick-green" onClick={(e) => {
+                updateTheme(e, "brunswick green")
             }}>
-                manatee
+                brunswick green
             </button>
             <button className="theme-btn" id="antique-brass" onClick={(e) => {
                 updateTheme(e, "antique brass")
