@@ -11,7 +11,8 @@
 }
 
 #affix-selector {
-    margin-top: 22px;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
 }
 
 .settings-nav-btn:hover {
@@ -82,4 +83,9 @@
 #gulf-stream {
     color: #5967c3;
     background-color: #78b2ae;
+}
+
+#harvest-gold {
+    color: #273e47;
+    background-color: #d79233;
 }

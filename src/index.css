@@ -13,10 +13,10 @@ initialSquareColor - darker main
     --backgroundColor: #9c9c9e;
     --boardColor: #5d5e6f;
     --squareColor: #4c4b58;
-    --squareTextColor: #cbad7f;
+    --squareTextColor: #6a69b9;
     --buttonColor: #848484;
     --buttonTextColor: #262636;
-    --selectedColor: #e1992f3d;
+    --selectedColor: #5d5bc85a;
     --initialSquareColor: #c7c6c6;
 }
 

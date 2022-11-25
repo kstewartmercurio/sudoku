@@ -55,10 +55,10 @@ export function Themes() {
             }}>
                 gulf stream
             </button>
-            <button className="theme-btn" id="test" onClick={(e) => {
-                updateTheme(e, "test")
+            <button className="theme-btn" id="harvest-gold" onClick={(e) => {
+                updateTheme(e, "harvest gold")
             }}>
-                test
+                harvest gold
             </button>
             <button className="theme-btn" id="test" onClick={(e) => {
                 updateTheme(e, "test")
