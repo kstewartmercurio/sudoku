@@ -1,41 +1,36 @@
 import React from "react";
 
+import {themeVals} from "./themesList";
+
 export function Themes() {
     const updateTheme = (e, newTheme) => {
         e.preventDefault();
 
-        let newVal = [];
-        const uglyVal = ["red", "blue", "green", "purple", "orange", "yellow", 
-            "pink", "brown"];
-        switch (newTheme) {
-            case "manatee":
-                newVal = ["#9c9c9e", "#5d5e6f", "#4c4b58", "#c7c6c6", "#848484",
-                    "#262636", "#e1992f3d", "#cbad7f"];
-                break;
-            case "antique brass":
-                newVal = ["#ce826f", "#777868", "#a17878", "#5f5f53", "#d26e59",
-                    "#5a3d3d", "#825289cc", "#e9ebe0"];
-                break;
-            case "comet":
-                newVal = ["#636583", "#a374e2", "#5e5990", "#d6d6d6", "#5e5990",
-                "#e8e8e8", "#fe879cbf", "#353535"];
-                break;
-            case "comet":
-                newVal = uglyVal;
-                break;
-            default:
-                break;
-        }
+        const uglyVals = ["red", "blue", "green", "purple", "orange", 
+            "yellow", "pink", "black"];
 
+        let newThemeVals = [];
+        for (let i = 0; i < themeVals.length; i++) {
+            if (newTheme === themeVals[i][0]) {
+                newThemeVals = themeVals[i][1];
+                break;
+            }
+        }
+        console.log(newThemeVals);
+
+        if (newThemeVals.length === 0) {
+            newThemeVals = uglyVals;
+        }
+        
         var r = document.querySelector(":root");
-        r.style.setProperty("--backgroundColor", newVal[0]);
-        r.style.setProperty("--boardColor", newVal[1]);
-        r.style.setProperty("--squareColor", newVal[2]);
-        r.style.setProperty("--squareTextColor", newVal[3]);
-        r.style.setProperty("--buttonColor", newVal[4]);
-        r.style.setProperty("--buttonTextColor", newVal[5]);
-        r.style.setProperty("--selectedColor", newVal[6]);
-        r.style.setProperty("--initialSquareColor", newVal[7]);
+        r.style.setProperty("--backgroundColor", newThemeVals[0]);
+        r.style.setProperty("--boardColor", newThemeVals[1]);
+        r.style.setProperty("--squareColor", newThemeVals[2]);
+        r.style.setProperty("--squareTextColor", newThemeVals[3]);
+        r.style.setProperty("--buttonColor", newThemeVals[4]);
+        r.style.setProperty("--buttonTextColor", newThemeVals[5]);
+        r.style.setProperty("--selectedColor", newThemeVals[6]);
+        r.style.setProperty("--initialSquareColor", newThemeVals[7]);
     }
 
     return (
@@ -54,6 +49,26 @@ export function Themes() {
                 updateTheme(e, "comet")
             }}>
                 comet
+            </button>
+            <button className="theme-btn" id="gulf-stream" onClick={(e) => {
+                updateTheme(e, "gulf stream")
+            }}>
+                gulf stream
+            </button>
+            <button className="theme-btn" id="test" onClick={(e) => {
+                updateTheme(e, "test")
+            }}>
+                test
+            </button>
+            <button className="theme-btn" id="test" onClick={(e) => {
+                updateTheme(e, "test")
+            }}>
+                test
+            </button>
+            <button className="theme-btn" id="test" onClick={(e) => {
+                updateTheme(e, "test")
+            }}>
+                test
             </button>
             <button className="theme-btn" id="test" onClick={(e) => {
                 updateTheme(e, "test")

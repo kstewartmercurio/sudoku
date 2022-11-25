@@ -13,11 +13,11 @@ initialSquareColor - darker main
     --backgroundColor: #9c9c9e;
     --boardColor: #5d5e6f;
     --squareColor: #4c4b58;
-    --squareTextColor: #c7c6c6;
+    --squareTextColor: #cbad7f;
     --buttonColor: #848484;
     --buttonTextColor: #262636;
     --selectedColor: #e1992f3d;
-    --initialSquareColor: #cbad7f;
+    --initialSquareColor: #c7c6c6;
 }
 
 #root {
@@ -45,6 +45,7 @@ body {
     text-align: center;
     scroll-snap-align: center;
     display: inline-block;
+    transition: background-color .3s;
 }
 
 #board-page-content {

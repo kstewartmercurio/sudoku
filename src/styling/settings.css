@@ -33,11 +33,9 @@
 }
 
 #settings-content {
-    color: salmon;
+    background-color: rgba(0, 0, 0, 0);
     display: inline-block;
     font-family: "Roboto Mono";
-    /* background-color: rgb(0, 0, 66); */
-    background-color: var(--backgroundColor);
     margin: .75%;
     border-radius: 22px;
     width: 79%;
@@ -79,4 +77,9 @@
 #comet {
     color: #a374e2;
     background-color: #636583;
+}
+
+#gulf-stream {
+    color: #5967c3;
+    background-color: #78b2ae;
 }
