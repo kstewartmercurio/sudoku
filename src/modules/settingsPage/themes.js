@@ -60,10 +60,10 @@ export function Themes() {
             }}>
                 harvest gold
             </button>
-            <button className="theme-btn" id="test" onClick={(e) => {
-                updateTheme(e, "test")
+            <button className="theme-btn" id="oxford-blue" onClick={(e) => {
+                updateTheme(e, "oxford blue")
             }}>
-                test
+                oxford blue
             </button>
             <button className="theme-btn" id="test" onClick={(e) => {
                 updateTheme(e, "test")

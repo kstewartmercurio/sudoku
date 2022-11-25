@@ -16,5 +16,7 @@ export const themeVals = [
     ["gulf stream", ["#78b2ae", "#5967c3", "#54928e", "#cc9600", "#b0b9ac",
         "#4d4d4d", "#ffee846e", "#e3e3e3"]],
     ["harvest gold", ["#d79233", "#3a5c69", "#aa7122", "#92bef4", "#dda455", 
-        "#b45e2d", "#ad9b28d6", "#2b2b2b"]]
+        "#b45e2d", "#ad9b28d6", "#2b2b2b"]],
+    ["oxford blue", ["#04052e", "#abb0ab", "#080a5e", "#58a3f3", "#2c00a3",
+        "#4e5a8d", "#80b0ff8f", "#eee5dd"]]
 ]
