@@ -20,7 +20,7 @@
 }
 
 .top-btn-bar-btn:hover {
-    color: var(--buttonTextColor);
+    color: var(--initialSquareColor);
     transition: .3s;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .top-btn-bar-btn {
-    color: var(--squareTextColor);
+    color: var(--buttonTextColor);
     background-color: var(--buttonColor);
     border: none;
     padding: 0 6px;

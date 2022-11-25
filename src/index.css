@@ -10,14 +10,14 @@ initialSquareColor - darker main
 */
 
 :root {
-    --backgroundColor: #c6b294;
-    --boardColor: #405a52;
-    --squareColor: #8a785b;
-    --squareTextColor: #64374d;
-    --buttonColor: #b4a389;
-    --buttonTextColor: #091914;
-    --selectedColor: #64374db9;
-    --initialSquareColor: #2e413b;
+    --backgroundColor: #9c9c9e;
+    --boardColor: #5d5e6f;
+    --squareColor: #4c4b58;
+    --squareTextColor: #c7c6c6;
+    --buttonColor: #848484;
+    --buttonTextColor: #262636;
+    --selectedColor: #e1992f3d;
+    --initialSquareColor: #cbad7f;
 }
 
 #root {

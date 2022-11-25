@@ -9,14 +9,18 @@ export function Themes() {
             "pink", "brown"];
         switch (newTheme) {
             case "manatee":
-                newVal = ["#9c9c9e", "#5d5e6f", "#413f5a", "#fbfafa", "#848484",
-                    "#262636", "#e1992f3d", "#faca82"];
+                newVal = ["#9c9c9e", "#5d5e6f", "#4c4b58", "#c7c6c6", "#848484",
+                    "#262636", "#e1992f3d", "#cbad7f"];
                 break;
             case "antique brass":
                 newVal = ["#ce826f", "#777868", "#a17878", "#5f5f53", "#d26e59",
                     "#5a3d3d", "#825289cc", "#e9ebe0"];
                 break;
-            case "test":
+            case "comet":
+                newVal = ["#636583", "#a374e2", "#5e5990", "#d6d6d6", "#5e5990",
+                "#e8e8e8", "#fe879cbf", "#353535"];
+                break;
+            case "comet":
                 newVal = uglyVal;
                 break;
             default:
@@ -36,26 +40,6 @@ export function Themes() {
 
     return (
         <div id="theme-set">
-            <button className="theme-btn" id="fleuriste" onClick={(e) => {
-                updateTheme(e, "fleuriste")
-            }}>
-                fleuriste
-            </button>
-            <button className="theme-btn" id="fledgling" onClick={(e) => {
-                updateTheme(e, "fledgling")
-            }}>
-                fledgling
-            </button>
-            <button className="theme-btn" id="passionfruit" onClick={(e) => {
-                updateTheme(e, "passionfruit")
-            }}>
-                passionfruit
-            </button>
-            <button className="theme-btn" id="hedge" onClick={(e) => {
-                updateTheme(e, "hedge")
-            }}>
-                hedge
-            </button>
             <button className="theme-btn" id="manatee" onClick={(e) => {
                 updateTheme(e, "manatee")
             }}>
@@ -66,10 +50,10 @@ export function Themes() {
             }}>
                 antique brass
             </button>
-            <button className="theme-btn" id="test" onClick={(e) => {
-                updateTheme(e, "test")
+            <button className="theme-btn" id="comet" onClick={(e) => {
+                updateTheme(e, "comet")
             }}>
-                test
+                comet
             </button>
             <button className="theme-btn" id="test" onClick={(e) => {
                 updateTheme(e, "test")
