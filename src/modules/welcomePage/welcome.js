@@ -13,7 +13,13 @@ export function Welcome() {
                     </p>
                 </div>
 
-                <p id="p1">welcome to my sudoku app. </p>
+                <p id="p1">welcome to my sudoku app! i've made this web app for
+                    you to play sudoku. the board above allows you to play
+                    puzzles at whatever difficulty you'd like and there's extra
+                    functionality for making notes, getting hints, timing
+                    yourself, solving the puzzle, generating new puzzles, and
+                    clearing the board.
+                </p>
             </div>
         </>
     )
