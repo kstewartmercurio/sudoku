@@ -17,8 +17,8 @@ NEW [backgroundColor (same),
     - initial square text dark, regular square text light
 */
 
-// ["#04052e", "#abb0ab", "#080a5e", "#58a3f3", "#2c00a3", "#4e5a8d", "#80b0ff8f", "#eee5dd"]
-// ["#04052e", "#abb0ab", "#58a3f3", "#eee5dd", "#080a5e", "#80b0ff8f", "#4e5a8d", "#2c00a3"]
+// ["#28524a", "#edd2fb", "#519085", "#ffffff", "#3d7b6f", "#90c6cb", "#f8a2ff87", "#2f3437"]
+// ["#28524a", "#edd2fb", "fffffff", "#2f3437", "#519085", "#f8a2ff87", "#90c6cb", "#3d7b6f"]
 
 export const themeVals = [
     ["xanadu", ["#758173", "#344634", "#064507", "#cad1cb", "#626c60", 
@@ -29,6 +29,6 @@ export const themeVals = [
         "#528964b3", "#5a3d3d", "#d26e59", "#985713", "#eff8f0"]],
     ["oxford blue", ["#04052e", "#a7a9cc", "#5a5a68", "#eee5dd", "#080a5e", 
         "#80b0ff4a", "#6960eb", "#2c00a3", "#8082d0", "#151515"]],
-    ["brunswick green", ["#28524a", "#edd2fb", "#519085", "#ffffff", "#3d7b6f",
-        "#90c6cb", "#f8a2ff87", "#2f3437", "#5d995f"]]
+    ["brunswick green", ["#28524a", "#edd2fb", "#2e5b42", "#dfdfdf", "#519085",
+        "#f8a2ff87", "#90c6cb", "#3d7b6f", "#37894b", "#ececec"]]
 ]
