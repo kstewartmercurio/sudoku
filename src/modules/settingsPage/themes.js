@@ -42,25 +42,15 @@ export function Themes() {
             }}>
                 xanadu
             </button>
-            <button className="theme-btn" id="antique-brass" onClick={(e) => {
-                updateTheme(e, "antique brass")
-            }}>
-                antique brass
-            </button>
-            <button className="theme-btn" id="comet" onClick={(e) => {
-                updateTheme(e, "comet")
-            }}>
-                comet
-            </button>
-            <button className="theme-btn" id="gulf-stream" onClick={(e) => {
-                updateTheme(e, "gulf stream")
-            }}>
-                gulf stream
-            </button>
             <button className="theme-btn" id="harvest-gold" onClick={(e) => {
                 updateTheme(e, "harvest gold")
             }}>
                 harvest gold
+            </button>
+            <button className="theme-btn" id="antique-brass" onClick={(e) => {
+                updateTheme(e, "antique brass")
+            }}>
+                antique brass
             </button>
             <button className="theme-btn" id="oxford-blue" onClick={(e) => {
                 updateTheme(e, "oxford blue")
@@ -71,6 +61,16 @@ export function Themes() {
                 updateTheme(e, "brunswick green")
             }}>
                 brunswick green
+            </button>
+            <button className="theme-btn" id="test" onClick={(e) => {
+                updateTheme(e, "test")
+            }}>
+                test
+            </button>
+            <button className="theme-btn" id="test" onClick={(e) => {
+                updateTheme(e, "test")
+            }}>
+                test
             </button>
             <button className="theme-btn" id="test" onClick={(e) => {
                 updateTheme(e, "test")
