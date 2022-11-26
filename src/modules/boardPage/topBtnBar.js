@@ -64,6 +64,11 @@ export function TopBtnBar(props) {
                 }>
                     note <i className="bi bi-pencil"></i>
                 </button>
+                <button className="top-btn-bar-btn" id="hint-btn" onClick={(e) =>
+                    handleTopBtnBarClick(e, "hint")
+                }>
+                    hint <i className="bi bi-lightbulb"></i>
+                </button>
                 <span className="spacer"></span>
                 <button className="top-btn-bar-btn" id={timeIdStr} onClick={(e) =>
                     handleTopBtnBarClick(e, "time")
