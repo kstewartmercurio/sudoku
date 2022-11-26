@@ -8,6 +8,7 @@
 
 #welcome-header {
     color: var(--welcomeAccentColor1);
+    position: relative;
     margin-top: 50px;
     margin-bottom: 50px;
     width: max-content;
@@ -33,15 +34,20 @@
 }
 
 #p1, #p2 {
-    margin: 1% 0 5% 0;
+    margin: 1% 0 3% 0;
 }
 
 #p3 {
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 #icon-bar {
+    font-size: 64px;
     text-align: center;
+}
+
+.fa-brands {
+    margin: 0 1.5%;
 }
 
 #welcome-content {

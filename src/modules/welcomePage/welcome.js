@@ -30,7 +30,13 @@ export function Welcome() {
                         button icons, and Git for version control.
                     </p>
                     <div id="icon-bar">
-                        <p>test</p>
+                        <i className="fa-brands fa-html5"></i>
+                        <i class="fa-brands fa-css3-alt"></i>
+                        <i class="fa-brands fa-square-js"></i>
+                        <i class="fa-brands fa-react"></i>
+                        <i class="fa-brands fa-npm"></i>
+                        <i class="fa-brands fa-bootstrap"></i>
+                        <i class="fa-brands fa-git"></i>
                     </div>
                     <p id="p3">
                         additionally, i used Coolors to generate color palletes
