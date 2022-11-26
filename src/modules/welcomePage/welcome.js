@@ -30,7 +30,7 @@ export function Welcome() {
                         button icons, and Git for version control.
                     </p>
                     <div id="icon-bar">
-                        this is where icons will go
+                        <p>test</p>
                     </div>
                     <p id="p3">
                         additionally, i used Coolors to generate color palletes
