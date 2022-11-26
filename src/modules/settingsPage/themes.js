@@ -26,11 +26,13 @@ export function Themes() {
         r.style.setProperty("--backgroundColor", newThemeVals[0]);
         r.style.setProperty("--boardColor", newThemeVals[1]);
         r.style.setProperty("--squareColor", newThemeVals[2]);
-        r.style.setProperty("--squareTextColor", newThemeVals[3]);
-        r.style.setProperty("--buttonColor", newThemeVals[4]);
-        r.style.setProperty("--buttonTextColor", newThemeVals[5]);
-        r.style.setProperty("--selectedColor", newThemeVals[6]);
-        r.style.setProperty("--initialSquareColor", newThemeVals[7]);
+        r.style.setProperty("--initialSquareColor", newThemeVals[3]);
+        r.style.setProperty("--squareBackgroundColor", newThemeVals[4]);
+        r.style.setProperty("--selectedSquareColor", newThemeVals[5])
+        r.style.setProperty("--buttonColor", newThemeVals[6]);
+        r.style.setProperty("--buttonBackgroundColor", newThemeVals[7]);
+        r.style.setProperty("--navbarAccentColor", newThemeVals[8]);
+        r.style.setProperty("--topButtonBarAccentColor", newThemeVals[9]);
     }
 
     return (

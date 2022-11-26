@@ -51,7 +51,7 @@
 }
 
 #selected {
-    background-color: var(--selectedColor) !important;
+    background-color: var(--selectedSquareColor) !important;
     transition: .3s;
 }
 

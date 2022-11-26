@@ -18,13 +18,14 @@ welcomeAccentColor
     --squareColor: #064507;
     --initialSquareColor: #cad1cb;
     --squareBackgroundColor: #626c60;
+    --selectedSquareColor: #a5a5a575;
     --buttonColor: #498349;
     --buttonBackgroundColor: #a9c5a0;
-    --navbarAccentColor: var(--buttonBackgroundColor);
+    --navbarAccentColor: #a9c5a0;
     --topButtonBarAccentColor: #eff8f0;
 
     --welcomeAccentColor1: var(--initialSquareColor);
-    --welcomeAccentColor2: var(--buttonBackgroundColor);
+    --welcomeAccentColor2: var(--navbarAccentColor);
     --welcomeColor: var(--boardColor);
 
     --settingsNavColor: var(--boardColor);
