@@ -24,7 +24,7 @@ NEW [backgroundColor (same),
 export const themeVals = [
     ["xanadu", ["#758173", "#344634", "#064507", "#cad1cb", "#626c60", 
         "a5a5a575", "#498349", "#a9c5a0", "#a9c5a0", "#eff8f0"]],
-    ["harvest gold", ["#d79233", "#3a5c69", "#c5d5ea", "#5d5340", "#aa7122", 
+    ["harvest gold", ["#d79233", "#3a5c69", "#bfc3c8", "#694f1f", "#aa7122", 
         "#ad9b28d6", "#b45e2d", "#dda445", "#cacaca", "#e7e7e7"]],
     ["antique brass", ["#ce826f", "#66674e", "#395948", "#bebfb7", "#966d5d", 
         "#528964b3", "#5a3d3d", "#d26e59", "#985713", "#eff8f0"]],
