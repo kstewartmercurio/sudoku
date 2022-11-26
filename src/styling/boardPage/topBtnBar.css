@@ -10,8 +10,7 @@
 .top-btn-bar-btn-grp {
     overflow: visible;
     background-color: var(--buttonColor);
-    max-width: 42.5%;
-    min-width: 42.5%;
+    width: max-content;
     height: 100%;
     position: relative;
     left: 50%;

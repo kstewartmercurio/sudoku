@@ -26,10 +26,29 @@
     margin: 0;
 }
 
-#p1 {
+.subheader {
+    color: var(--navbarAccentColor);
+    margin: 0;
+    font-size: 20px;
+}
+
+#p1, #p2 {
+    margin: 1% 0 5% 0;
+}
+
+#p3 {
+    margin-top: 5%;
+}
+
+#icon-bar {
+    text-align: center;
+}
+
+#welcome-content {
     color: var(--boardColor);
     width: 90%;
     margin-left: 4%;
+    margin: 0 auto;
     font-family: "Roboto Mono";
     font-size: 20px;
     text-align: left;
