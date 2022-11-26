@@ -1,25 +1,34 @@
 /*
-backgroundColor - background color
-boardColor - main
-squareColor - caret
-squareTextColor - sub
-buttonColor - sub alt
-buttonTextColor - text
-selectedColor - sub but transparent
-initialSquareColor - darker main
+backgroundColor
+boardColor
+squareColor (text)
+initialSquareColor (text)
+squareBackgroundColor
+buttonColor (text)
+buttonBackgroundColor
+navbarAccentColor
+topButtonBarAccentColor
+
+welcomeAccentColor
 */
 
 :root {
     --backgroundColor: #758173;
     --boardColor: #344634;
-    --squareColor: #626c60;
-    --squareTextColor: #064507;
-    --buttonColor: #a9c5a0;
-    --buttonTextColor: #498349;
-    --selectedColor: #a5a5a575;
-    --initialSquareColor: #eff8f0;
-    --navbarAccentColor: #b5c7b7;
-    --welcomeAccentColor: #cad1cb;
+    --squareColor: #064507;
+    --initialSquareColor: #cad1cb;
+    --squareBackgroundColor: #626c60;
+    --buttonColor: #498349;
+    --buttonBackgroundColor: #a9c5a0;
+    --navbarAccentColor: var(--buttonBackgroundColor);
+    --topButtonBarAccentColor: #eff8f0;
+
+    --welcomeAccentColor1: var(--initialSquareColor);
+    --welcomeAccentColor2: var(--buttonBackgroundColor);
+    --welcomeColor: var(--boardColor);
+
+    --settingsNavColor: var(--boardColor);
+    --settingsNavBackgroundColor: var(--buttonBackgroundColor);
 }
 
 #root {

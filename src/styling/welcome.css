@@ -1,13 +1,13 @@
 #header-do {
-    color: var(--navbarAccentColor);
+    color: var(--welcomeAccentColor2);
 }
 
 #header-u, #header-sudoku {
-    color: var(--boardColor);
+    color: var(--welcomeColor);
 }
 
 #welcome-header {
-    color: #cad1cb;
+    color: var(--welcomeAccentColor1);
     margin-top: 50px;
     margin-bottom: 50px;
     width: max-content;
@@ -27,9 +27,9 @@
 }
 
 .subheader {
-    color: var(--navbarAccentColor);
+    color: var(--welcomeAccentColor2);
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #p1, #p2 {
@@ -45,11 +45,11 @@
 }
 
 #welcome-content {
-    color: var(--boardColor);
+    color: var(--welcomeColor);
     width: 90%;
     margin-left: 4%;
     margin: 0 auto;
     font-family: "Roboto Mono";
-    font-size: 20px;
+    font-size: 18px;
     text-align: left;
 }

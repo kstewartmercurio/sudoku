@@ -1,7 +1,7 @@
 #settings-nav-column {
     display: inline-block;
     font-family: "Roboto Mono";
-    background-color: var(--buttonColor);
+    background-color: var(--settingsNavBackgroundColor);
     margin: .75%;
     width: 18%;
     height: 98%;
@@ -16,13 +16,13 @@
 }
 
 .settings-nav-btn:hover {
-    color: var(--buttonColor);
-    background-color: var(--buttonTextColor);
+    color: var(--settingsNavBackgroundColor);
+    background-color: var(--settingsNavColor);
     transition: background-color .3s;
 }
 
 .settings-nav-btn {
-    color: var(--buttonTextColor);
+    color: var(--settingsNavColor);
     background-color: rgba(0, 0, 0, 0);
     border: none;
     font-family: "Roboto Mono";

@@ -36,8 +36,8 @@
 }
 
 .square {
-    color: var(--squareTextColor);
-    background-color: var(--squareColor);
+    color: var(--squareColor);
+    background-color: var(--squareBackgroundColor);
     border: .75px solid var(--boardColor);
     padding: 0;
     vertical-align: top;

@@ -18,8 +18,8 @@
 }
 
 .num-btn-bar-btn {
-    color: var(--buttonTextColor);
-    background-color: var(--buttonColor);
+    color: var(--buttonColor);
+    background-color: var(--buttonBackgroundColor);
     margin: 0px 4px;
     padding: 8px 14px;
     font-family: "Roboto Mono";
@@ -34,7 +34,7 @@
 }
 
 .num-btn-bar-btn:hover {
-    color: var(--buttonColor);
-    background-color: var(--buttonTextColor);
+    color: var(--buttonBackgroundColor);
+    background-color: var(--buttonColor);
     transition: .3s;
 }
