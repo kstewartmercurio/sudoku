@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+import "./styling/boardPage/boardPage.css";
 import "./styling/boardPage/topBtnBar.css";
 import "./styling/boardPage/board.css";
 import "./styling/boardPage/numBtnBar.css";
@@ -17,6 +18,6 @@ root.render(
   <>
     <BoardPage/>
     {/* <Welcome/> */}
-    <Settings/>
+    {/* <Settings/> */}
   </>
 );

@@ -48,11 +48,3 @@ body {
     transition: background-color .3s;
 }
 
-#board-page-content {
-    color: black;
-    font-family: "Roboto Mono";
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
