@@ -12,7 +12,7 @@ export function Navbar() {
                     <i className="bi bi-gear-fill"></i>
                 </button>
                 <button className="board-page-nav-btn" id="login-btn">
-                    <i className="bi bi-box-arrow-in-right"></i>
+                    <i className="bi bi-person-fill"></i>
                 </button>
             </div>
         </div>
