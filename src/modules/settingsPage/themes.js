@@ -7,7 +7,7 @@ export function Themes() {
         e.preventDefault();
 
         const uglyVals = ["red", "blue", "green", "purple", "orange", 
-            "yellow", "pink", "black"];
+            "yellow", "pink", "black", "white"];
 
         let newThemeVals = [];
         for (let i = 0; i < themeVals.length; i++) {
@@ -31,6 +31,8 @@ export function Themes() {
         r.style.setProperty("--buttonTextColor", newThemeVals[5]);
         r.style.setProperty("--selectedColor", newThemeVals[6]);
         r.style.setProperty("--initialSquareColor", newThemeVals[7]);
+        r.style.setProperty("--navbarAccentColor", newThemeVals[8]);
+        console.log(getComputedStyle(r).getPropertyValue("--navbarAccentColor"));
     }
 
     return (

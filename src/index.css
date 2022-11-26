@@ -18,6 +18,7 @@ initialSquareColor - darker main
     --buttonTextColor: #498349;
     --selectedColor: #a5a5a575;
     --initialSquareColor: #eff8f0;
+    --navbarAccentColor: #b5c7b7;
 }
 
 #root {

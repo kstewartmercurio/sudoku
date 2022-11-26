@@ -7,7 +7,7 @@
 }
 
 #logo-accent {
-    color: #b5c7b7;
+    color: var(--navbarAccentColor);
 }
 
 #logo {
@@ -36,7 +36,7 @@
 }
 
 .board-page-nav-btn:hover {
-    color: #b5c7b7;
+    color: var(--navbarAccentColor);
     transition: .3s;
 }
 

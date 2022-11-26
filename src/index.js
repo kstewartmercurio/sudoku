@@ -18,6 +18,6 @@ root.render(
   <>
     <BoardPage/>
     {/* <Welcome/> */}
-    {/* <Settings/> */}
+    <Settings/>
   </>
 );
