@@ -1,7 +1,35 @@
-#welcome-content {
-    color: black;
+#header-do {
+    color: var(--navbarAccentColor);
+}
+
+#header-u, #header-sudoku {
+    color: var(--boardColor);
+}
+
+#welcome-header {
+    color: #cad1cb;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: max-content;
     font-family: "Roboto Mono";
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    font-size: 54px;
+    font-weight: 300;
+    display: inline-block;
+    text-align: left;
+}
+
+#header-line-1 {
+    margin: 0;
+}
+
+#header-line-2 {
+    margin: 0;
+}
+
+#p1 {
+    width: max-content;
+    margin-left: 4%;
+    font-family: "Roboto Mono";
+    font-size: 18px;
+    text-align: left;
 }

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {Square} from "../square";
+import {Square} from "./square";
 import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
