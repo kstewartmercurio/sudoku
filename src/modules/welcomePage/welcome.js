@@ -26,8 +26,8 @@ export function Welcome() {
                     <p className="subheader">tools used</p>
                     <p id="p2">
                         i used HTML, CSS, and JavaScript for the frontend
-                        design, npm for package management, Bootstrap for 
-                        button icons, and Git for version control.
+                        design, npm for package management, Bootstrap and Font 
+                        Awesome for button icons, and Git for version control.
                     </p>
                     <div id="icon-bar">
                         <i className="fa-brands fa-html5"></i>
@@ -36,6 +36,7 @@ export function Welcome() {
                         <i class="fa-brands fa-react"></i>
                         <i class="fa-brands fa-npm"></i>
                         <i class="fa-brands fa-bootstrap"></i>
+                        <i class="fa-solid fa-font-awesome"></i>
                         <i class="fa-brands fa-git"></i>
                     </div>
                     <p id="p3">
