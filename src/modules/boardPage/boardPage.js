@@ -5,7 +5,7 @@ import {Puzzle} from "../../solver/puzzle.js";
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
 
-export function Board() {
+export function BoardPage() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);

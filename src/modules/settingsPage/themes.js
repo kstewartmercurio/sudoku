@@ -35,10 +35,10 @@ export function Themes() {
 
     return (
         <div id="theme-set">
-            <button className="theme-btn" id="brunswick-green" onClick={(e) => {
-                updateTheme(e, "brunswick green")
+            <button className="theme-btn" id="xanadu" onClick={(e) => {
+                updateTheme(e, "xanadu")
             }}>
-                brunswick green
+                xanadu
             </button>
             <button className="theme-btn" id="antique-brass" onClick={(e) => {
                 updateTheme(e, "antique brass")
@@ -65,10 +65,10 @@ export function Themes() {
             }}>
                 oxford blue
             </button>
-            <button className="theme-btn" id="xanadu" onClick={(e) => {
-                updateTheme(e, "xanadu")
+            <button className="theme-btn" id="brunswick-green" onClick={(e) => {
+                updateTheme(e, "brunswick green")
             }}>
-                xanadu
+                brunswick green
             </button>
             <button className="theme-btn" id="test" onClick={(e) => {
                 updateTheme(e, "test")
