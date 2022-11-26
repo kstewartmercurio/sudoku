@@ -27,8 +27,10 @@ export const themeVals = [
         "#ad9b28d6", "#b45e2d", "#dda445", "#cacaca", "#e7e7e7"]],
     ["antique brass", ["#ce826f", "#66674e", "#395948", "#bebfb7", "#966d5d", 
         "#528964b3", "#5a3d3d", "#d26e59", "#985713", "#eff8f0"]],
-    ["oxford blue", ["#04052e", "#a7a9cc", "#5a5a68", "#eee5dd", "#080a5e", 
+    ["oxford blue", ["#04052e", "#a7a9cc", "#8585f9", "#eee5dd", "#080a5e", 
         "#80b0ff4a", "#6960eb", "#2c00a3", "#8082d0", "#151515"]],
     ["brunswick green", ["#28524a", "#edd2fb", "#2e5b42", "#dfdfdf", "#519085",
-        "#f8a2ff87", "#90c6cb", "#3d7b6f", "#37894b", "#ececec"]]
+        "#f8a2ff87", "#90c6cb", "#3d7b6f", "#37894b", "#ececec"]],
+    ["french violet", ["#732fc6", "#c6e28d", "#701988", "#d5f2e8", "#a663cc", 
+        "#89ca5396", "#c162ff", "#8b2ae2", "#c753f1", "#f6d6f0"]]
 ]
