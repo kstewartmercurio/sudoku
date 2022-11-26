@@ -19,6 +19,7 @@ initialSquareColor - darker main
     --selectedColor: #a5a5a575;
     --initialSquareColor: #eff8f0;
     --navbarAccentColor: #b5c7b7;
+    --welcomeAccentColor: #cad1cb;
 }
 
 #root {
