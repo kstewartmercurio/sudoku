@@ -32,5 +32,6 @@ export const themeVals = [
     ["brunswick green", ["#28524a", "#edd2fb", "#2e5b42", "#dfdfdf", "#519085",
         "#f8a2ff87", "#90c6cb", "#3d7b6f", "#37894b", "#ececec"]],
     ["french violet", ["#732fc6", "#c6e28d", "#d5f2e8", "#5c236c", "#a663cc", 
-        "#89ca5396", "#c162ff", "#8b2ae2", "#c753f1", "#f6d6f0"]]
+        "#89ca5396", "#c162ff", "#8b2ae2", "#c753f1", "#f6d6f0"]],
+    ["claret", ["#841f44", "#bfada3", "green", "purple", "#a52755", "yellow", "pink", "#9e0255"]]
 ]

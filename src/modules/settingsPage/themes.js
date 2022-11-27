@@ -67,15 +67,15 @@ export function Themes() {
             }}>
                 french violet
             </button>
-            <button className="theme-btn" id="test" onClick={(e) => {
-                updateTheme(e, "test")
+            <button className="theme-btn" id="claret" onClick={(e) => {
+                updateTheme(e, "claret")
             }}>
-                test
+                claret
             </button>
-            <button className="theme-btn" id="test" onClick={(e) => {
-                updateTheme(e, "test")
+            <button className="theme-btn" id="sage" onClick={(e) => {
+                updateTheme(e, "sage")
             }}>
-                test
+                sage
             </button>
         </div>
     )
