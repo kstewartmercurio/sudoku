@@ -16,7 +16,6 @@ export function Themes() {
                 break;
             }
         }
-        console.log(newThemeVals);
 
         if (newThemeVals.length === 0) {
             newThemeVals = uglyVals;

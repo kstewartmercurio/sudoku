@@ -6,7 +6,7 @@ import {Puzzle} from "../../solver/puzzle.js";
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
 
-export function Board() {
+export function Board9x9() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);
@@ -93,20 +93,6 @@ export function Board() {
         setSelected(null);
     }
 
-    const pullDifficulty = (diff) => {
-        switch (diff) {
-            case "easy":
-                setDifficulty(1);
-                break;
-            case "medium":
-                setDifficulty(2);
-                break;
-            default:
-                setDifficulty(3);
-                break;
-        }
-    }
-
     const generatePuzzle = (e) => {
         e.preventDefault();
 
@@ -149,6 +135,20 @@ export function Board() {
         setSquares(Array(81).fill(null));
         setInitial(Array(81).fill(false));
         setSelected(null);
+    }
+
+    const pullDifficulty = (diff) => {
+        switch (diff) {
+            case "easy":
+                setDifficulty(1);
+                break;
+            case "medium":
+                setDifficulty(2);
+                break;
+            default:
+                setDifficulty(3);
+                break;
+        }
     }
 
     const shareNumClick = (n) => {
