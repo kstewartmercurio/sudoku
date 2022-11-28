@@ -123,7 +123,6 @@ export function Board() {
           };
           
         axios.request(options).then(function (response) {
-            console.log(response.data);
             let puzzleArr = [];
             let initialArr = [];
             for (let i = 0; i < response.data["response"]["unsolved-sudoku"].length; i++) {
