@@ -97,11 +97,9 @@ export function Board() {
     const solve = (e) => {
         e.preventDefault();
 
-        // take user input, create a corresponding Puzzle object, and solve
         let puzzle = new Puzzle(squares);
         puzzle = puzzle.solvePuzzle();
 
-        // output the solved sudoku to the user and update the button text
         setSquares(puzzle);
         setInitial(initial.slice());
         setSelected(null);
@@ -146,22 +144,30 @@ export function Board() {
     const clearBoard = (e) => {
         e.preventDefault();
 
-        setSquares(Array(81).fill(null));
-        setInitial(Array(81).fill(false));
+        const n = parseInt(size[0]);
+        setSquares(Array(n * n).fill(null));
+        setInitial(Array(n * n).fill(false));
         setSelected(null);
     }
 
     const pullSize = (size) => {
+        let n;
         switch (size) {
             case "6x6":
+                n = 6
                 setSize("6x6");
                 break;
             case "9x9":
+                n = 9;
                 setSize("9x9");
                 break;
             default:
                 break;
         }
+
+        setSquares(Array(n * n).fill(null));
+        setInitial(Array(n * n).fill(false));
+        setSelected(null);
     }
 
     const pullDifficulty = (diff) => {
