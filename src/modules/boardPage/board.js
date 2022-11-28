@@ -15,7 +15,9 @@ export function Board() {
     let windowClick = true;
 
     const renderSquare = (i) => {
-        let classNameStr = "square board-row-" + (Math.floor(i / 9)).toString() + " board-column-" + (i % 9).toString();
+        let classNameStr = "square board-row-" + 
+            (Math.floor(i / 9)).toString() + " board-column-" + 
+            (i % 9).toString();
         if (initial[i] === true) {
             classNameStr += " initial";
         }
@@ -31,7 +33,9 @@ export function Board() {
             <Square className={classNameStr} key={i} idStr={i.toString()}
                 val={squares[i]} onClick={(e) => {
                     handleSquareClick(e, i);
-                }} 
+                }} onKeyPress={(e) => {
+                    handleKeyPress(e);
+                }}
                 sel={selBool}/>
         )
     };
@@ -56,6 +60,24 @@ export function Board() {
 
         windowClick = false;
         setSelected(i);
+    }
+
+    const handleKeyPress = (e) => {
+        if (initial[selected] === true) {
+            setSelected(null);
+        } else if ((selected !== null) && ((parseInt(e.key) >= 0) && 
+            (parseInt(e.key) <= 9))) {
+            let squaresCopy = squares.slice();
+
+            if (parseInt(e.key) === 0) {
+                squaresCopy[selected] = null;
+            } else {
+                squaresCopy[selected] = e.key;
+            }
+
+            setSquares(squaresCopy);
+            setSelected(null);
+        }
     }
 
     const solve = (e) => {

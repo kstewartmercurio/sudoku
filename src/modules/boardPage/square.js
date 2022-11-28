@@ -6,14 +6,14 @@ export function Square(props) {
     if (props.sel === true) {
         return (
             <button className={props.className} id="selected"
-            onClick={props.onClick}>
+            onClick={props.onClick} onKeyPress={props.onKeyPress}>
                 {props.val}
             </button>
         )
     } else {
         return (
             <button className={props.className} id={idStr} 
-            onClick={props.onClick}>
+            onClick={props.onClick} onKeyPress={props.onKeyPress}>
                 {props.val}
             </button>
         );

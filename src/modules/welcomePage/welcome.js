@@ -31,13 +31,13 @@ export function Welcome() {
                     </p>
                     <div id="icon-bar">
                         <i className="fa-brands fa-html5"></i>
-                        <i class="fa-brands fa-css3-alt"></i>
-                        <i class="fa-brands fa-square-js"></i>
-                        <i class="fa-brands fa-react"></i>
-                        <i class="fa-brands fa-npm"></i>
-                        <i class="fa-brands fa-bootstrap"></i>
-                        <i class="fa-solid fa-font-awesome"></i>
-                        <i class="fa-brands fa-git"></i>
+                        <i className="fa-brands fa-css3-alt"></i>
+                        <i className="fa-brands fa-square-js"></i>
+                        <i className="fa-brands fa-react"></i>
+                        <i className="fa-brands fa-npm"></i>
+                        <i className="fa-brands fa-bootstrap"></i>
+                        <i className="fa-solid fa-font-awesome"></i>
+                        <i className="fa-brands fa-git"></i>
                     </div>
                     <p id="p3">
                         additionally, i used Coolors to generate color palletes
