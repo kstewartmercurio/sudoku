@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 export function TopBtnBar(props) {
     const [note, setNote] = useState(false);
-    const [timer, setTimer] = useState(true);
+    const [size, setSize] = useState("9x9");
     const [difficulty, setDifficulty] = useState("easy");
 
     const handleTopBtnBarClick = (e, btnClicked) => {
@@ -12,11 +12,11 @@ export function TopBtnBar(props) {
             case "note":
                 setNote(!note);
                 break;
-            case "time":
-                setTimer(true);
+            case "6x6":
+                setSize("6x6");
                 break;
-            case "zen":
-                setTimer(false);
+            case "9x9":
+                setSize("9x9");
                 break;
             case "easy":
                 setDifficulty("easy");
@@ -37,12 +37,12 @@ export function TopBtnBar(props) {
         noteIdStr = "note-btn-on";
     }
 
-    let timeIdStr = "time-btn-off";
-    let zenIdStr = "zen-btn-off";
-    if (timer === true) {
-        timeIdStr = "time-btn-on";
+    let size6x6IdStr = "size6x6-btn-off";
+    let size9x9IdStr = "size9x9-btn-off";
+    if (size === "9x9") {
+        size9x9IdStr = "size9x9-btn-on";
     } else {
-        zenIdStr = "zen-btn-on";
+        size6x6IdStr = "size6x6-btn-on";
     }
 
     let easyIdStr = "easy-btn";
@@ -70,15 +70,15 @@ export function TopBtnBar(props) {
                     hint <i className="bi bi-lightbulb"></i>
                 </button>
                 <span className="spacer"></span>
-                <button className="top-btn-bar-btn" id={timeIdStr} onClick={(e) =>
-                    handleTopBtnBarClick(e, "time")
+                <button className="top-btn-bar-btn" id={size6x6IdStr} onClick={(e) =>
+                    handleTopBtnBarClick(e, "6x6")
                 }>
-                    time <i className="bi bi-stopwatch"></i>
+                    6x6
                 </button>
-                <button className="top-btn-bar-btn" id={zenIdStr} onClick={(e) =>
-                    handleTopBtnBarClick(e, "zen")
+                <button className="top-btn-bar-btn" id={size9x9IdStr} onClick={(e) =>
+                    handleTopBtnBarClick(e, "9x9")
                 }>
-                    zen <i className="bi bi-tree"></i>
+                    9x9
                 </button>
                 <span className="spacer"></span>
                 <button className="top-btn-bar-btn" id={easyIdStr} onClick={(e) => {

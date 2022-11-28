@@ -45,7 +45,7 @@
     border-bottom-right-radius: 8px;
 }
 
-#note-btn-on, #time-btn-on, #zen-btn-on, #active-difficulty-btn {
+#note-btn-on, #size6x6-btn-on, #size9x9-btn-on, #active-difficulty-btn {
     color: var(--boardColor);
     transition: .3s;
 }
