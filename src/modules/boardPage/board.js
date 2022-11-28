@@ -6,20 +6,33 @@ import {Puzzle} from "../../solver/puzzle.js";
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
 
-export function Board9x9() {
+export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);
+    const [size, setSize] = useState("9x9");
     const [difficulty, setDifficulty] = useState("1");
 
     let windowClick = true;
 
     const renderSquare = (i) => {
-        let classNameStr = "square board-row-" + 
-            (Math.floor(i / 9)).toString() + " board-column-" + 
-            (i % 9).toString();
-        if (initial[i] === true) {
-            classNameStr += " initial";
+        let classNameStr = "square ";
+        if (size === "6x6") {
+            classNameStr += "board6x6-row-" + 
+                (Math.floor(i / 6)).toString() + " board6x6-column-" + 
+                (i % 6).toString();
+
+            if (initial[i] === true) {
+                classNameStr += " initial";
+            }
+        } else if (size === "9x9") {
+            classNameStr += "board9x9-row-" + 
+                (Math.floor(i / 9)).toString() + " board9x9-column-" + 
+                (i % 9).toString();
+
+            if (initial[i] === true) {
+                classNameStr += " initial";
+            }
         }
         
         let selBool;
@@ -42,16 +55,17 @@ export function Board9x9() {
 
     const buildSquares = () => {
         let elementLst = [];
+        const n = parseInt(size[0]);
 
-        for (let i = 0; i < 81; i++) {
+        for (let i = 0; i < (n * n); i++) {
             elementLst.push(renderSquare(i));
 
-            if (i % 9 === 8) {
-                const brKey = "br-" + Math.floor(i / 9).toString();
-                elementLst.push(<br key={brKey} />)
+            if (i % n === (n - 1)) {
+                const brKey = "br-" + Math.floor(i / n).toString();
+                elementLst.push(<br key={brKey}/>);
             }
         }
-
+        
         return elementLst;
     }
 
@@ -137,6 +151,19 @@ export function Board9x9() {
         setSelected(null);
     }
 
+    const pullSize = (size) => {
+        switch (size) {
+            case "6x6":
+                setSize("6x6");
+                break;
+            case "9x9":
+                setSize("9x9");
+                break;
+            default:
+                break;
+        }
+    }
+
     const pullDifficulty = (diff) => {
         switch (diff) {
             case "easy":
@@ -145,8 +172,10 @@ export function Board9x9() {
             case "medium":
                 setDifficulty(2);
                 break;
-            default:
+            case "hard":
                 setDifficulty(3);
+                break;
+            default:
                 break;
         }
     }
@@ -177,6 +206,7 @@ export function Board9x9() {
             }}>
                 <div id="board-page-center-content">
                     <TopBtnBar solveClicked={(e) => solve(e)}
+                        pullSize={pullSize}
                         pullDifficulty={pullDifficulty}
                         generateClicked={(e) => generatePuzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>

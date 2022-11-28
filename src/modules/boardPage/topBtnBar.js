@@ -70,14 +70,16 @@ export function TopBtnBar(props) {
                     hint <i className="bi bi-lightbulb"></i>
                 </button>
                 <span className="spacer"></span>
-                <button className="top-btn-bar-btn" id={size6x6IdStr} onClick={(e) =>
-                    handleTopBtnBarClick(e, "6x6")
-                }>
+                <button className="top-btn-bar-btn" id={size6x6IdStr} onClick={(e) => {
+                    handleTopBtnBarClick(e, "6x6");
+                    props.pullSize("6x6");
+                }}>
                     6x6
                 </button>
-                <button className="top-btn-bar-btn" id={size9x9IdStr} onClick={(e) =>
-                    handleTopBtnBarClick(e, "9x9")
-                }>
+                <button className="top-btn-bar-btn" id={size9x9IdStr} onClick={(e) => {
+                    handleTopBtnBarClick(e, "9x9");
+                    props.pullSize("9x9");
+                }}>
                     9x9
                 </button>
                 <span className="spacer"></span>
