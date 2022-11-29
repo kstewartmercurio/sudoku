@@ -350,11 +350,45 @@ const randomBoardToPuzzle = () => {
     return retPuzzle;
 }
 
+const sort = (p) => {
+    let traversalOrder = [];
+    for (let i = 0; i < n; i++) {
+        traversalOrder.push(p.rows[i]);
+        traversalOrder.push(p.cols[i]);
+    }
 
 
+    for (let i = 0; i < traversalOrder.length; i++) {
+        // the current row or column in the traversal
+        let curSet = traversalOrder[i];
 
-
-let puzzle = randomBoardToPuzzle();
-for (let i = 0; i < puzzle.rows.length; i++) {
-    console.log(...squaresArrToValsArr(puzzle.rows[i]));
+        // store indicies for each registered value
+        let curDict = {}
+        for (let j = 0; j < curSet.length; j++) {
+            // if the current value is not already registered in the row/column
+            if ((curSet[j].val in curDict) === false) {
+                curDict[curSet[j].val] = j;
+            } else {
+                console.log(curSet);
+                console.log(curDict);
+                return 0;
+            }
+        }
+    }
 }
+
+
+
+
+
+// create new puzzle
+let p = randomBoardToPuzzle();
+
+// print rows
+console.log();
+for (let i = 0; i < p.rows.length; i++) {
+    console.log(...squaresArrToValsArr(p.rows[i]));
+}
+console.log();
+
+sort(p);
