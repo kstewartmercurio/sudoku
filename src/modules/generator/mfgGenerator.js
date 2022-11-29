@@ -369,6 +369,7 @@ const sort = (p) => {
             if ((curSet[j].val in curDict) === false) {
                 curDict[curSet[j].val] = j;
             } else {
+                // BAS required
                 console.log(curSet);
                 console.log(curDict);
                 return 0;
