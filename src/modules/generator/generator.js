@@ -106,7 +106,7 @@ const find_empty_square = (inPuzzle) => {
     return false;
 }
 
-
+// https://lvngd.com/blog/generating-and-solving-sudoku-puzzles-python/
 const generate_solution = (inPuzzle) => {
     let numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let r = null;
@@ -143,6 +143,7 @@ const generate_solution = (inPuzzle) => {
         }
     }
 }
+
 
 const printPuzzle = (inPuzzle) => {
     console.log();
