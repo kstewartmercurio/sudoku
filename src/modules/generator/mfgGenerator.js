@@ -1,7 +1,7 @@
 let n = 9;
 
 class Puzzle {
-    constructor(inArr) {
+    constructor() {
         this.rows = [];
         this.cols = [];
         this.boxes = [];
@@ -312,14 +312,6 @@ const randomBoardToPuzzle = () => {
         curCol = [];
     }
 
-    // let curBox = [];
-    // indArr = [0, 1, 2, 9, 10, 11, 18, 19, 20];
-    // for (let i = 0; i < indArr.length; i++) {
-    //     let r = Math.floor(indArr[i] / n);
-    //     let c = indArr[i] % n;
-    //     curBox.push(randomBoard[r][c]);
-    // }
-    // retPuzzle.boxes.push(curBox);
     let curBox = [];
     let indArr = [];
     if (n === 6) {
