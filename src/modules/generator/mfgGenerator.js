@@ -386,7 +386,32 @@ const getSubsequentBoxSquares = (p, dupIndex) => {
         }
     }
 
-    if (n === 9) {
+    if (n === 6) {
+        switch (dupIndex) {
+            case 0: case 3: case 12: case 15: case 24: case 27:
+                return [
+                    dupBox[1], dupBox[2], dupBox[3], dupBox[4], dupBox[5]
+                ];
+            case 1: case 4: case 13: case 16: case 25: case 28:
+                return [
+                    dupBox[2], dupBox[3], dupBox[4], dupBox[5]
+                ];
+            case 2: case 5: case 14: case 17: case 26: case 29:
+                return [
+                    dupBox[3], dupBox[4], dupBox[5]
+                ];
+            case 6: case 9: case 18: case 21: case 30: case 33:
+                return [
+                    dupBox[4], dupBox[5]
+                ];
+            case 7: case 10: case 19: case 22: case 31: case 34:
+                return [
+                    dupBox[5]
+                ];
+            default:
+                return [];
+        }
+    } else if (n === 9) {
         switch (dupIndex) {
             case 0: case 3: case 6: case 27: case 30: case 33: case 54: case 57: 
                 case 60:
