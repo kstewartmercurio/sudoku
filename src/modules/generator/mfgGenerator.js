@@ -376,26 +376,66 @@ const randomBoardToPuzzle = () => {
 
 
 const getSubsequentBoxSquares = (p, dupIndex) => {
-    let subsequentBoxSquares = [];
-    let indFound = false;
-
+    let dupBox;
     for (let i = 0; i < p.boxes.length; i++) {
         for (let j = 0; j < p.boxes[i].length; j++) {
-            if (indFound === true) {
-                subsequentBoxSquares.push(p.boxes[i][j]);
-            }
-
             if (p.boxes[i][j].ind === dupIndex) {
-                indFound = true;
+                dupBox = p.boxes[i];
+                break;
             }
-        }
-
-        if (indFound === true) {
-            break;
         }
     }
 
-    return subsequentBoxSquares;
+    if (n === 9) {
+        switch (dupIndex) {
+            case 0: case 3: case 6: case 27: case 30: case 33: case 54: case 57: 
+                case 60:
+                return [
+                    dupBox[1], dupBox[2], dupBox[3], dupBox[4], dupBox[5], 
+                    dupBox[6], dupBox[7], dupBox[8]
+                ];
+            case 1: case 4: case 7: case 28: case 31: case 34: case 55: case 58:
+                case 61:
+                return [
+                    dupBox[2], dupBox[3], dupBox[4], dupBox[5], dupBox[6],
+                    dupBox[7], dupBox[8]
+                ];
+            case 2: case 5: case 8: case 29: case 32: case 35: case 56: case 59:
+                case 62:
+                return [
+                    dupBox[3], dupBox[4], dupBox[5], dupBox[6], dupBox[7],
+                    dupBox[8]
+                ];
+            case 9: case 12: case 15: case 36: case 39: case 42: case 63:
+                case 66: case 69:
+                return [
+                    dupBox[4], dupBox[5], dupBox[6], dupBox[7], dupBox[8]
+                ];
+            case 10: case 13: case 16: case 37: case 40: case 43: case 64:
+                case 67: case 70:
+                return [
+                    dupBox[5], dupBox[7], dupBox[8]
+                ];
+            case 11: case 14: case 17: case 38: case 41: case 44: case 65: 
+                case 68: case 71:
+                return [
+                    dupBox[7], dupBox[8]
+                ];
+            case 18: case 21: case 24: case 45: case 48: case 51: case 72:
+                case 75: case 78:
+                return [
+                    dupBox[4], dupBox[5], dupBox[7], dupBox[8]
+                ];
+            case 19: case 22: case 25: case 46: case 49: case 52: case 73:
+                case 76: case 79:
+                return [
+                    dupBox[8]
+                ];
+            default:
+                return [];
+        }
+    }
+
 }
 
 const attemptBoxSwap = (p, curDict, dupSquare, validReplacements) => {
@@ -419,7 +459,7 @@ const sort = (p) => {
         traversalOrder.push(p.cols[i]);
     }
 
-    // let accum = 0;
+    let accum = 0;
     for (let i = 0; i < traversalOrder.length; i++) {
         // the current row or column in the traversal
         let curSet = traversalOrder[i];
