@@ -459,11 +459,13 @@ const sort = (p) => {
 // create new puzzle
 let p = randomBoardToPuzzle();
 
-
+// print rows
+console.log();
 for (let i = 0; i < p.rows.length; i++) {
     console.log(...squaresArrToValsArr(p.rows[i]));
 }
 console.log();
+
 // for (let i = 0; i < p.cols.length; i++) {
 //     console.log(...squaresArrToValsArr(p.cols[i]));
 // }
