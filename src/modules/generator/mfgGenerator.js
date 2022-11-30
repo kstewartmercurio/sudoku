@@ -17,6 +17,14 @@ class Puzzle {
     }
 
     swap = (ind1, ind2) => {
+        console.log();
+        for (let i = 0; i < this.rows.length; i++) {
+            console.log(...squaresArrToValsArr(this.rows[i]));
+        }
+        console.log("swapping (" + ind1.toString() + ", " + 
+            this.squares[ind1].val.toString() + ") & (" + ind2.toString() +
+            ", " + this.squares[ind2].val.toString() + ")");
+
         let bi1, bj1, bi2, bj2;
         for (let i = 0; i < this.boxes.length; i++) {
             for (let j = 0; j < this.boxes[i].length; j++) {
@@ -60,6 +68,11 @@ class Puzzle {
         [this.cols[c1][r1], this.cols[c2][r2]] = [
             this.cols[c2][r2], this.cols[c1][r1]
         ];
+
+        for (let i = 0; i < this.rows.length; i++) {
+            console.log(...squaresArrToValsArr(this.rows[i]));
+        }
+        console.log();
     }
 }
 
@@ -388,13 +401,12 @@ const getSubsequentBoxSquares = (p, dupIndex) => {
 const attemptBoxSwap = (p, curDict, dupSquare, validReplacements) => {
     for (let i = 0; i < validReplacements.length; i++) {
         if ((validReplacements[i].val in curDict) === false) {
-            console.log("want to swap (" + dupSquare.ind.toString() +
-                ", " + dupSquare.val.toString() + ") & (" +
-                validReplacements[i].ind.toString() + ", " +
-                validReplacements[i].val.toString() + ")");
-            break;
+            p.swap(dupSquare.ind, validReplacements[i].ind);
+            return true;
         }
     }
+
+    return false;
 }
 
 
@@ -405,7 +417,7 @@ const sort = (p) => {
         traversalOrder.push(p.cols[i]);
     }
 
-
+    let accum = 0;
     for (let i = 0; i < traversalOrder.length; i++) {
         // the current row or column in the traversal
         let curSet = traversalOrder[i];
@@ -422,7 +434,11 @@ const sort = (p) => {
                 attemptBoxSwap(p, curDict, curSet[j], validReplacements);
                 
 
-                return 0;
+                if (accum === 3) {
+                    return 0;
+                } else {
+                    accum += 1;
+                }
             }
         }
 
@@ -438,14 +454,12 @@ const sort = (p) => {
 
 // create new puzzle
 let p = randomBoardToPuzzle();
-p.swap(0, 80);
 
 
-// console.log();
-// for (let i = 0; i < p.rows.length; i++) {
-//     console.log(...squaresArrToValsArr(p.rows[i]));
-// }
-// console.log();
+for (let i = 0; i < p.rows.length; i++) {
+    console.log(...squaresArrToValsArr(p.rows[i]));
+}
+console.log();
 // for (let i = 0; i < p.cols.length; i++) {
 //     console.log(...squaresArrToValsArr(p.cols[i]));
 // }
@@ -454,4 +468,9 @@ p.swap(0, 80);
 //     console.log(...squaresArrToValsArr(p.boxes[i]));
 // }
 
-// sort(p);
+sort(p);
+
+console.log();
+for (let i = 0; i < p.rows.length; i++) {
+    console.log(...squaresArrToValsArr(p.rows[i]));
+}
