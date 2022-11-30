@@ -406,6 +406,8 @@ const attemptBoxSwap = (p, curDict, dupSquare, validReplacements) => {
         }
     }
 
+    console.log("attempted to swap (" + dupSquare.ind.toString() +
+        ", " + dupSquare.val.toString() + ") and failed");
     return false;
 }
 
@@ -417,7 +419,7 @@ const sort = (p) => {
         traversalOrder.push(p.cols[i]);
     }
 
-    let accum = 0;
+    // let accum = 0;
     for (let i = 0; i < traversalOrder.length; i++) {
         // the current row or column in the traversal
         let curSet = traversalOrder[i];
@@ -431,14 +433,16 @@ const sort = (p) => {
             } else {
                 // BAS required
                 let validReplacements = getSubsequentBoxSquares(p, curSet[j].ind);
-                attemptBoxSwap(p, curDict, curSet[j], validReplacements);
+                 if (attemptBoxSwap(p, curDict, curSet[j], validReplacements) === false) {
+                    return 0;
+                 };
                 
 
-                if (accum === 3) {
-                    return 0;
-                } else {
-                    accum += 1;
-                }
+                // if (accum === 3) {
+                //     return 0;
+                // } else {
+                //     accum += 1;
+                // }
             }
         }
 
@@ -468,9 +472,11 @@ console.log();
 //     console.log(...squaresArrToValsArr(p.boxes[i]));
 // }
 
-sort(p);
+// sort(p);
 
-console.log();
-for (let i = 0; i < p.rows.length; i++) {
-    console.log(...squaresArrToValsArr(p.rows[i]));
-}
+// console.log();
+// for (let i = 0; i < p.rows.length; i++) {
+//     console.log(...squaresArrToValsArr(p.rows[i]));
+// }
+
+console.log(...squaresArrToValsArr(getSubsequentBoxSquares(p, 18)));
