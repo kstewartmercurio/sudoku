@@ -1,5 +1,13 @@
 let n = 9;
 
+class Square {
+    constructor(x) {
+        this.ind = -1;
+        this.val = x;
+        this.visited = false;
+    }
+}
+
 class Puzzle {
     constructor() {
         this.squares = [];
@@ -8,16 +16,50 @@ class Puzzle {
         this.boxes = [];
     }
 
-    // swap = (ind1, ind2) => {
+    swap = (ind1, ind2) => {
+        let bi1, bj1, bi2, bj2;
+        for (let i = 0; i < this.boxes.length; i++) {
+            for (let j = 0; j < this.boxes[i].length; j++) {
+                if (this.boxes[i][j].ind === ind1) {
+                    bi1 = i;
+                    bj1 = j;
+                }
+                if (this.boxes[i][j].ind === ind2) {
+                    bi2 = i;
+                    bj2 = j;
+                }
+            }
+        }
 
-    // }
-}
+        // swap squares within this.boxes
+        [this.boxes[bi1][bj1], this.boxes[bi2][bj2]] = [
+            this.boxes[bi2][bj2], this.boxes[bi1][bj1]
+        ];
 
-class Square {
-    constructor(x) {
-        this.ind = -1;
-        this.val = x;
-        this.visited = false;
+        // swap square.ind values
+        [this.squares[ind1].ind, this.squares[ind2].ind] = [
+            this.squares[ind2].ind, this.squares[ind1].ind
+        ];
+
+        // swap squares within this.squares
+        [this.squares[ind1], this.squares[ind2]] = [
+            this.squares[ind2], this.squares[ind1]
+        ];
+
+        let r1 = Math.floor(ind1 / n);
+        let c1 = ind1 % n;
+        let r2 = Math.floor(ind2 / n);
+        let c2 = ind2 % n;
+
+        // swap squares within this.rows
+        [this.rows[r1][c1], this.rows[r2][c2]] = [
+            this.rows[r2][c2], this.rows[r1][c1]
+        ];
+
+        // swap squares within this.cols
+        [this.cols[c1][r1], this.cols[c2][r2]] = [
+            this.cols[c2][r2], this.cols[c1][r1]
+        ];
     }
 }
 
@@ -261,6 +303,12 @@ const randomBoardToPuzzle = () => {
     let randomBoard = generateRandomBoard();
 
     for (let i = 0; i < randomBoard.length; i++) {
+        for (let j = 0; j < randomBoard[i].length; j++) {
+            retPuzzle.squares.push(randomBoard[i][j]);
+        }
+    }
+
+    for (let i = 0; i < randomBoard.length; i++) {
         retPuzzle.rows.push(randomBoard[i]);
     }
 
@@ -390,15 +438,20 @@ const sort = (p) => {
 
 // create new puzzle
 let p = randomBoardToPuzzle();
+p.swap(0, 80);
 
-// print rows
-console.log();
-for (let i = 0; i < p.rows.length; i++) {
-    console.log(...squaresArrToValsArr(p.rows[i]));
-}
-console.log();
+
+// console.log();
+// for (let i = 0; i < p.rows.length; i++) {
+//     console.log(...squaresArrToValsArr(p.rows[i]));
+// }
+// console.log();
+// for (let i = 0; i < p.cols.length; i++) {
+//     console.log(...squaresArrToValsArr(p.cols[i]));
+// }
+// console.log();
 // for (let i = 0; i < p.boxes.length; i++) {
 //     console.log(...squaresArrToValsArr(p.boxes[i]));
 // }
 
-sort(p);
+// sort(p);
