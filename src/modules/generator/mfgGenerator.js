@@ -2,6 +2,7 @@ let n = 9;
 
 class Puzzle {
     constructor() {
+        this.squares = [];
         this.rows = [];
         this.cols = [];
         this.boxes = [];
@@ -10,60 +11,9 @@ class Puzzle {
 
 class Square {
     constructor(x) {
+        this.ind = -1;
         this.val = x;
-    }
-
-    getBoxCoord = (i) => {
-        if (n === 6) {
-            switch (i) {
-                case 0: case 1: case 2: case 6: case 7: case 8:
-                    return 0;
-                case 3: case 4: case 5: case 9: case 10: case 11:
-                    return 1;
-                case 12: case 13: case 14: case 18: case 19: case 20:
-                    return 2;
-                case 15: case 16: case 17: case 21: case 22: case 23: 
-                    return 3;
-                case 24: case 25: case 26: case 30: case 31: case 32:
-                    return 4;
-                case 27: case 28: case 29: case 33: case 34: case 35:
-                    return 5;
-                default:
-                    break;
-            }
-        } else if (n === 9) {
-            switch (i) {
-                case 0: case 1: case 2: case 9: case 10: case 11: case 18: 
-                    case 19: case 20:
-                    return 0;
-                case 3: case 4: case 5: case 12: case 13: case 14: case 21:
-                    case 22: case 23:
-                    return 1;
-                case 6: case 7: case 8: case 15: case 16: case 17: case 24:
-                    case 25: case 26:
-                    return 2;
-                case 27: case 28: case 29: case 36: case 37: case 38: case 45:
-                    case 46: case 47:
-                    return 3;
-                case 30: case 31: case 32: case 39: case 40: case 41: case 48:
-                    case 49: case 50:
-                    return 4;
-                case 33: case 34: case 35: case 42: case 43: case 44: case 51:
-                    case 52: case 53:
-                    return 5;
-                case 54: case 55: case 56: case 63: case 64: case 65: case 72:
-                    case 73: case 74:
-                    return 6;
-                case 57: case 58: case 59: case 66: case 67: case 68: case 75:
-                    case 76: case 77:
-                    return 7;
-                case 60: case 61: case 62: case 69: case 70: case 71: case 78:
-                    case 79: case 80:
-                    return 8;
-                default:
-                    break;
-            }
-        }
+        this.visited = false;
     }
 }
 
@@ -93,8 +43,10 @@ const squaresArrToValsArr = (inArr) => {
 }
 
 const generateRandomBoard = () => {
+    let retArr = [];
+
     if (n === 6) {
-        let retArr = [
+        retArr = [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -157,10 +109,8 @@ const generateRandomBoard = () => {
         retArr[5][3] = squareArr5[3];
         retArr[5][4] = squareArr5[4];
         retArr[5][5] = squareArr5[5];
-
-        return retArr;
     } else if (n === 9) {
-        let retArr = [
+        retArr = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -289,9 +239,17 @@ const generateRandomBoard = () => {
         retArr[8][6] = squareArr8[6];
         retArr[8][7] = squareArr8[7];
         retArr[8][8] = squareArr8[8];
-
-        return retArr;
     }
+
+    let accum = 0;
+    for (let i = 0; i < retArr.length; i++) {
+        for (let j = 0; j < retArr[i].length; j++) {
+            retArr[i][j].ind = accum;
+            accum++;
+        }
+    }
+
+    return retArr;
 }
 
 const randomBoardToPuzzle = () => {
@@ -350,6 +308,31 @@ const randomBoardToPuzzle = () => {
     return retPuzzle;
 }
 
+
+
+const getSubsequentBoxSquares = (p, dupIndex) => {
+    let subsequentBoxSquares = [];
+    let indFound = false;
+
+    for (let i = 0; i < p.boxes.length; i++) {
+        for (let j = 0; j < p.boxes[i].length; j++) {
+            if (indFound === true) {
+                subsequentBoxSquares.push(p.boxes[i][j]);
+            }
+
+            if (p.boxes[i][j].ind === dupIndex) {
+                indFound = true;
+            }
+        }
+
+        if (indFound === true) {
+            break;
+        }
+    }
+
+    return subsequentBoxSquares;
+}
+
 const sort = (p) => {
     let traversalOrder = [];
     for (let i = 0; i < n; i++) {
@@ -370,10 +353,17 @@ const sort = (p) => {
                 curDict[curSet[j].val] = j;
             } else {
                 // BAS required
-                console.log(curSet);
+                console.log(squaresArrToValsArr(getSubsequentBoxSquares(p, curSet[j].ind)));
+
+                console.log(squaresArrToValsArr(curSet));
                 console.log(curDict);
+
                 return 0;
             }
+        }
+
+        for (let j = 0; j < curSet.length; j++) {
+            curSet[j].visited = true;
         }
     }
 }
@@ -391,5 +381,8 @@ for (let i = 0; i < p.rows.length; i++) {
     console.log(...squaresArrToValsArr(p.rows[i]));
 }
 console.log();
+// for (let i = 0; i < p.boxes.length; i++) {
+//     console.log(...squaresArrToValsArr(p.boxes[i]));
+// }
 
 sort(p);
