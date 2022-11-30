@@ -7,6 +7,10 @@ class Puzzle {
         this.cols = [];
         this.boxes = [];
     }
+
+    // swap = (ind1, ind2) => {
+
+    // }
 }
 
 class Square {
@@ -333,6 +337,19 @@ const getSubsequentBoxSquares = (p, dupIndex) => {
     return subsequentBoxSquares;
 }
 
+const attemptBoxSwap = (p, curDict, dupSquare, validReplacements) => {
+    for (let i = 0; i < validReplacements.length; i++) {
+        if ((validReplacements[i].val in curDict) === false) {
+            console.log("want to swap (" + dupSquare.ind.toString() +
+                ", " + dupSquare.val.toString() + ") & (" +
+                validReplacements[i].ind.toString() + ", " +
+                validReplacements[i].val.toString() + ")");
+            break;
+        }
+    }
+}
+
+
 const sort = (p) => {
     let traversalOrder = [];
     for (let i = 0; i < n; i++) {
@@ -353,10 +370,9 @@ const sort = (p) => {
                 curDict[curSet[j].val] = j;
             } else {
                 // BAS required
-                console.log(squaresArrToValsArr(getSubsequentBoxSquares(p, curSet[j].ind)));
-
-                console.log(squaresArrToValsArr(curSet));
-                console.log(curDict);
+                let validReplacements = getSubsequentBoxSquares(p, curSet[j].ind);
+                attemptBoxSwap(p, curDict, curSet[j], validReplacements);
+                
 
                 return 0;
             }
