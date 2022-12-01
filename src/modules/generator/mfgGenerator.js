@@ -94,8 +94,10 @@ const shuffleArr = (inArr) => {
 
 const squaresArrToValsArr = (inArr) => {
     let retArr = [];
-    for (i = 0; i < inArr.length; i++) {
-        retArr.push(inArr[i].val);
+    if (inArr.length > 0) {
+        for (i = 0; i < inArr.length; i++) {
+            retArr.push(inArr[i].val);
+        }
     }
 
     return retArr;
@@ -416,8 +418,7 @@ const getBSSubsequentSquares = (p, dupIndex, curSet) => {
     return subsequentSquares;
 }
 
-const attemptBoxSwap = (p, curSet, curDict, dupSquare, dupSquareSetIndex, validReplacements) => {
-    console.log()
+const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplacements) => {
     for (let i = 0; i < validReplacements.length; i++) {
         if ((validReplacements[i].val in curDict) === false) {
             let replacementDictKey = validReplacements[i].val;
@@ -456,26 +457,30 @@ const sort = (p) => {
                 // BAS required
                 let primarySq = curSet[curDict[curSet[j].val]];
                 let primarySqSetIndex = curDict[primarySq.val];
+                let primarySqReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
                 let secondarySq = curSet[j];
                 let secondarySqSetIndex = j;
+                let secondarySqReplacements = getBSSubsequentSquares(p, secondarySq.ind, curSet);
 
                 let validReplacements = getBSSubsequentSquares(p, secondarySq.ind, curSet);
-                 if (attemptBoxSwap(p, curSet, curDict, secondarySq, secondarySqSetIndex, validReplacements) === false) {
-                    // // attempted to swap secondary square and failed,
-                    // now attempt to swap the primary square
-                    console.log("attempts to box switch secondary square have failed, move focus to primary square");
-                    console.log("primary square: ", primarySq);
-                    console.log("secondary square: ", secondarySq);
-
+                 if (attemptBoxSwap(p, curDict, secondarySq, secondarySqSetIndex, validReplacements) === false) {
+                    // attempted to box swap secondary square and failed,
+                    // now attempt to box swap the primary square
                     validReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
-                    console.log("current set: ", ...squaresArrToValsArr(curSet));
-                    console.log("current dictionary: ", curDict);
-                    console.log("primary square replacements: ", ...squaresArrToValsArr(validReplacements));
+                    if (attemptBoxSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
+                        // attempted to box swap primary square and failed,
+                        // now attempt to adjacent swap secondary square
 
-                    
+                        console.log("attempts to box switch primary square have failed");
+                        console.log("primary square: ", primarySq);
+                        console.log("secondary square: ", secondarySq);
+                        console.log("current set: ", ...squaresArrToValsArr(curSet));
+                        console.log("current dictionary: ", curDict);
+                        console.log("primary square replacements: ", ...squaresArrToValsArr(primarySqReplacements));
+                        console.log("secondary square replacements: ", ...squaresArrToValsArr(secondarySqReplacements));
 
-                    
-                    return 0;
+                        return 0;
+                    }
                  };
             }
         }
