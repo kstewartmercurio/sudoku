@@ -17,13 +17,13 @@ class Puzzle {
     }
 
     swap = (ind1, ind2) => {
-        console.log();
-        for (let i = 0; i < this.rows.length; i++) {
-            console.log(...squaresArrToValsArr(this.rows[i]));
-        }
-        console.log("swapping (" + ind1.toString() + ", " + 
-            this.squares[ind1].val.toString() + ") & (" + ind2.toString() +
-            ", " + this.squares[ind2].val.toString() + ")");
+        // console.log();
+        // for (let i = 0; i < this.rows.length; i++) {
+        //     console.log(...squaresArrToValsArr(this.rows[i]));
+        // }
+        // console.log("swapping (" + ind1.toString() + ", " + 
+        //     this.squares[ind1].val.toString() + ") & (" + ind2.toString() +
+        //     ", " + this.squares[ind2].val.toString() + ")");
 
         let bi1, bj1, bi2, bj2;
         for (let i = 0; i < this.boxes.length; i++) {
@@ -69,10 +69,10 @@ class Puzzle {
             this.cols[c2][r2], this.cols[c1][r1]
         ];
 
-        for (let i = 0; i < this.rows.length; i++) {
-            console.log(...squaresArrToValsArr(this.rows[i]));
-        }
-        console.log();
+        // for (let i = 0; i < this.rows.length; i++) {
+        //     console.log(...squaresArrToValsArr(this.rows[i]));
+        // }
+        // console.log();
     }
 }
 
@@ -375,7 +375,20 @@ const randomBoardToPuzzle = () => {
 
 
 
-const getSubsequentBoxSquares = (p, dupIndex) => {
+const CATCHSETERROR = (curSet) => {
+    let curDict = {};
+    for (let i = 0; i < curSet.length; i++) {
+        if ((curSet[i] in curDict) === true) {
+            console.log("SET ERROR");
+            console.log(curSet);
+            return false;
+        }
+    }
+
+    return true;
+}
+
+const getBSSubsequentSquares = (p, dupIndex, curSet) => {
     let dupBox;
     for (let i = 0; i < p.boxes.length; i++) {
         for (let j = 0; j < p.boxes[i].length; j++) {
@@ -386,93 +399,38 @@ const getSubsequentBoxSquares = (p, dupIndex) => {
         }
     }
 
-    if (n === 6) {
-        switch (dupIndex) {
-            case 0: case 3: case 12: case 15: case 24: case 27:
-                return [
-                    dupBox[1], dupBox[2], dupBox[3], dupBox[4], dupBox[5]
-                ];
-            case 1: case 4: case 13: case 16: case 25: case 28:
-                return [
-                    dupBox[2], dupBox[3], dupBox[4], dupBox[5]
-                ];
-            case 2: case 5: case 14: case 17: case 26: case 29:
-                return [
-                    dupBox[3], dupBox[4], dupBox[5]
-                ];
-            case 6: case 9: case 18: case 21: case 30: case 33:
-                return [
-                    dupBox[4], dupBox[5]
-                ];
-            case 7: case 10: case 19: case 22: case 31: case 34:
-                return [
-                    dupBox[5]
-                ];
-            default:
-                return [];
+    let subsequentSquares = [];
+    for (let i = 0; i < dupBox.length; i++) {
+        let inCurSet = false;
+        for (let j = 0; j < curSet.length; j++) {
+            if (dupBox[i].ind === curSet[j].ind) {
+                inCurSet = true;
+            }
         }
-    } else if (n === 9) {
-        switch (dupIndex) {
-            case 0: case 3: case 6: case 27: case 30: case 33: case 54: case 57: 
-                case 60:
-                return [
-                    dupBox[1], dupBox[2], dupBox[3], dupBox[4], dupBox[5], 
-                    dupBox[6], dupBox[7], dupBox[8]
-                ];
-            case 1: case 4: case 7: case 28: case 31: case 34: case 55: case 58:
-                case 61:
-                return [
-                    dupBox[2], dupBox[3], dupBox[4], dupBox[5], dupBox[6],
-                    dupBox[7], dupBox[8]
-                ];
-            case 2: case 5: case 8: case 29: case 32: case 35: case 56: case 59:
-                case 62:
-                return [
-                    dupBox[3], dupBox[4], dupBox[5], dupBox[6], dupBox[7],
-                    dupBox[8]
-                ];
-            case 9: case 12: case 15: case 36: case 39: case 42: case 63:
-                case 66: case 69:
-                return [
-                    dupBox[4], dupBox[5], dupBox[6], dupBox[7], dupBox[8]
-                ];
-            case 10: case 13: case 16: case 37: case 40: case 43: case 64:
-                case 67: case 70:
-                return [
-                    dupBox[5], dupBox[7], dupBox[8]
-                ];
-            case 11: case 14: case 17: case 38: case 41: case 44: case 65: 
-                case 68: case 71:
-                return [
-                    dupBox[7], dupBox[8]
-                ];
-            case 18: case 21: case 24: case 45: case 48: case 51: case 72:
-                case 75: case 78:
-                return [
-                    dupBox[4], dupBox[5], dupBox[7], dupBox[8]
-                ];
-            case 19: case 22: case 25: case 46: case 49: case 52: case 73:
-                case 76: case 79:
-                return [
-                    dupBox[8]
-                ];
-            default:
-                return [];
+
+        if ((dupBox[i].visited === false) && (inCurSet === false)) {
+            subsequentSquares.push(dupBox[i]);
         }
     }
 
+    return subsequentSquares;
 }
 
 const attemptBoxSwap = (p, curDict, dupSquare, validReplacements) => {
+    console.log()
     for (let i = 0; i < validReplacements.length; i++) {
         if ((validReplacements[i].val in curDict) === false) {
+            console.log("swapping (" + dupSquare.ind.toString() + ", " + dupSquare.val.toString() + ") & (" + validReplacements[i].ind.toString() + ", " + validReplacements[i].val.toString() + ")");
+            let replacementDictKey = validReplacements[i].val;
+            console.log(curDict);
+            let replacementDictVal = curDict[dupSquare.val];
             p.swap(dupSquare.ind, validReplacements[i].ind);
+            curDict[replacementDictKey] = replacementDictVal;
+            console.log("new dictionary pair: (" + replacementDictKey.toString() + ", " + replacementDictVal.toString() + ")")
             return true;
         }
     }
 
-    console.log("attempted to swap (" + dupSquare.ind.toString() +
-        ", " + dupSquare.val.toString() + ") and failed");
     return false;
 }
 
@@ -484,7 +442,6 @@ const sort = (p) => {
         traversalOrder.push(p.cols[i]);
     }
 
-    let accum = 0;
     for (let i = 0; i < traversalOrder.length; i++) {
         // the current row or column in the traversal
         let curSet = traversalOrder[i];
@@ -497,18 +454,34 @@ const sort = (p) => {
                 curDict[curSet[j].val] = j;
             } else {
                 // BAS required
-                let validReplacements = getSubsequentBoxSquares(p, curSet[j].ind);
-                 if (attemptBoxSwap(p, curDict, curSet[j], validReplacements) === false) {
+                let primarySq = curSet[curDict[curSet[j].val]];
+                let primarySqSetIndex = curDict[primarySq.val];
+                let secondarySq = curSet[j];
+                let secondarySqSetIndex = j;
+
+                let validReplacements = getBSSubsequentSquares(p, secondarySq.ind, curSet);
+                 if (attemptBoxSwap(p, curDict, secondarySq, validReplacements) === false) {
+                    // // attempted to swap secondary square and failed,
+                    // now attempt to swap the primary square
+                    console.log("attempts to box switch secondary square have failed, move focus to primary square");
+                    console.log("primary square: ", primarySq);
+                    console.log("secondary square: ", secondarySq);
+
+                    validReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
+                    console.log("current set: ", ...squaresArrToValsArr(curSet));
+                    console.log("current dictionary: ", curDict);
+                    console.log("primary square replacements: ", ...squaresArrToValsArr(validReplacements));
+
+                    
+
+                    
                     return 0;
                  };
-                
-
-                // if (accum === 3) {
-                //     return 0;
-                // } else {
-                //     accum += 1;
-                // }
             }
+        }
+
+        if (CATCHSETERROR(curSet) === false) {
+            return 0
         }
 
         for (let j = 0; j < curSet.length; j++) {
@@ -531,19 +504,8 @@ for (let i = 0; i < p.rows.length; i++) {
 }
 console.log();
 
-// for (let i = 0; i < p.cols.length; i++) {
-//     console.log(...squaresArrToValsArr(p.cols[i]));
-// }
-// console.log();
-// for (let i = 0; i < p.boxes.length; i++) {
-//     console.log(...squaresArrToValsArr(p.boxes[i]));
-// }
-
-// sort(p);
-
-// console.log();
-// for (let i = 0; i < p.rows.length; i++) {
-//     console.log(...squaresArrToValsArr(p.rows[i]));
-// }
-
-console.log(...squaresArrToValsArr(getSubsequentBoxSquares(p, 18)));
+sort(p);
+console.log();
+for (let i = 0; i < p.rows.length; i++) {
+    console.log(...squaresArrToValsArr(p.rows[i]));
+}
