@@ -458,9 +458,13 @@ const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplaceme
     return false;
 }
 
-const getASAdjacentSquares = (p) => {
-
+const getASAdjacentSquares = (p, curDict, secondarySq, secondarySqSetIndex) => {
+    // update curDict to store secondary square's val and set index
+    curDict[secondarySq.val] = secondarySqSetIndex;
+    console.log(curDict);
 }
+
+
 
 
 const sort = (p) => {
@@ -505,6 +509,10 @@ const sort = (p) => {
                         console.log("current dictionary: ", curDict);
                         console.log("primary square replacements: ", ...squaresArrToValsArr(primarySqReplacements));
                         console.log("secondary square replacements: ", ...squaresArrToValsArr(secondarySqReplacements));
+
+                        getASAdjacentSquares(p, curDict, secondarySq, secondarySqSetIndex);
+                        console.log();
+                        console.log("current dictionary: ", curDict);
 
                         return 0;
                     }
