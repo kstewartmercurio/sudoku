@@ -458,10 +458,18 @@ const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplaceme
     return false;
 }
 
-const getASAdjacentSquares = (p, curDict, secondarySq, secondarySqSetIndex) => {
+const getASAdjacentSquares = (p, curDict, setNum, primarySq, primarySqSetIndex, secondarySq, secondarySqSetIndex) => {
     // update curDict to store secondary square's val and set index
     curDict[secondarySq.val] = secondarySqSetIndex;
-    console.log(curDict);
+    
+    // determine what adjacent set to look at
+    // if setNum is even then set is row, otherwise set is column
+    // Math.floor(setNum / 2) gives the index of the set in this.rows or this.columns
+    // get the row within this.rows or the column within this.columns
+    // RULE FOR ROWS starting at primarySq, the only adjacent replacement squares are 
+        // the first (2 - (primarySq.ind % 2)) squares following primarySq
+    // RULE FOR COLUMNS starting at primarySq, the only adjacent replacement squares are
+        // ??
 }
 
 
@@ -498,7 +506,7 @@ const sort = (p) => {
                     // attempted to box swap secondary square and failed,
                     // now attempt to box swap the primary square
                     validReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
-                    if (attemptBoxSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
+                    if (attemptBoxSwap(p, curDict, i, primarySq, primarySqSetIndex, validReplacements) === false) {
                         // attempted to box swap primary square and failed,
                         // now attempt to adjacent swap primary square
 
@@ -510,7 +518,7 @@ const sort = (p) => {
                         console.log("primary square replacements: ", ...squaresArrToValsArr(primarySqReplacements));
                         console.log("secondary square replacements: ", ...squaresArrToValsArr(secondarySqReplacements));
 
-                        getASAdjacentSquares(p, curDict, secondarySq, secondarySqSetIndex);
+                        getASAdjacentSquares(p, curDict, primarySq, primarySqSetIndex, secondarySq, secondarySqSetIndex);
                         console.log();
                         console.log("current dictionary: ", curDict);
 
