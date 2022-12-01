@@ -16,6 +16,29 @@ class Puzzle {
         this.boxes = [];
     }
 
+    printPuzzle = () => {
+        console.log();
+        console.log("------------------------");
+        for (let i = 0; i < this.rows.length; i++) {
+            let k = 0;
+            let rowStr = "|";
+            for (let j = 0; j < this.rows.length; j++) {
+                rowStr += (this.rows[i][j].val.toString() + " ");
+
+                if ((k % 3) === 2) {
+                    rowStr += "| ";
+                }
+                k++;
+            }
+            console.log(rowStr);
+
+            if ((i % 3) === 2) {
+                console.log("------------------------");
+            }
+        }
+        console.log();
+    }
+
     swap = (ind1, ind2) => {
         // console.log();
         // for (let i = 0; i < this.rows.length; i++) {
@@ -435,6 +458,10 @@ const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplaceme
     return false;
 }
 
+const getASAdjacentSquares = (p) => {
+
+}
+
 
 const sort = (p) => {
     let traversalOrder = [];
@@ -469,7 +496,7 @@ const sort = (p) => {
                     validReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
                     if (attemptBoxSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
                         // attempted to box swap primary square and failed,
-                        // now attempt to adjacent swap secondary square
+                        // now attempt to adjacent swap primary square
 
                         console.log("attempts to box switch primary square have failed");
                         console.log("primary square: ", primarySq);
@@ -499,18 +526,9 @@ const sort = (p) => {
 
 
 
-// create new puzzle
 let p = randomBoardToPuzzle();
-
-// print rows
-console.log();
-for (let i = 0; i < p.rows.length; i++) {
-    console.log(...squaresArrToValsArr(p.rows[i]));
-}
-console.log();
+p.printPuzzle();
 
 sort(p);
-console.log();
-for (let i = 0; i < p.rows.length; i++) {
-    console.log(...squaresArrToValsArr(p.rows[i]));
-}
+
+p.printPuzzle();
