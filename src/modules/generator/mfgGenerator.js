@@ -506,7 +506,7 @@ const sort = (p) => {
                     // attempted to box swap secondary square and failed,
                     // now attempt to box swap the primary square
                     validReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
-                    if (attemptBoxSwap(p, curDict, i, primarySq, primarySqSetIndex, validReplacements) === false) {
+                    if (attemptBoxSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
                         // attempted to box swap primary square and failed,
                         // now attempt to adjacent swap primary square
 
@@ -518,7 +518,7 @@ const sort = (p) => {
                         console.log("primary square replacements: ", ...squaresArrToValsArr(primarySqReplacements));
                         console.log("secondary square replacements: ", ...squaresArrToValsArr(secondarySqReplacements));
 
-                        getASAdjacentSquares(p, curDict, primarySq, primarySqSetIndex, secondarySq, secondarySqSetIndex);
+                        getASAdjacentSquares(p, curDict, i, primarySq, primarySqSetIndex, secondarySq, secondarySqSetIndex);
                         console.log();
                         console.log("current dictionary: ", curDict);
 
