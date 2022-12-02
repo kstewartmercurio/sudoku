@@ -10,9 +10,9 @@ import "./styling/boardPage/numBtnBar.css";
 import "./styling/welcome.css";
 import "./styling/settings.css";
 
-import {BoardPage} from "./modules/boardPage/boardPage";
-import {Welcome} from "./modules/welcomePage/welcome";
-import {Settings} from "./modules/settingsPage/settings";
+import {BoardPage} from "./components/boardPage/boardPage";
+import {Welcome} from "./components/welcomePage/welcome";
+import {Settings} from "./components/settingsPage/settings";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
