@@ -696,7 +696,9 @@ export const sort = (p) => {
     return true;
 }
 
-export const generateSolution = () => {
+export const generateSolution = (m) => {
+    n = m;
+    console.log(n);
     let solutionFound = false;
     let p = randomBoardToPuzzle();
 
@@ -712,10 +714,3 @@ export const generateSolution = () => {
 
     return p.puzzleToString();
 }
-
-
-
-
-
-// let p = generateSolution();
-// console.log(p);
