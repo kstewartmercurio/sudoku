@@ -119,6 +119,45 @@ class Puzzle {
         // }
         // console.log();
     }
+
+    checkComplete = () => {
+        let curDict = {};
+
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.rows[i].length; j++) {
+                if ((this.rows[i][j].val in curDict) === true) {
+                    return false;
+                } else {
+                    curDict[this.rows[i][j].val] = true;
+                }
+            }
+            curDict = {};
+        }
+
+        for (let i = 0; i < this.cols; i++) {
+            for (let j = 0; j < this.cols[i].length; j++) {
+                if ((this.cols[i][j].val in curDict) === true) {
+                    return false;
+                } else {
+                    curDict[this.cols[i][j].val] = true;
+                }
+            }
+            curDict = {};
+        }
+
+        for (let i = 0; i < this.boxes; i++) {
+            for (let j = 0; j < this.boxes[i].length; j++) {
+                if ((this.boxes[i][j].val in curDict) === true) {
+                    return false;
+                } else {
+                    curDict[this.boxes[i][j].val] = true;
+                }
+            }
+            curDict = {};
+        }
+
+        return true;
+    }
 }
 
 
@@ -422,18 +461,7 @@ const randomBoardToPuzzle = () => {
 
 
 
-const CATCHSETERROR = (curSet) => {
-    let curDict = {};
-    for (let i = 0; i < curSet.length; i++) {
-        if ((curSet[i] in curDict) === true) {
-            console.log("SET ERROR");
-            console.log(curSet);
-            return false;
-        }
-    }
 
-    return true;
-}
 
 const getBSSubsequentSquares = (p, dupIndex, curSet) => {
     let dupBox;
@@ -540,19 +568,11 @@ const getASAdjacentSquares = (p, setNum, dupSq) => {
         adjacentSquares.push(adjacentSet[dupSqAdjacentSetIndex + 2]);
     }
 
-
-    // console.log("current dictionary: ", curDict);
-    // console.log("adjacent set: ", ...squaresArrToValsArr(adjacentSet));
-    // console.log("number of adjacent squares: ", numOfAdjacentSquares);
-    // console.log("duplicate square adjacent square index: ", 
-    //     dupSqAdjacentSetIndex);
-    // console.log("adjacent squares: ", 
-    //     ...squaresArrToValsArr(adjacentSquares));
-
     return adjacentSquares;
 }
 
-const attemptPASSwap = (p, traversalOrder, setNum, curSet, curDict, dupSq, dupSqSetIndex) => {
+const attemptPASSwap = (p, traversalOrder, setNum, curSet, curDict, 
+    dupSqSetIndex) => {
     let setIsRow;
     if ((setNum % 2) === 0) {
         setIsRow = true;
@@ -646,9 +666,13 @@ const sort = (p) => {
                                 // attempted to adjacent swap primary square and
                                 // failed, ready to perform preferred adjacent 
                                 // swaps
-                                if (attemptPASSwap(p, traversalOrder, i, curSet, curDict, secondarySq, secondarySqSetIndex) == false) {
-                                    console.log("advance and backtrack required");
-                                    return 0;
+                                if (attemptPASSwap(p, traversalOrder, i, curSet, curDict,
+                                    secondarySqSetIndex) == false) {
+                                    
+                                    console.log(primarySq);
+                                    console.log(secondarySq);
+                                    console.log(...squaresArrToValsArr(curSet));
+                                    return false;
                                 }
                             }
                         }
@@ -657,25 +681,27 @@ const sort = (p) => {
             }
         }
 
-        if (CATCHSETERROR(curSet) === false) {
-            return 0
-        }
-
         for (let j = 0; j < curSet.length; j++) {
             curSet[j].visited = true;
         }
     }
 
-    console.log("puzzle complete");
+    return true;
+}
+
+const generateSolution = () => {
+    let p = randomBoardToPuzzle();
+    sort(p);
+
+    while (p.checkComplete() === false) {
+        p = randomBoardToPuzzle();
+        sort(p)
+    }
+
+    return p;
 }
 
 
 
-
-
-let p = randomBoardToPuzzle();
-p.printPuzzle();
-
-sort(p);
-
+let p = generateSolution();
 p.printPuzzle();
