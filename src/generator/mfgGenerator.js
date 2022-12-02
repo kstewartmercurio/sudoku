@@ -1,4 +1,8 @@
-let n = 9;
+// the algorithm used for generating sudoku solutions was developed by Mark F
+// Graves Jr. and is outlined in his github repository found at
+// https://github.com/mfgravesjr/finished-projects/tree/master/SudokuGridGenerator
+
+let n;
 
 class Square {
     constructor(x) {
@@ -625,7 +629,6 @@ const sort = (p) => {
 
 export const generateSolution = (m) => {
     n = m;
-    console.log(n);
     let solutionFound = false;
     let p = randomBoardToPuzzle();
 
