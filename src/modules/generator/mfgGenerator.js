@@ -441,7 +441,7 @@ const getBSSubsequentSquares = (p, dupIndex, curSet) => {
     return subsequentSquares;
 }
 
-const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplacements) => {
+const attemptBASSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplacements) => {
     for (let i = 0; i < validReplacements.length; i++) {
         if ((validReplacements[i].val in curDict) === false) {
             let replacementDictKey = validReplacements[i].val;
@@ -450,7 +450,7 @@ const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplaceme
             p.swap(dupSquare.ind, validReplacements[i].ind);
 
             curDict[replacementDictKey] = replacementDictVal;
-            
+
             return true;
         }
     }
@@ -518,15 +518,14 @@ const getASAdjacentSquares = (p, curDict, setNum, dupSq) => {
     }
 
 
-    console.log("current dictionary: ", curDict);
-    console.log("adjacent set: ", ...squaresArrToValsArr(adjacentSet));
-    console.log("number of adjacent squares: ", numOfAdjacentSquares);
-    console.log("duplicate square adjacent square index: ", dupSqAdjacentSetIndex);
-    console.log("adjacent squares: ", ...squaresArrToValsArr(adjacentSquares));
+    // console.log("current dictionary: ", curDict);
+    // console.log("adjacent set: ", ...squaresArrToValsArr(adjacentSet));
+    // console.log("number of adjacent squares: ", numOfAdjacentSquares);
+    // console.log("duplicate square adjacent square index: ", dupSqAdjacentSetIndex);
+    // console.log("adjacent squares: ", ...squaresArrToValsArr(adjacentSquares));
 
     return adjacentSquares;
 }
-
 
 
 
@@ -551,32 +550,37 @@ const sort = (p) => {
                 // BAS required
                 let primarySq = curSet[curDict[curSet[j].val]];
                 let primarySqSetIndex = curDict[primarySq.val];
-                let primarySqReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
                 let secondarySq = curSet[j];
                 let secondarySqSetIndex = j;
-                let secondarySqReplacements = getBSSubsequentSquares(p, secondarySq.ind, curSet);
 
                 let validReplacements = getBSSubsequentSquares(p, secondarySq.ind, curSet);
-                 if (attemptBoxSwap(p, curDict, secondarySq, secondarySqSetIndex, validReplacements) === false) {
+                 if (attemptBASSwap(p, curDict, secondarySq, secondarySqSetIndex, validReplacements) === false) {
                     // attempted to box swap secondary square and failed,
                     // now attempt to box swap the primary square
                     validReplacements = getBSSubsequentSquares(p, primarySq.ind, curSet);
-                    if (attemptBoxSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
+                    if (attemptBASSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
                         // attempted to box swap primary square and failed,
-                        // now attempt to adjacent swap primary square
+                        // now attempt to adjacent swap secondary square
+                        validReplacements = getASAdjacentSquares(p, curDict, i, secondarySq);
+                        if (attemptBASSwap(p, curDict, secondarySq, secondarySqSetIndex, validReplacements) === false) {
+                            // attempted to adjacent swap secondary square and failed,
+                            // now attempt to adjacent swap primary square
+                            validReplacements = getASAdjacentSquares(p, curDict, i, primarySq);
+                            if (attemptBASSwap(p, curDict, primarySq, primarySqSetIndex, validReplacements) === false) {
+                                // attempted to adjacent swap primary square and failed,
+                                // ready to perform preferred adjacent swaps
 
-                        console.log("attempts to box switch primary square have failed");
-                        console.log("primary square: ", primarySq);
-                        console.log("secondary square: ", secondarySq);
-                        console.log("current set: ", ...squaresArrToValsArr(curSet));
-                        console.log("current dictionary: ", curDict);
-                        console.log("primary square replacements: ", ...squaresArrToValsArr(primarySqReplacements));
-                        console.log("secondary square replacements: ", ...squaresArrToValsArr(secondarySqReplacements));
+                                console.log("---");
+                                console.log("primary square: ", primarySq);
+                                console.log("secondary square: ", secondarySq);
+                                console.log("current set: ", ...squaresArrToValsArr(curSet));
+                                console.log("current dictionary: ", curDict);
+                                console.log("adjacent squares: ", ...squaresArrToValsArr(validReplacements));
+                                console.log("---");
 
-                        console.log();
-                        getASAdjacentSquares(p, curDict, i, secondarySq);
-
-                        return 0;
+                                return 0;
+                            }
+                        }
                     }
                  };
             }
