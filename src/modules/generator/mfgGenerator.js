@@ -552,7 +552,7 @@ const getASAdjacentSquares = (p, setNum, dupSq) => {
     return adjacentSquares;
 }
 
-const attemptPASSwap = (traversalOrder, setNum, curSet) => {
+const attemptPASSwap = (p, traversalOrder, setNum, curSet, curDict, dupSq, dupSqSetIndex) => {
     let setIsRow;
     if ((setNum % 2) === 0) {
         setIsRow = true;
@@ -561,11 +561,36 @@ const attemptPASSwap = (traversalOrder, setNum, curSet) => {
     }
 
     let adjacentSet = [];
-    
+    if (n === 6) {
+        if ((Math.floor(setNum / 2) % 2) === 1) {
+            adjacentSet = traversalOrder[setNum - 2];
+        } else {
+            adjacentSet = traversalOrder[setNum + 2];
+        }
+    } else if (n === 9) {
+        if ((Math.floor(setNum / 2) % 3) === 2) {
+            adjacentSet = traversalOrder[setNum - 2];
+        } else {
+            adjacentSet = traversalOrder[setNum + 2];
+        }
+    }
 
-    console.log("current set: ", ...squaresArrToValsArr(curSet));
-    console.log("adjacent set: ", ...squaresArrToValsArr(adjacentSet));
-    
+    let oldSetSwapIndex;
+    let setSwapIndex = dupSqSetIndex;
+    for (let i = 0; i < 18; i++) {
+        p.swap(curSet[setSwapIndex].ind, adjacentSet[setSwapIndex].ind);
+
+        if ((curSet[setSwapIndex].val in curDict) === false) {
+            curDict[curSet[setSwapIndex].val] = setSwapIndex;
+            return true;
+        }
+
+        oldSetSwapIndex = setSwapIndex;
+        setSwapIndex = curDict[curSet[oldSetSwapIndex].val];
+        curDict[curSet[oldSetSwapIndex].val] = oldSetSwapIndex;
+    }
+
+    return false;
 }
 
 
@@ -588,7 +613,7 @@ const sort = (p) => {
             if ((curSet[j].val in curDict) === false) {
                 curDict[curSet[j].val] = j;
             } else {
-                // BAS required
+                // attempt to box swap secondary square
                 let primarySq = curSet[curDict[curSet[j].val]];
                 let primarySqSetIndex = curDict[primarySq.val];
                 let secondarySq = curSet[j];
@@ -599,7 +624,7 @@ const sort = (p) => {
                  if (attemptBASSwap(p, curDict, secondarySq, 
                     secondarySqSetIndex, validReplacements) === false) {
                     // attempted to box swap secondary square and failed,
-                    // now attempt to box swap the primary square
+                    // now attempt to box swap primary square
                     validReplacements = getBSSubsequentSquares(p, primarySq.ind,
                         curSet);
                     if (attemptBASSwap(p, curDict, primarySq, primarySqSetIndex,
@@ -621,20 +646,10 @@ const sort = (p) => {
                                 // attempted to adjacent swap primary square and
                                 // failed, ready to perform preferred adjacent 
                                 // swaps
-
-                                // console.log("---");
-                                // console.log("ready for preferred adjacent swaps");
-                                // console.log("primary square: ", primarySq);
-                                // console.log("secondary square: ", secondarySq);
-                                // console.log("current set: ", 
-                                //     ...squaresArrToValsArr(curSet));
-                                // // curDict is storing primarySq's set index
-                                // console.log("current dictionary: ", curDict);
-                                // console.log("---");
-
-                                attemptPASSwap(traversalOrder, i, curSet);
-
-                                return 0;
+                                if (attemptPASSwap(p, traversalOrder, i, curSet, curDict, secondarySq, secondarySqSetIndex) == false) {
+                                    console.log("advance and backtrack required");
+                                    return 0;
+                                }
                             }
                         }
                     }
@@ -650,6 +665,8 @@ const sort = (p) => {
             curSet[j].visited = true;
         }
     }
+
+    console.log("puzzle complete");
 }
 
 
