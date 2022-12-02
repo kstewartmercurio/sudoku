@@ -16,51 +16,6 @@ export class Puzzle {
         this.boxes = [];
     }
 
-    printPuzzle = () => {
-        console.log();
-
-        if (n === 6) {
-            console.log("----------------");
-            for (let i = 0; i < this.rows.length; i++) {
-                let k = 0;
-                let rowStr = "|";
-                for (let j = 0; j < this.rows.length; j++) {
-                    rowStr += (this.rows[i][j].val.toString() + " ");
-
-                    if ((k % 3) === 2) {
-                        rowStr += "| ";
-                    }
-                    k++;
-                }
-                console.log(rowStr);
-
-                if ((i % 2) === 1) {
-                    console.log("----------------");
-                }
-            }
-        } else if (n === 9) {
-            console.log("------------------------");
-            for (let i = 0; i < this.rows.length; i++) {
-                let k = 0;
-                let rowStr = "|";
-                for (let j = 0; j < this.rows.length; j++) {
-                    rowStr += (this.rows[i][j].val.toString() + " ");
-
-                    if ((k % 3) === 2) {
-                        rowStr += "| ";
-                    }
-                    k++;
-                }
-                console.log(rowStr);
-
-                if ((i % 3) === 2) {
-                    console.log("------------------------");
-                }
-            }
-        }
-        console.log();
-    }
-
     puzzleToString = () => {
         let retStr = "";
 
@@ -76,14 +31,6 @@ export class Puzzle {
     }
 
     swap = (ind1, ind2) => {
-        // console.log();
-        // for (let i = 0; i < this.rows.length; i++) {
-        //     console.log(...squaresArrToValsArr(this.rows[i]));
-        // }
-        // console.log("swapping (" + ind1.toString() + ", " + 
-        //     this.squares[ind1].val.toString() + ") & (" + ind2.toString() +
-        //     ", " + this.squares[ind2].val.toString() + ")");
-
         let bi1, bj1, bi2, bj2;
         for (let i = 0; i < this.boxes.length; i++) {
             for (let j = 0; j < this.boxes[i].length; j++) {
@@ -127,11 +74,6 @@ export class Puzzle {
         [this.cols[c1][r1], this.cols[c2][r2]] = [
             this.cols[c2][r2], this.cols[c1][r1]
         ];
-
-        // for (let i = 0; i < this.rows.length; i++) {
-        //     console.log(...squaresArrToValsArr(this.rows[i]));
-        // }
-        // console.log();
     }
 
     checkComplete = () => {
@@ -189,18 +131,6 @@ export const shuffleArr = (inArr) => {
 
     return inArr;
 }
-
-// const squaresArrToValsArr = (inArr) => {
-//     let retArr = [];
-//     console.log(inArr);
-//     if (inArr !== []) {
-//         for (i = 0; i < inArr.length; i++) {
-//             retArr.push(inArr[i].val);
-//         }
-//     }
-
-//     return retArr;
-// }
 
 export const generateRandomBoard = () => {
     let retArr = [];
@@ -525,9 +455,6 @@ export const attemptBASSwap = (p, curDict, dupSquare, dupSquareSetIndex,
 }
 
 export const getASAdjacentSquares = (p, setNum, dupSq) => {
-    // HANDLE DICTIONARY UPDATES IN attemptAdjacentSwap FUNCTION
-    // curDict[secondarySq.val] = secondarySqSetIndex;
-    
     // determine what adjacent set to look at
     // if setNum is even then set is row and we want dupSq's column, otherwise 
         // set is column and we want dupSq's row
@@ -676,8 +603,8 @@ export const sort = (p) => {
                                 // attempted to adjacent swap primary square and
                                 // failed, ready to perform preferred adjacent 
                                 // swaps
-                                if (attemptPASSwap(p, traversalOrder, i, curSet, curDict,
-                                    secondarySqSetIndex) === false) {
+                                if (attemptPASSwap(p, traversalOrder, i, curSet,
+                                    curDict, secondarySqSetIndex) === false) {
                                     // ABS algorithm required
                                     return false;
                                 }
