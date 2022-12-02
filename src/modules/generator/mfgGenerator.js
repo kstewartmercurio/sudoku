@@ -117,7 +117,7 @@ const shuffleArr = (inArr) => {
 
 const squaresArrToValsArr = (inArr) => {
     let retArr = [];
-    if (inArr.length > 0) {
+    if (inArr !== []) {
         for (i = 0; i < inArr.length; i++) {
             retArr.push(inArr[i].val);
         }
@@ -458,18 +458,73 @@ const attemptBoxSwap = (p, curDict, dupSquare, dupSquareSetIndex, validReplaceme
     return false;
 }
 
-const getASAdjacentSquares = (p, curDict, setNum, primarySq, primarySqSetIndex, secondarySq, secondarySqSetIndex) => {
-    // update curDict to store secondary square's val and set index
-    curDict[secondarySq.val] = secondarySqSetIndex;
+const getASAdjacentSquares = (p, curDict, setNum, dupSq) => {
+    // HANDLE DICTIONARY UPDATES IN attemptAdjacentSwap FUNCTION
+    // curDict[secondarySq.val] = secondarySqSetIndex;
     
     // determine what adjacent set to look at
-    // if setNum is even then set is row, otherwise set is column
-    // Math.floor(setNum / 2) gives the index of the set in this.rows or this.columns
-    // get the row within this.rows or the column within this.columns
-    // RULE FOR ROWS starting at primarySq, the only adjacent replacement squares are 
-        // the first (2 - (primarySq.ind % 2)) squares following primarySq
-    // RULE FOR COLUMNS starting at primarySq, the only adjacent replacement squares are
-        // ??
+    // if setNum is even then set is row and we want dupSq's column, otherwise 
+        // set is column and we want dupSq's row
+    let setIsRow;
+    if ((setNum % 2) === 0) {
+        setIsRow = true;
+    } else {
+        setIsRow = false;
+    }
+
+    // get and store the row/column containing dupSq
+    let adjacentSet;
+    let dupSqAdjacentSetIndex;
+    if (setIsRow === true) {
+        for (let i = 0; i < p.cols.length; i++) {
+            for (let j = 0; j < p.cols[i].length; j++) {
+                if (dupSq.ind === p.cols[i][j].ind) {
+                    adjacentSet = p.cols[i];
+                    dupSqAdjacentSetIndex = j;
+                    break;
+                }
+            }
+        }
+    } else {
+        for (let i = 0; i < p.rows.length; i++) {
+            for (let j = 0; j < p.cols[i].length; j++) {
+                if (dupSq.ind === p.rows[i][j].ind) {
+                    adjacentSet = p.rows[i]
+                    dupSqAdjacentSetIndex = j;
+                    break;
+                }
+            }
+        }
+    }
+
+    // if set is row and looking at dupSq's column:
+        // 2 - ((dupSq.ind // 9) % 3) = number of adjacent squares to return
+    // if set is column and looking at dupSq's row:
+        // 2 - ((dupSq.ind % 9) % 3) = number of adjacent squares to return
+    let numOfAdjacentSquares;
+    if (setIsRow === true) {
+        numOfAdjacentSquares = (2 - ((Math.floor(dupSq.ind / n)) % 3));
+    } else {
+        numOfAdjacentSquares = (2 - ((dupSq.ind % n) % 3));
+    }
+
+    // use numOfAdjacentSquares to get all adjacent squares
+    let adjacentSquares = [];
+    if (numOfAdjacentSquares >= 1) {
+        adjacentSquares.push(adjacentSet[dupSqAdjacentSetIndex + 1]);
+    }
+    if (numOfAdjacentSquares === 2) {
+        adjacentSquares.push(adjacentSet[dupSqAdjacentSetIndex + 2]);
+    }
+
+
+    console.log("current dictionary: ", curDict);
+    console.log("adjacent set: ", ...squaresArrToValsArr(adjacentSet));
+    console.log("number of adjacent squares: ", numOfAdjacentSquares);
+    console.log("duplicate square adjacent square index: ", dupSqAdjacentSetIndex);
+    console.log("adjacent squares: ", ...squaresArrToValsArr(adjacentSquares));
+
+    return adjacentSquares;
 }
 
 
@@ -518,9 +573,8 @@ const sort = (p) => {
                         console.log("primary square replacements: ", ...squaresArrToValsArr(primarySqReplacements));
                         console.log("secondary square replacements: ", ...squaresArrToValsArr(secondarySqReplacements));
 
-                        getASAdjacentSquares(p, curDict, i, primarySq, primarySqSetIndex, secondarySq, secondarySqSetIndex);
                         console.log();
-                        console.log("current dictionary: ", curDict);
+                        getASAdjacentSquares(p, curDict, i, secondarySq);
 
                         return 0;
                     }
