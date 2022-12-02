@@ -1,6 +1,6 @@
 let n = 9;
 
-export class Square {
+class Square {
     constructor(x) {
         this.ind = -1;
         this.val = x;
@@ -8,7 +8,7 @@ export class Square {
     }
 }
 
-export class Puzzle {
+class Puzzle {
     constructor() {
         this.squares = [];
         this.rows = [];
@@ -118,7 +118,7 @@ export class Puzzle {
 
 
 
-export const shuffleArr = (inArr) => {
+const shuffleArr = (inArr) => {
     let index = inArr.length;
     let randomIndex;
 
@@ -132,7 +132,7 @@ export const shuffleArr = (inArr) => {
     return inArr;
 }
 
-export const generateRandomBoard = () => {
+const generateRandomBoard = () => {
     let retArr = [];
 
     if (n === 6) {
@@ -342,7 +342,7 @@ export const generateRandomBoard = () => {
     return retArr;
 }
 
-export const randomBoardToPuzzle = () => {
+const randomBoardToPuzzle = () => {
     let retPuzzle = new Puzzle();
     let randomBoard = generateRandomBoard();
 
@@ -408,7 +408,7 @@ export const randomBoardToPuzzle = () => {
 
 
 
-export const getBSSubsequentSquares = (p, dupIndex, curSet) => {
+const getBSSubsequentSquares = (p, dupIndex, curSet) => {
     let dupBox;
     for (let i = 0; i < p.boxes.length; i++) {
         for (let j = 0; j < p.boxes[i].length; j++) {
@@ -436,7 +436,7 @@ export const getBSSubsequentSquares = (p, dupIndex, curSet) => {
     return subsequentSquares;
 }
 
-export const attemptBASSwap = (p, curDict, dupSquare, dupSquareSetIndex, 
+const attemptBASSwap = (p, curDict, dupSquare, dupSquareSetIndex, 
     validReplacements) => {
     for (let i = 0; i < validReplacements.length; i++) {
         if ((validReplacements[i].val in curDict) === false) {
@@ -454,7 +454,7 @@ export const attemptBASSwap = (p, curDict, dupSquare, dupSquareSetIndex,
     return false;
 }
 
-export const getASAdjacentSquares = (p, setNum, dupSq) => {
+const getASAdjacentSquares = (p, setNum, dupSq) => {
     // determine what adjacent set to look at
     // if setNum is even then set is row and we want dupSq's column, otherwise 
         // set is column and we want dupSq's row
@@ -513,7 +513,7 @@ export const getASAdjacentSquares = (p, setNum, dupSq) => {
     return adjacentSquares;
 }
 
-export const attemptPASSwap = (p, traversalOrder, setNum, curSet, curDict, 
+const attemptPASSwap = (p, traversalOrder, setNum, curSet, curDict, 
     dupSqSetIndex) => {
     let adjacentSet = [];
     if (n === 6) {
@@ -552,7 +552,7 @@ export const attemptPASSwap = (p, traversalOrder, setNum, curSet, curDict,
 
 
 
-export const sort = (p) => {
+const sort = (p) => {
     let traversalOrder = [];
     for (let i = 0; i < n; i++) {
         traversalOrder.push(p.rows[i]);
