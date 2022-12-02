@@ -1,4 +1,4 @@
-let n = 6;
+let n = 9;
 
 class Square {
     constructor(x) {
@@ -481,7 +481,7 @@ const attemptBASSwap = (p, curDict, dupSquare, dupSquareSetIndex,
     return false;
 }
 
-const getASAdjacentSquares = (p, curDict, setNum, dupSq) => {
+const getASAdjacentSquares = (p, setNum, dupSq) => {
     // HANDLE DICTIONARY UPDATES IN attemptAdjacentSwap FUNCTION
     // curDict[secondarySq.val] = secondarySqSetIndex;
     
@@ -552,6 +552,22 @@ const getASAdjacentSquares = (p, curDict, setNum, dupSq) => {
     return adjacentSquares;
 }
 
+const attemptPASSwap = (traversalOrder, setNum, curSet) => {
+    let setIsRow;
+    if ((setNum % 2) === 0) {
+        setIsRow = true;
+    } else {
+        setIsRow = false;
+    }
+
+    let adjacentSet = [];
+    
+
+    console.log("current set: ", ...squaresArrToValsArr(curSet));
+    console.log("adjacent set: ", ...squaresArrToValsArr(adjacentSet));
+    
+}
+
 
 
 const sort = (p) => {
@@ -606,15 +622,17 @@ const sort = (p) => {
                                 // failed, ready to perform preferred adjacent 
                                 // swaps
 
-                                console.log("---");
-                                console.log("primary square: ", primarySq);
-                                console.log("secondary square: ", secondarySq);
-                                console.log("current set: ", 
-                                    ...squaresArrToValsArr(curSet));
-                                console.log("current dictionary: ", curDict);
-                                console.log("adjacent squares: ", 
-                                    ...squaresArrToValsArr(validReplacements));
-                                console.log("---");
+                                // console.log("---");
+                                // console.log("ready for preferred adjacent swaps");
+                                // console.log("primary square: ", primarySq);
+                                // console.log("secondary square: ", secondarySq);
+                                // console.log("current set: ", 
+                                //     ...squaresArrToValsArr(curSet));
+                                // // curDict is storing primarySq's set index
+                                // console.log("current dictionary: ", curDict);
+                                // console.log("---");
+
+                                attemptPASSwap(traversalOrder, i, curSet);
 
                                 return 0;
                             }
