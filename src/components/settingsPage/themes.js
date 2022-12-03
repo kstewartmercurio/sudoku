@@ -5,6 +5,7 @@ import {themeVals} from "./themesList";
 export function Themes() {
     const updateTheme = (e, newTheme) => {
         e.preventDefault();
+        console.log(newTheme);
 
         const uglyVals = ["red", "blue", "green", "purple", "orange", 
             "yellow", "pink", "black", "white"];
@@ -31,7 +32,8 @@ export function Themes() {
         r.style.setProperty("--buttonColor", newThemeVals[1][6]);
         r.style.setProperty("--buttonBackgroundColor", newThemeVals[1][7]);
         r.style.setProperty("--navbarAccentColor", newThemeVals[1][8]);
-        r.style.setProperty("--topButtonBarHoverColor", newThemeVals[1][9]);
+        r.style.setProperty("--topButtonBarSelectedColor", newThemeVals[1][9])
+        r.style.setProperty("--topButtonBarHoverColor", newThemeVals[1][10]);
 
         r.style.setProperty("--welcomeColor1", newThemeVals[2][0]);
         r.style.setProperty("--welcomeColor2", newThemeVals[2][1]);
