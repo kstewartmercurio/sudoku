@@ -12,7 +12,7 @@ export function Themes() {
         let newThemeVals = [];
         for (let i = 0; i < themeVals.length; i++) {
             if (newTheme === themeVals[i][0]) {
-                newThemeVals = themeVals[i][1];
+                newThemeVals = themeVals[i];
                 break;
             }
         }
@@ -22,16 +22,23 @@ export function Themes() {
         }
         
         var r = document.querySelector(":root");
-        r.style.setProperty("--backgroundColor", newThemeVals[0]);
-        r.style.setProperty("--boardColor", newThemeVals[1]);
-        r.style.setProperty("--squareColor", newThemeVals[2]);
-        r.style.setProperty("--initialSquareColor", newThemeVals[3]);
-        r.style.setProperty("--squareBackgroundColor", newThemeVals[4]);
-        r.style.setProperty("--selectedSquareColor", newThemeVals[5])
-        r.style.setProperty("--buttonColor", newThemeVals[6]);
-        r.style.setProperty("--buttonBackgroundColor", newThemeVals[7]);
-        r.style.setProperty("--navbarAccentColor", newThemeVals[8]);
-        r.style.setProperty("--topButtonBarAccentColor", newThemeVals[9]);
+        r.style.setProperty("--backgroundColor", newThemeVals[1][0]);
+        r.style.setProperty("--boardColor", newThemeVals[1][1]);
+        r.style.setProperty("--squareColor", newThemeVals[1][2]);
+        r.style.setProperty("--initialSquareColor", newThemeVals[1][3]);
+        r.style.setProperty("--squareBackgroundColor", newThemeVals[1][4]);
+        r.style.setProperty("--selectedSquareColor", newThemeVals[1][5])
+        r.style.setProperty("--buttonColor", newThemeVals[1][6]);
+        r.style.setProperty("--buttonBackgroundColor", newThemeVals[1][7]);
+        r.style.setProperty("--navbarAccentColor", newThemeVals[1][8]);
+        r.style.setProperty("--topButtonBarHoverColor", newThemeVals[1][9]);
+
+        r.style.setProperty("--welcomeColor1", newThemeVals[2][0]);
+        r.style.setProperty("--welcomeColor2", newThemeVals[2][1]);
+        r.style.setProperty("--welcomeColor3", newThemeVals[2][2]);
+
+        r.style.setProperty("--settingsNavColor", newThemeVals[3][0]);
+        r.style.setProperty("--settingsNavBackgroundColor", newThemeVals[3][1]);
     }
 
     return (

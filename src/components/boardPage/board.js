@@ -108,7 +108,8 @@ export function Board() {
     const generatePuzzle = (e) => {
         e.preventDefault();
 
-        setSquares(Array(81).fill(null));
+        const n = parseInt(size[0]);
+        setSquares(Array(n * n).fill(null));
 
         let solnStr = generateSolution(parseInt(size[0]));
         let solnArr = [];
@@ -117,7 +118,7 @@ export function Board() {
         }
 
         setSquares(solnArr);
-        // setInitial(initialArr);
+        setInitial(Array(n * n).fill(true));
         setSelected(null);
     }
 

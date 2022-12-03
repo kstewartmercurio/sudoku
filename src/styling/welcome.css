@@ -1,13 +1,13 @@
 #header-do {
-    color: var(--welcomeAccentColor2);
+    color: var(--welcomeColor3);
 }
 
 #header-u, #header-sudoku {
-    color: var(--welcomeColor);
+    color: var(--welcomeColor2);
 }
 
 #welcome-header {
-    color: var(--welcomeAccentColor1);
+    color: var(--welcomeColor1);
     position: relative;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -28,7 +28,7 @@
 }
 
 .subheader {
-    color: var(--welcomeAccentColor2);
+    color: var(--welcomeColor3);
     margin: 0;
     font-size: 18px;
 }
@@ -51,7 +51,7 @@
 }
 
 #welcome-content {
-    color: var(--welcomeColor);
+    color: var(--welcomeColor2);
     width: 90%;
     margin-left: 4%;
     margin: 0 auto;

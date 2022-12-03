@@ -19,7 +19,7 @@
 }
 
 .top-btn-bar-btn:hover {
-    color: var(--topButtonBarAccentColor);
+    color: var(--topButtonBarHoverColor);
     transition: .3s;
 }
 
@@ -46,7 +46,7 @@
 }
 
 #note-btn-on, #size6x6-btn-on, #size9x9-btn-on, #active-difficulty-btn {
-    color: var(--boardColor);
+    color: var(--topButtonBarSelectedColor);
     transition: .3s;
 }
 

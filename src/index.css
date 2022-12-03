@@ -16,20 +16,21 @@ welcomeAccentColor
     --backgroundColor: #758173;
     --boardColor: #344634;
     --squareColor: #064507;
-    --initialSquareColor: #cad1cb;
+    --initialSquareColor: #c0c6c1;
     --squareBackgroundColor: #626c60;
     --selectedSquareColor: #a5a5a575;
     --buttonColor: #498349;
     --buttonBackgroundColor: #a9c5a0;
     --navbarAccentColor: #a9c5a0;
-    --topButtonBarAccentColor: #eff8f0;
+    --topButtonBarSelectedColor: #035600;
+    --topButtonBarHoverColor: #eff8f0;
 
-    --welcomeAccentColor1: var(--initialSquareColor);
-    --welcomeAccentColor2: var(--navbarAccentColor);
-    --welcomeColor: var(--boardColor);
+    --welcomeColor1: #c0c6c1;
+    --welcomeColor2: #344634;
+    --welcomeColor3: #a9c5a0;
 
-    --settingsNavColor: var(--boardColor);
-    --settingsNavBackgroundColor: var(--buttonBackgroundColor);
+    --settingsNavColor: #344634;
+    --settingsNavBackgroundColor: #a9c5a0;
 }
 
 #root {
