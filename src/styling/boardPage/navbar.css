@@ -10,7 +10,7 @@
 }
 
 #logo {
-    color: var(--boardColor);
+    color: var(--navbarColor);
     width: max-content;
     text-align: left;
     padding-left: 2.5%;
@@ -39,7 +39,7 @@
 }
 
 .board-page-nav-btn {
-    color: var(--boardColor);
+    color: var(--navbarColor);
     background-color: var(--backgroundColor);
     width: 36px;
     height: 36px;
