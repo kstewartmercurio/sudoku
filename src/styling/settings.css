@@ -43,6 +43,22 @@
     height: 94.5%;
 }
 
+#affix-set {
+    position: relative;
+    text-align: left;
+    margin-top: 22px;
+    margin-left: 2%;
+}
+
+.affix-subheader {
+    color: var(--welcomeColor3);
+    font-size: 18px;
+}
+
+.affix-p {
+    color: var(--welcomeColor2);
+}
+
 #theme-set {
     position: relative;
     margin-top: 22px;   

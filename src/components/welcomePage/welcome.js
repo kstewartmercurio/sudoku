@@ -14,7 +14,7 @@ export function Welcome() {
                 </div>
 
                 <div id="welcome-content">
-                    <p className="subheader">project overview</p>
+                    <p className="welcome-subheader">project overview</p>
                     <p id="p1">
                         welcome to my sudoku app! i've made this web app for
                         you to play sudoku in whatever way you wish. there are 
@@ -22,7 +22,7 @@ export function Welcome() {
                         customization options for you to enjoy your sudoku 
                         experience.
                     </p>
-                    <p className="subheader">tools used</p>
+                    <p className="welcome-subheader">tools used</p>
                     <p id="p2">
                         i used HTML, CSS, JavaScript, and React for the frontend
                         design, npm for package management, Bootstrap and Font 

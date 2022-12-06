@@ -27,7 +27,7 @@
     margin: 0;
 }
 
-.subheader {
+.welcome-subheader {
     color: var(--welcomeColor3);
     margin: 0;
     font-size: 18px;
