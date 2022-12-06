@@ -29,7 +29,11 @@
     vertical-align: middle;
 }
 
-#login-btn {
+#info-btn {
+    font-size: 24px;
+}
+
+#settings-btn {
     margin-left: 5px;
 }
 

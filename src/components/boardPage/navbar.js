@@ -9,7 +9,8 @@ export function Navbar(props) {
                     onClick={(e) => {
                     props.shareNavbarClick("info");
                 }}>
-                    <i className="bi bi-info-circle-fill"></i>
+                    {/* <i className="bi bi-info-circle-fill"></i> */}
+                    <i className="fa-solid fa-info"></i>
                 </button>
                 <button className="board-page-nav-btn" id="settings-btn"
                     onClick={(e) => {
