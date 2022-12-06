@@ -13,7 +13,7 @@ export const themeVals = [
         "#cddcee"], ["#7585b0", "#9496a8", "#494b9c"], ["#9496a8", "#2c00a3"]],
     ["brunswick green", ["#28524a", "#b9acc0", "#2e5b42", "#dfdfdf", "#519085",
         "#f7a2fe73", "#90cba4", "#3d7b6f", "#37894b", "#c3aac4", "#1f481e",
-        "#efeff2"], ["#8e8d8e", "#37894b", "#c3aac4"], ["#b9acc0", "#3d7b6f"]]
+        "#efeff2"], ["#bab8ba", "#37894b", "#c3aac4"], ["#b9acc0", "#3d7b6f"]]
 
 
     // ["harvest gold", ["#d79233", "#3a5c69", "#bfc3c8", "#694f1f", "#aa7122", 
