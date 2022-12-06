@@ -17,15 +17,14 @@ export function Welcome() {
                     <p className="subheader">project overview</p>
                     <p id="p1">
                         welcome to my sudoku app! i've made this web app for
-                        you to play sudoku. the board above allows you to play
-                        puzzles at whatever difficulty you'd like and there's extra
-                        functionality for making notes, getting hints, timing
-                        yourself, solving the puzzle, generating new puzzles, and
-                        clearing the board.
+                        you to play sudoku in whatever way you wish. there are 
+                        endless puzzles available and a multitude of 
+                        customization options for you to enjoy your sudoku 
+                        experience.
                     </p>
                     <p className="subheader">tools used</p>
                     <p id="p2">
-                        i used HTML, CSS, and JavaScript for the frontend
+                        i used HTML, CSS, JavaScript, and React for the frontend
                         design, npm for package management, Bootstrap and Font 
                         Awesome for button icons, and Git for version control.
                     </p>
@@ -40,10 +39,9 @@ export function Welcome() {
                         <i className="fa-brands fa-git"></i>
                     </div>
                     <p id="p3">
-                        additionally, i used Coolors to generate color palletes
-                        for themes, uglkjgj's sudoku board api for puzzle
-                        generation, and monkeytype's website for design
-                        inspiration.
+                        additionally, i used a modified version of  an algorithm
+                        written by Mark F. Graves Jr. to generate random
+                        puzzles.
                     </p>
                 </div> 
             </div>

@@ -1,11 +1,14 @@
 import React, {useState} from "react";
+import {Affixes} from "./affixes";
 import {Themes} from "./themes";
 
 export function Settings() {
-    const [activeSetting, setActiveSetting] = useState("theme");
+    const [activeSetting, setActiveSetting] = useState("affixes");
 
     const renderActiveSetting = () => {
         switch (activeSetting) {
+            case "affixes":
+                return <Affixes/>
             case "theme":
                 return <Themes/>
             default:
@@ -19,7 +22,7 @@ export function Settings() {
                 <div id="settings-nav-column">
                     <button className="settings-nav-btn" id="affix-selector"
                         onClick={(e) => {
-                            setActiveSetting("affix")
+                            setActiveSetting("affixes")
                     }}>
                         affix
                     </button>
