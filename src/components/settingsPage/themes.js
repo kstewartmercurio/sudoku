@@ -5,7 +5,6 @@ import {themeVals} from "./themesList";
 export function Themes() {
     const updateTheme = (e, newTheme) => {
         e.preventDefault();
-        console.log(newTheme);
 
         const uglyVals = ["red", "blue", "green", "purple", "orange", 
             "yellow", "pink", "black", "white"];
