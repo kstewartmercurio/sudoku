@@ -51,12 +51,12 @@
 }
 
 .affix-subheader {
-    color: var(--welcomeColor3);
+    color: var(--settingsAffixColor1);
     font-size: 18px;
 }
 
 .affix-p {
-    color: var(--welcomeColor2);
+    color: var(--settingsAffixColor2);
 }
 
 #theme-set {

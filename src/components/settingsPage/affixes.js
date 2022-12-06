@@ -4,7 +4,7 @@ export function Affixes() {
     return (
         <div id="affix-set">
             <p className="affix-subheader">17 clue</p>
-            <p className="affix-p">for when you want hard but hard's too easy</p>
+            <p className="affix-p">for when you want hard but hard's too easy.</p>
 
             <p className="affix-subheader">blackout</p>
             <p className="affix-p">did you bring your flashlight?</p>
