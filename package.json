@@ -39,5 +39,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This is my first project using JavaScript and React. I'm building upon a project I did a couple years ago where I used C++ and Python to solve sudoku puzzles. For that project I used the Zelle Graphics Library to create a GUI with Python and I used C++ to handle all of the puzzle solving logic. The final version of that project was only accessible from the command line so the goal for this project was to create a finished product that could be hosted on a website.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kstewartmercurio/sudoku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kstewartmercurio/sudoku/issues"
+  },
+  "homepage": "https://github.com/kstewartmercurio/sudoku#readme"
 }
