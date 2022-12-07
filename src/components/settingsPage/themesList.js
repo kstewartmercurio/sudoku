@@ -16,7 +16,7 @@ export const themeVals = [
         "#efeff2"], ["#bab8ba", "#37894b", "#c3aac4"], ["#b9acc0", "#3d7b6f"]],
     ["french violet", ["#732fc6", "#c6e28d", "#eaedec", "#5c236c", "#a663cc", 
         "#89ca5396", "#c162ff", "#8b2ae2", "#3e0057", "#add580", "#bde53c",
-        "#e6eadd"], ["#ac66e8", "#3e0057", "#add580"], ["#c6e28d", "#8b2ae2"]],
+        "#e6eadd"], ["#b45dff", "#3e0057", "#add580"], ["#c6e28d", "#8b2ae2"]],
     ["claret", ["#841f44", "#bfada3", "#f0adad", "#680101", "#a52755", 
         "#6a3d1585", "#cf6b6b", "#9e0255", "#4e0000", "#ae957d", "#482603",
         "#c7c7c7"], ["#c6baaa", "#4e0000", "#ae957d"], ["#bfada3", "#9e0255"]],

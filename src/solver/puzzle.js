@@ -45,6 +45,7 @@ export class Puzzle {
             this.solveSingles();
 
             if (this.deadend() === true) {
+                // infinite loop issue
                 this.backtrack();
             }
         }
@@ -299,19 +300,154 @@ export class Puzzle {
     backtrack() {
         // undo moves, and reset the corresponding squares, until a checkpoint
         // is reached
-        // let movesLastIndex = this.moves.length - 1;
         while (this.moves[(this.moves.length - 1)].getCheckpoint() === false) {
             this.squares[this.moves[(this.moves.length - 1)].getInd()].setVal(null);
             this.moves.pop();
-            // movesLastIndex--;
+            
+            if (this.moves.length === 0) {
+                break;
+            }
         }
 
         // undo the checkpoint move and reset its corresponding square
-        this.squares[this.moves[(this.moves.length - 1)].getInd()].setVal(null);
-        this.moves.pop();
+        if (this.moves.length > 0) {
+            if (this.moves[(this.moves.length - 1)].getCheckpoint() === true) {
+                this.squares[this.moves[(this.moves.length - 1)].getInd()].setVal(null);
+                this.moves.pop();
+            }
+        }
 
         // reinitialize every square's potentialVals
         this.clearPotentialVals();
         this.initPotentialVals();
+    }
+
+
+
+    testViewPuzzle() {
+        console.log();
+        for (let i = 0; i < this.rows.length; i++) {
+            let curStr = "";
+            for (let j = 0; j < this.rows[i].contents.length; j++) {
+                if (this.rows[i].contents[j].getVal() === null) {
+                    curStr += "0 ";
+                } else {
+                    curStr += (this.rows[i].contents[j].getVal().toString() + " ");
+                }
+            }
+            console.log(curStr);
+        }
+        console.log();
+    }
+
+    getIndexToRemove() {
+        let k = Math.floor(Math.random() * (this.squares.length - 1));
+
+        while (this.squares[k].getVal() === null) {
+            if (k === 80) {
+                k = 0;
+            } else {
+                k++;
+            }
+        }
+
+        return k;
+    }
+
+    removeSquareAtIndex(k) {
+        this.puzzleArr[k] = null;
+        this.squares[k].setVal(null);
+    }
+
+    checkMovesForCheckpoints() {
+        // returns true if the moves stack contains checkpoints
+        for (let i = 0; i < this.moves.length; i++) {
+            if (this.moves[i].checkpoint === true) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    checkUniqueSolution() {
+        // return true if exactly one solution exists, otherwise return false
+
+        // find first solution
+        let cont1 = true;
+        this.solveSingles();
+        while (cont1 === true) {
+            this.guess();
+            this.solveSingles();
+
+            if (((this.deadend() === true) && 
+                (this.checkMovesForCheckpoints() === false)) ||
+                (this.complete() === true)) {
+                cont1 = false;
+            } else if (this.deadend() === true) {
+                this.backtrack();
+            }
+        }
+
+        // determine if guesses were made to find the first solution
+        // if guesses were not made then there are no more solutions to find
+        if (this.checkMovesForCheckpoints() === false) {
+            return true;
+        } else {
+            this.backtrack();
+        }
+
+        // attempt to find a second solution
+        let cont2 = true;
+        this.solveSingles();
+        while (cont2 === true) {
+            this.guess();
+            this.solveSingles();
+            
+            if (((this.deadend() === true) && 
+                (this.checkMovesForCheckpoints() === false)) ||
+                (this.complete() === true)) {
+                cont2 = false;
+            } else if (this.deadend() === true) {
+                this.backtrack();
+            }
+        }
+
+        // if the puzzle is now complete then a second solution has been found
+        if (this.complete() === true) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    removeSquareWithUniqueness() {
+        /*
+            generate index to remove
+            create a duplicate puzzle with the square at that index removed
+            determine if multiple solutions exist to the duplicate puzzle
+            
+            if multiple solutions exist then return to the beginning and 
+                generate a new index to remove
+            otherwise the index to remove can be removed from the actual puzzle
+        */
+
+        let cont = true;
+        let k;
+        let dupPuzzleArr;
+        let dupPuzzle;
+        while (cont === true) {
+            k = this.getIndexToRemove();
+            dupPuzzleArr = this.puzzleArr;
+            dupPuzzleArr[k] = null;
+            dupPuzzle = new Puzzle(dupPuzzleArr);
+
+            if (dupPuzzle.checkUniqueSolution() === true) {
+                cont = false;
+            }
+        }
+
+        this.puzzleArr[k] = null;
+        this.squares[k].setVal(null);
     }
 }
