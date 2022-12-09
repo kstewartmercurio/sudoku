@@ -47,11 +47,14 @@ export class Puzzle {
             if ((this.deadend() === true) && 
                 (this.checkMovesForCheckpoints() === false) &&
                 (this.complete() === false)) {
-                    console.log("puzzle unsolvable");
-                    
+                    // puzzle unsolvable
                     this.resetPuzzle();
                     
-                    return this.puzzleArr;
+                    return {
+                        "success": false,
+                        "puzzleArr": this.puzzleArr
+                    }
+                    // return this.puzzleArr;
                 }
             if (this.deadend() === true) {
                 this.backtrack();
@@ -62,7 +65,11 @@ export class Puzzle {
             this.puzzleArr[i] = this.squares[i].getVal();
         }
 
-        return this.puzzleArr;
+        return {
+            "success": true,
+            "puzzleArr": this.puzzleArr
+        }
+        // return this.puzzleArr;
     }
 
     initCoords() {
@@ -345,6 +352,8 @@ export class Puzzle {
 
 
 
+
+
     testViewPuzzle() {
         console.log();
         for (let i = 0; i < this.rows.length; i++) {
@@ -392,55 +401,19 @@ export class Puzzle {
     }
 
     checkUniqueSolution() {
-        // return true if exactly one solution exists, otherwise return false
+        let solve1Obj = this.solvePuzzle();
 
-        // find first solution
-        // let cont1 = true;
-        let cont1 = !this.complete();
-        while (cont1 === true) {
-            // sometimes staying here in an infinite loop
-            this.guess();
-            this.solveSingles();
-
-            if (((this.deadend() === true) && 
-                (this.checkMovesForCheckpoints() === false)) ||
-                (this.complete() === true)) {
-                cont1 = false;
-            } else if (this.deadend() === true) {
-                this.backtrack();
-            }
-        }
-
-        // determine if guesses were made to find the first solution
-        // if guesses were not made then there are no more solutions to find
-        if (this.checkMovesForCheckpoints() === false) {
-            return true;
-        } else {
-            this.backtrack();
-        }
-
-        // attempt to find a second solution
-        this.solveSingles();
-        let cont2 = !this.complete();
-        while (cont2 === true) {
-            this.guess();
-            this.solveSingles();
-            
-            if (((this.deadend() === true) && 
-                (this.checkMovesForCheckpoints() === false)) ||
-                (this.complete() === true)) {
-                cont2 = false;
-            } else if (this.deadend() === true) {
-                this.backtrack();
-            }
-        }
-
-        // if the puzzle is now complete then a second solution has been found
-        if (this.complete() === true) {
+        if (solve1Obj["success"] === false) {
             return false;
-        } else {
+        } else if (this.checkMovesForCheckpoints() === false) {
             return true;
         }
+
+        this.backtrack();
+        
+        let solve2Obj = this.solvePuzzle();
+
+        return !solve2Obj["success"];
     }
     
     removeSquareWithUniqueness() {
