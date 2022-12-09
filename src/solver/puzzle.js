@@ -47,8 +47,11 @@ export class Puzzle {
             if ((this.deadend() === true) && 
                 (this.checkMovesForCheckpoints() === false) &&
                 (this.complete() === false)) {
-                    console.log("error");
-                    break;
+                    console.log("puzzle unsolvable");
+                    
+                    this.resetPuzzle();
+                    
+                    return this.puzzleArr;
                 }
             if (this.deadend() === true) {
                 this.backtrack();
@@ -58,7 +61,7 @@ export class Puzzle {
         for (let i = 0; i < this.puzzleArr.length; i++) {
             this.puzzleArr[i] = this.squares[i].getVal();
         }
-        console.log(this.moves);
+
         return this.puzzleArr;
     }
 
@@ -328,6 +331,18 @@ export class Puzzle {
         this.initPotentialVals();
     }
 
+    resetPuzzle() {
+        // undo moves and reset the corresponding squares
+        while (this.moves.length > 0) {
+            this.squares[this.moves[(this.moves.length - 1)].getInd()].setVal(null);
+            this.moves.pop();
+        }
+
+        // reinitialize every square's potentialVals
+        this.clearPotentialVals();
+        this.initPotentialVals();
+    }
+
 
 
     testViewPuzzle() {
@@ -468,26 +483,3 @@ export class Puzzle {
         this.squares[k].setVal(null);
     }
 }
-
-const testPuzzleArr = ([
-    2, null, null, 5, null, 7, 4, null, 6,
-    null, null, null, null, 3, 1, null, null, null,
-    null, null, null, null, null, null, 2, 3, null,
-    null, null, null, null, 2, null, null, null, null,
-    8, 6, null, 3, 1, null, null, null, null,
-    null, 4, 5, null, null, null, null, null, null,
-    null, null, 9, null, null, null, 7, null, null,
-    null, null, 6, 9, 5, null, null, null, 2,
-    null, null, 1, null, null, 6, null, null, 8
-]);
-let testPuzzle = new Puzzle(testPuzzleArr);
-testPuzzle.testViewPuzzle();
-
-// testPuzzle.guess();
-
-console.log(testPuzzle.moves);
-for (let i = 0; i < testPuzzle.squares.length; i++) {
-    console.log(i, " : ", ...testPuzzle.squares[i].getPotentialVals());
-}
-
-testPuzzle.testViewPuzzle();

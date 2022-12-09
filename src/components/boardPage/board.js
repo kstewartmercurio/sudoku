@@ -86,7 +86,7 @@ export function Board() {
             if (parseInt(e.key) === 0) {
                 squaresCopy[selected] = null;
             } else {
-                squaresCopy[selected] = e.key;
+                squaresCopy[selected] = parseInt(e.key);
             }
 
             setSquares(squaresCopy);
@@ -97,6 +97,8 @@ export function Board() {
     const solve = (e) => {
         e.preventDefault();
 
+        // given an invalid input, an invalid output will be returned, instead
+        // we want the solving attempt to halt
         let puzzle = new Puzzle(squares);
         puzzle = puzzle.solvePuzzle();
 
