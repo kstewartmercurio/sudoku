@@ -41,14 +41,27 @@ const doubleSolutionPuzzleArr = ([
     9, 2, 8, 6, 7, 1, 3, 5, 4,
     1, 5, 4, 9, 3, 8, 6, null, null
 ]);
+const walkthroughPuzzleArr = ([
+    3, 0, 9, 8, 4, 6, 0, 0, 0, 
+    0, 2, 7, 0, 5, 1, 4, 8, 9, 
+    8, 5, 4, 9, 0, 2, 6, 0, 3, 
+    7, 4, 0, 0, 6, 5, 2, 9, 0, 
+    9, 6, 5, 0, 3, 8, 1, 0, 7, 
+    0, 8, 2, 7, 9, 0, 0, 6, 5, 
+    5, 0, 8, 6, 1, 0, 5, 3, 0, 
+    2, 0, 6, 4, 2, 3, 8, 7, 0, 
+    4, 3, 1, 5, 0, 0, 9, 0, 0 
+]) // 30 squares removed
 
 
-const p = new Puzzle(inArr);
+const p = new Puzzle(walkthroughPuzzleArr);
 p.testViewPuzzle();
 
-for (let i = 0; i < 43; i++) {
-    p.removeSquareWithUniqueness();
-}
+// for (let i = 0; i < 30; i++) {
+//     p.removeSquareWithUniqueness();
+// }
+p.removeSquareWithUniqueness();
+
 p.testViewPuzzle()
 
 // console.log(p.removeSquareWithUniqueness());
