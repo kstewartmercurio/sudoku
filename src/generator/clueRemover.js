@@ -52,5 +52,4 @@ for (let i = 0; i < 43; i++) {
 p.testViewPuzzle()
 
 // console.log(p.removeSquareWithUniqueness());
-
 // p.testViewPuzzle();

@@ -34,7 +34,7 @@ const doubleSolutionPuzzleArr = ([
     1, 5, 4, 9, 3, 8, 6, null, null
 ]);
 
-let testPuzzle = new Puzzle(doubleSolutionPuzzleArr);
+let testPuzzle = new Puzzle(testPuzzleArr);
 testPuzzle.testViewPuzzle();
 
-console.log(testPuzzle.checkUniqueSolution());
+testPuzzle.removeSquareWithUniqueness();

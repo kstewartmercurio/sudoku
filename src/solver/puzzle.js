@@ -370,25 +370,6 @@ export class Puzzle {
         console.log();
     }
 
-    getIndexToRemove() {
-        let k = Math.floor(Math.random() * (this.squares.length - 1));
-
-        while (this.squares[k].getVal() === null) {
-            if (k === 80) {
-                k = 0;
-            } else {
-                k++;
-            }
-        }
-
-        return k;
-    }
-
-    removeSquareAtIndex(k) {
-        this.puzzleArr[k] = null;
-        this.squares[k].setVal(null);
-    }
-
     checkMovesForCheckpoints() {
         // returns true if the moves stack contains checkpoints
         for (let i = 0; i < this.moves.length; i++) {
@@ -415,44 +396,52 @@ export class Puzzle {
 
         return !solve2Obj["success"];
     }
+
+    shuffleArr(inArr) {
+        let index = inArr.length;
+        let randomIndex;
     
-    removeSquareWithUniqueness() {
-        /*
-            generate index to remove
-            create a duplicate puzzle with the square at that index removed
-            determine if multiple solutions exist to the duplicate puzzle
-            
-            if multiple solutions exist then return to the beginning and 
-                generate a new index to remove
-            otherwise the index to remove can be removed from the actual puzzle
-        */
+        while (index !== 0) {
+            randomIndex = Math.floor(Math.random() * index);
+            index--;
+    
+            [inArr[index], inArr[randomIndex]] = [inArr[randomIndex], inArr[index]];
+        }
+    
+        return inArr;
+    }
 
-        let cont1 = true;
-        let cont2 = true;
-        let k;
-        let dupPuzzleArr;
-        let dupPuzzle;
-        let attemptedIndices = {};
-        while (cont1 === true) {
-            // k = this.getIndexToRemove();
-            while (cont2 === true) {
-                k = this.getIndexToRemove();
-                if ((k in attemptedIndices) === false) {
-                    attemptedIndices[k] = true;
-                    cont2 = false;
-                }
-            }
+    getPotentialRemovalIndices() {
+        let removalIndices = [];
 
-            dupPuzzleArr = this.puzzleArr;
-            dupPuzzleArr[k] = null;
-            dupPuzzle = new Puzzle(dupPuzzleArr);
-
-            if (dupPuzzle.checkUniqueSolution() === true) {
-                cont1 = false;
+        for (let i = 0; i < this.puzzleArr.length; i++) {
+            if (this.puzzleArr[i] !== null) {
+                removalIndices.push(i);
             }
         }
 
-        this.puzzleArr[k] = null;
-        this.squares[k].setVal(null);
+        return this.shuffleArr(removalIndices);
+    }
+    
+    removeSquareWithUniqueness() {
+        // returns true if a square was removed, and false if each potential
+        // removal index was tried and failed
+        let removalIndices = this.getPotentialRemovalIndices();
+
+        for (let i = 0; i < removalIndices.length; i++) {
+            let k = removalIndices[i];
+
+            let dupPuzzleArr = this.puzzleArr;
+            dupPuzzleArr[k] = null;
+            let dupPuzzle = new Puzzle(dupPuzzleArr);
+
+            if (dupPuzzle.checkUniqueSolution() === true) {
+                this.puzzleArr[k] = null;
+                this.squares[k].setVal(null);
+                return true;
+            }
+        }
+
+        return false;
     }
 }
