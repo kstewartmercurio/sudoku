@@ -44,8 +44,13 @@ export class Puzzle {
             this.guess();
             this.solveSingles();
 
+            if ((this.deadend() === true) && 
+                (this.checkMovesForCheckpoints() === false) &&
+                (this.complete() === false)) {
+                    console.log("error");
+                    break;
+                }
             if (this.deadend() === true) {
-                // infinite loop issue
                 this.backtrack();
             }
         }
@@ -53,6 +58,7 @@ export class Puzzle {
         for (let i = 0; i < this.puzzleArr.length; i++) {
             this.puzzleArr[i] = this.squares[i].getVal();
         }
+        console.log(this.moves);
         return this.puzzleArr;
     }
 
@@ -374,9 +380,10 @@ export class Puzzle {
         // return true if exactly one solution exists, otherwise return false
 
         // find first solution
-        let cont1 = true;
-        this.solveSingles();
+        // let cont1 = true;
+        let cont1 = !this.complete();
         while (cont1 === true) {
+            // sometimes staying here in an infinite loop
             this.guess();
             this.solveSingles();
 
@@ -398,8 +405,8 @@ export class Puzzle {
         }
 
         // attempt to find a second solution
-        let cont2 = true;
         this.solveSingles();
+        let cont2 = !this.complete();
         while (cont2 === true) {
             this.guess();
             this.solveSingles();
@@ -432,18 +439,28 @@ export class Puzzle {
             otherwise the index to remove can be removed from the actual puzzle
         */
 
-        let cont = true;
+        let cont1 = true;
+        let cont2 = true;
         let k;
         let dupPuzzleArr;
         let dupPuzzle;
-        while (cont === true) {
-            k = this.getIndexToRemove();
+        let attemptedIndices = {};
+        while (cont1 === true) {
+            // k = this.getIndexToRemove();
+            while (cont2 === true) {
+                k = this.getIndexToRemove();
+                if ((k in attemptedIndices) === false) {
+                    attemptedIndices[k] = true;
+                    cont2 = false;
+                }
+            }
+
             dupPuzzleArr = this.puzzleArr;
             dupPuzzleArr[k] = null;
             dupPuzzle = new Puzzle(dupPuzzleArr);
 
             if (dupPuzzle.checkUniqueSolution() === true) {
-                cont = false;
+                cont1 = false;
             }
         }
 
@@ -451,3 +468,26 @@ export class Puzzle {
         this.squares[k].setVal(null);
     }
 }
+
+const testPuzzleArr = ([
+    2, null, null, 5, null, 7, 4, null, 6,
+    null, null, null, null, 3, 1, null, null, null,
+    null, null, null, null, null, null, 2, 3, null,
+    null, null, null, null, 2, null, null, null, null,
+    8, 6, null, 3, 1, null, null, null, null,
+    null, 4, 5, null, null, null, null, null, null,
+    null, null, 9, null, null, null, 7, null, null,
+    null, null, 6, 9, 5, null, null, null, 2,
+    null, null, 1, null, null, 6, null, null, 8
+]);
+let testPuzzle = new Puzzle(testPuzzleArr);
+testPuzzle.testViewPuzzle();
+
+// testPuzzle.guess();
+
+console.log(testPuzzle.moves);
+for (let i = 0; i < testPuzzle.squares.length; i++) {
+    console.log(i, " : ", ...testPuzzle.squares[i].getPotentialVals());
+}
+
+testPuzzle.testViewPuzzle();
