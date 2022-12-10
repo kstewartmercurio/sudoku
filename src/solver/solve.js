@@ -43,5 +43,3 @@ function main() {
     easyPuzzle = testBoard.solvePuzzle();
     console.log(easyPuzzle);
 }
-
-main();

@@ -6,7 +6,7 @@ export function Welcome() {
             <div className="section" id="welcome-page">
                 <div id="welcome-header">
                     <p id="header-line-1">
-                        i make, <span id="header-u">u </span><span id="header-do">do</span>
+                        i make, <span id="header-u">you </span><span id="header-do">do</span>
                     </p>
                     <p id="header-line-2">
                         we love <span id="header-sudoku">sudoku</span>
