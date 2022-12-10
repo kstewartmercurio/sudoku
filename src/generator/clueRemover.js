@@ -1,21 +1,6 @@
 import {Puzzle} from "../solver/puzzle.js";
 import {generateSolution} from "./mfgGenerator.js";
 
-
-// const puzzleStr = generateSolution(6);
-// let inArr = [];
-// for (let i = 0; i < puzzleStr.length; i++) {
-//     inArr.push(parseInt(puzzleStr[i]));
-// }
-
-// const p = new Puzzle(inArr);
-// p.testViewPuzzle();
-
-// // for (let i = 0; i < 17; i++) {
-// //     p.removeSquareWithUniqueness();
-// // }
-// console.log(p.removeSquareWithUniqueness());
-
 export const newPuzzle = (size, n) => {
     const solutionStr = generateSolution(size);
     
