@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 
 export function TopBtnBar(props) {
-    const [note, setNote] = useState(false);
     const [size, setSize] = useState("9x9");
     const [difficulty, setDifficulty] = useState("easy");
 
@@ -9,9 +8,6 @@ export function TopBtnBar(props) {
         e.preventDefault();
 
         switch (btnClicked) {
-            case "note":
-                setNote(!note);
-                break;
             case "6x6":
                 setSize("6x6");
                 break;
@@ -30,11 +26,6 @@ export function TopBtnBar(props) {
             default:
                 break;
         }
-    }
-    
-    let noteIdStr = "note-btn-off";
-    if (note === true) {
-        noteIdStr = "note-btn-on";
     }
 
     let size6x6IdStr = "size6x6-btn-off";
@@ -59,11 +50,6 @@ export function TopBtnBar(props) {
     return (
         <div className="top-btn-bar">
             <div className="top-btn-bar-btn-grp">
-                <button className="top-btn-bar-btn" id={noteIdStr} onClick={(e) =>
-                    handleTopBtnBarClick(e, "note")
-                }>
-                    note <i className="bi bi-pencil"></i>
-                </button>
                 <button className="top-btn-bar-btn" id="hint-btn" onClick={(e) =>
                     handleTopBtnBarClick(e, "hint")
                 }>

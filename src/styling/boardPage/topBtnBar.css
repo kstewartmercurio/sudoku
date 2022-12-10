@@ -33,7 +33,8 @@
     height: 22.195px;
 }
 
-#note-btn-on, #note-btn-off {
+/* switch to hint on and off */
+#hint-btn { 
     padding-left: 18px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -45,7 +46,8 @@
     border-bottom-right-radius: 8px;
 }
 
-#note-btn-on, #size6x6-btn-on, #size9x9-btn-on, #active-difficulty-btn {
+/* get rid of note */
+#size6x6-btn-on, #size9x9-btn-on, #active-difficulty-btn {
     color: var(--topButtonBarSelectedColor);
     transition: .3s;
 }
