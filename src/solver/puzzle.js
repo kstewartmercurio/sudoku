@@ -108,6 +108,8 @@ export class Puzzle {
                     case 27: case 28: case 29: case 33: case 34: case 35:
                         b = 5;
                         break;
+                    default:
+                        break;
                 }
             } else if (n === 9) {
                 switch (i) {
@@ -482,7 +484,7 @@ export class Puzzle {
                 removalIndices.push(i);
             }
         }
-        
+
         return this.shuffleArr(removalIndices);
     }
     
@@ -490,7 +492,6 @@ export class Puzzle {
         // returns true if a square was removed, and false if each potential
         // removal index was tried and failed
         let removalIndices = this.getPotentialRemovalIndices();
-        console.log(removalIndices);
 
         for (let i = 0; i < removalIndices.length; i++) {
             let k = removalIndices[i];

@@ -4,12 +4,12 @@ import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
-// import {generateSolution} from "../../generator/mfgGenerator.js";
 import {newPuzzle} from "../../generator/clueRemover.js";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
+    const [solutionSquares, setSolutionSquares] = useState(Array(81).fill(null));
     const [selected, setSelected] = useState(null);
     const [size, setSize] = useState("9x9");
     const [difficulty, setDifficulty] = useState("easy");
@@ -95,6 +95,37 @@ export function Board() {
         }
     }
 
+    const giveHint = () => {
+        if (selected !== null) {
+            let solutionSquaresEmpty = true;
+            for (let i = 0; i < solutionSquares.length; i++) {
+                if (solutionSquares[i] !== null) {
+                    solutionSquaresEmpty = false;
+                    break;
+                }
+            }
+
+            if (solutionSquaresEmpty) {
+                let puzzle = new Puzzle(squares);
+                let solveObj = puzzle.solvePuzzle();
+
+                setSolutionSquares(solveObj["puzzleArr"]);
+            }
+
+            let hintVal = solutionSquares[selected];
+
+            let squaresCopy = squares.slice();
+            squaresCopy[selected] = hintVal;
+            let initialCopy = initial.slice();
+            initialCopy[selected] = true;
+
+            setSquares(squaresCopy);
+            setInitial(initialCopy);
+            setSolutionSquares(Array(parseInt(size[0])).fill(null));
+            setSelected(null);
+        }
+    }
+
     const pullSize = (size) => {
         let n;
         switch (size) {
@@ -168,9 +199,10 @@ export function Board() {
         }
         let puzzleJSON = newPuzzle(n, removeNum);
 
-
         let puzzleStr = puzzleJSON["puzzle"];
+        let solutionStr = puzzleJSON["solution"];
         let puzzleArr = [];
+        let solutionArr = [];
         let initialArr = [];
         for (let i = 0; i < puzzleStr.length; i++) {
             if (puzzleStr[i] === ".") {
@@ -181,8 +213,12 @@ export function Board() {
                 initialArr.push(true);
             }
         }
+        for (let i = 0; i < solutionStr.length; i++) {
+            solutionArr.push(parseInt(solutionStr[i]));
+        }
 
         setSquares(puzzleArr);
+        setSolutionSquares(solutionArr);
         setInitial(initialArr);
         setSelected(null);
     }
@@ -221,9 +257,10 @@ export function Board() {
                 windowClick = true;
             }}>
                 <div id="board-page-center-content">
-                    <TopBtnBar solveClicked={(e) => solve(e)}
+                    <TopBtnBar hintClicked={(e) => giveHint()}
                         pullSize={pullSize}
                         pullDifficulty={pullDifficulty}
+                        solveClicked={(e) => solve(e)}
                         generateClicked={(e) => generatePuzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>
 
