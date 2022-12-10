@@ -8,6 +8,7 @@ import "./styling/boardPage/navbar.css";
 import "./styling/boardPage/topBtnBar.css";
 import "./styling/boardPage/board.css";
 import "./styling/boardPage/numBtnBar.css";
+import "./styling/boardPage/bottomBtnBar.css";
 import "./styling/welcome.css";
 import "./styling/settings.css";
 

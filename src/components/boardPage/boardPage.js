@@ -1,7 +1,8 @@
 import React from "react";
 
-import {Board} from "./board";
 import {Navbar} from "./navbar";
+import {Board} from "./board";
+import {BottomBtnBar} from "./bottomBtnBar";
 
 export function BoardPage(props) {
     const shareNavbarClick = (clickType) => {
@@ -12,6 +13,7 @@ export function BoardPage(props) {
         <>  
             <Navbar shareNavbarClick={shareNavbarClick}/>
             <Board/>
+            <BottomBtnBar/>
         </>
     )
 }
