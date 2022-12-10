@@ -1,19 +1,14 @@
 {
-  "name": "sudoku",
+  "name": "testapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^2.1.3",
-    "react-scroll-into-view": "^1.12.0",
+    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -39,18 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "description": "This is my first project using JavaScript and React. I'm building upon a project I did a couple years ago where I used C++ and Python to solve sudoku puzzles. For that project I used the Zelle Graphics Library to create a GUI with Python and I used C++ to handle all of the puzzle solving logic. The final version of that project was only accessible from the command line so the goal for this project was to create a finished product that could be hosted on a website.",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kstewartmercurio/sudoku.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kstewartmercurio/sudoku/issues"
-  },
-  "homepage": "https://github.com/kstewartmercurio/sudoku#readme"
+  }
 }

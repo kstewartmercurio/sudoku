@@ -1,6 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
 
 import "./styling/boardPage/boardPage.css";
 import "./styling/boardPage/navbar.css";
@@ -10,37 +11,9 @@ import "./styling/boardPage/numBtnBar.css";
 import "./styling/welcome.css";
 import "./styling/settings.css";
 
-import {BoardPage} from "./components/boardPage/boardPage";
-import {Welcome} from "./components/welcomePage/welcome";
-import {Settings} from "./components/settingsPage/settings";
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-function Index() {
-  const infoRef = React.createRef();
-  const settingsRef = React.createRef();
-
-  const handleNavbarClick = (clickType) => {
-    if (clickType === "info") {
-      infoRef.current.scrollIntoView({behavior: "smooth"});
-    } else if (clickType === "settings") {
-      settingsRef.current.scrollIntoView({behavior: "smooth"});
-    }
-  }
-
-  return (
-    <>
-      <BoardPage handleNavbarClick={handleNavbarClick}/>
-      <div ref={infoRef}>
-        <Welcome/>
-      </div>
-      <div ref={settingsRef}>
-        <Settings/>
-      </div>
-    </>
-  )
-}
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Index/>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
