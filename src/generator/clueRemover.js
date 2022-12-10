@@ -16,8 +16,6 @@ import {generateSolution} from "./mfgGenerator.js";
 // // }
 // console.log(p.removeSquareWithUniqueness());
 
-// p.testViewPuzzle();
-
 export const newPuzzle = (size, n) => {
     const solutionStr = generateSolution(size);
     
@@ -28,7 +26,7 @@ export const newPuzzle = (size, n) => {
 
     const p = new Puzzle(puzzleArr);
 
-    for (let i = 0; i < n; i++) {
+    for (let i = 0; i < 33; i++) {
         p.removeSquareWithUniqueness();
     }
 
