@@ -112,7 +112,6 @@ export function Board() {
         e.preventDefault();
 
         const n = parseInt(size[0]);
-        setSquares(Array(n * n).fill(null));
 
         let puzzleJSON = newPuzzle(n, 43);
         let puzzleStr = puzzleJSON["puzzle"];

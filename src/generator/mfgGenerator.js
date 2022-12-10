@@ -83,7 +83,7 @@ class Puzzle {
     checkComplete = () => {
         let curDict = {};
 
-        for (let i = 0; i < this.rows; i++) {
+        for (let i = 0; i < this.rows.length; i++) {
             for (let j = 0; j < this.rows[i].length; j++) {
                 if ((this.rows[i][j].val in curDict) === true) {
                     return false;
@@ -94,7 +94,7 @@ class Puzzle {
             curDict = {};
         }
 
-        for (let i = 0; i < this.cols; i++) {
+        for (let i = 0; i < this.cols.length; i++) {
             for (let j = 0; j < this.cols[i].length; j++) {
                 if ((this.cols[i][j].val in curDict) === true) {
                     return false;
@@ -105,7 +105,7 @@ class Puzzle {
             curDict = {};
         }
 
-        for (let i = 0; i < this.boxes; i++) {
+        for (let i = 0; i < this.boxes.length; i++) {
             for (let j = 0; j < this.boxes[i].length; j++) {
                 if ((this.boxes[i][j].val in curDict) === true) {
                     return false;
