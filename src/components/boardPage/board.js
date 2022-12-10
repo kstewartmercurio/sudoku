@@ -95,6 +95,42 @@ export function Board() {
         }
     }
 
+    const pullSize = (size) => {
+        let n;
+        switch (size) {
+            case "6x6":
+                n = 6
+                setSize("6x6");
+                break;
+            case "9x9":
+                n = 9;
+                setSize("9x9");
+                break;
+            default:
+                break;
+        }
+
+        setSquares(Array(n * n).fill(null));
+        setInitial(Array(n * n).fill(false));
+        setSelected(null);
+    }
+
+    const pullDifficulty = (diff) => {
+        switch (diff) {
+            case "easy":
+                setDifficulty("easy");
+                break;
+            case "medium":
+                setDifficulty("medium");
+                break;
+            case "hard":
+                setDifficulty("hard");
+                break;
+            default:
+                break;
+        }
+    }
+
     const solve = (e) => {
         e.preventDefault();
 
@@ -158,42 +194,6 @@ export function Board() {
         setSquares(Array(n * n).fill(null));
         setInitial(Array(n * n).fill(false));
         setSelected(null);
-    }
-
-    const pullSize = (size) => {
-        let n;
-        switch (size) {
-            case "6x6":
-                n = 6
-                setSize("6x6");
-                break;
-            case "9x9":
-                n = 9;
-                setSize("9x9");
-                break;
-            default:
-                break;
-        }
-
-        setSquares(Array(n * n).fill(null));
-        setInitial(Array(n * n).fill(false));
-        setSelected(null);
-    }
-
-    const pullDifficulty = (diff) => {
-        switch (diff) {
-            case "easy":
-                setDifficulty("easy");
-                break;
-            case "medium":
-                setDifficulty("medium");
-                break;
-            case "hard":
-                setDifficulty("hard");
-                break;
-            default:
-                break;
-        }
     }
 
     const shareNumClick = (n) => {

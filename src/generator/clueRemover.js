@@ -30,3 +30,4 @@ export const newPuzzle = (size, n) => {
     }
 }
 
+
