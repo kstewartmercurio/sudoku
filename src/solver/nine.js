@@ -18,4 +18,17 @@ export class Nine {
         
         return false;
     }
+
+    checkForInvalidContents() {
+        let contentsDict = {}
+        for (let i = 0; i < this.contents.length; i++) {
+            if ((this.contents[i].getVal() in contentsDict) === true) {
+                return true;
+            } else {
+                contentsDict[this.contents[i].getVal()] = true;
+            }
+        }
+        
+        return false;
+    }
 }

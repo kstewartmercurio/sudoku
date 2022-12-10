@@ -25,8 +25,15 @@ export const newPuzzle = (size, n) => {
     }
 
     const p = new Puzzle(puzzleArr);
+    // ERROR: GENERATING INVALID SOLUTIONS AND THUS INVALID PUZZLES
+    if (p.checkInvalidPuzzle() === true) {
+        return {
+            "puzzle": solutionStr,
+            "solution": ""
+        };
+    }
 
-    for (let i = 0; i < 33; i++) {
+    for (let i = 0; i < 30; i++) {
         p.removeSquareWithUniqueness();
     }
 

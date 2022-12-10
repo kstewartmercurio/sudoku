@@ -370,6 +370,26 @@ export class Puzzle {
         console.log();
     }
 
+    checkInvalidPuzzle() {
+        for (let i = 0; i < this.rows.length; i++) {
+            if (this.rows[i].checkForInvalidContents() === true) {
+                console.log("invalid solution: check row " + i.toString());
+                return true;
+            }
+
+            if (this.columns[i].checkForInvalidContents() === true) {
+                console.log("invalid solution: check column " + i.toString());
+                return true;
+            }
+            if (this.boxes[i].checkForInvalidContents() === true) {
+                console.log("invalid solution: check box " + i.toString());
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     checkMovesForCheckpoints() {
         // returns true if the moves stack contains checkpoints
         for (let i = 0; i < this.moves.length; i++) {
@@ -420,6 +440,7 @@ export class Puzzle {
             }
         }
 
+        // return removalIndices;
         return this.shuffleArr(removalIndices);
     }
     
@@ -431,13 +452,14 @@ export class Puzzle {
         for (let i = 0; i < removalIndices.length; i++) {
             let k = removalIndices[i];
 
-            let dupPuzzleArr = this.puzzleArr;
+            let dupPuzzleArr = this.puzzleArr.slice();
             dupPuzzleArr[k] = null;
             let dupPuzzle = new Puzzle(dupPuzzleArr);
 
             if (dupPuzzle.checkUniqueSolution() === true) {
                 this.puzzleArr[k] = null;
                 this.squares[k].setVal(null);
+
                 return true;
             }
         }

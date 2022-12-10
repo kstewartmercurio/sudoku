@@ -4,7 +4,8 @@ import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
-import {generateSolution} from "../../generator/mfgGenerator.js";
+// import {generateSolution} from "../../generator/mfgGenerator.js";
+import {newPuzzle} from "../../generator/clueRemover.js";
 
 export function Board() {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -113,14 +114,22 @@ export function Board() {
         const n = parseInt(size[0]);
         setSquares(Array(n * n).fill(null));
 
-        let solnStr = generateSolution(parseInt(size[0]));
-        let solnArr = [];
-        for (let i = 0; i < solnStr.length; i++) {
-            solnArr.push(parseInt(solnStr[i]));
+        let puzzleJSON = newPuzzle(n, 43);
+        let puzzleStr = puzzleJSON["puzzle"];
+        let puzzleArr = [];
+        let initialArr = [];
+        for (let i = 0; i < puzzleStr.length; i++) {
+            if (puzzleStr[i] === ".") {
+                puzzleArr.push(null);
+                initialArr.push(false);
+            } else {
+                puzzleArr.push(parseInt(puzzleStr[i]));
+                initialArr.push(true);
+            }
         }
 
-        setSquares(solnArr);
-        setInitial(Array(n * n).fill(true));
+        setSquares(puzzleArr);
+        setInitial(initialArr);
         setSelected(null);
     }
 
@@ -194,21 +203,6 @@ export function Board() {
                 windowClick = true;
             }}>
                 <div id="board-page-center-content">
-                    {/* <button onClick={(e) => {
-                        setSquares([
-                            2, null, null, 5, null, 7, 4, null, 6,
-                            null, 3, null, null, 3, 1, null, null, null,
-                            null, null, null, null, null, null, 2, 3, null,
-                            null, null, null, null, 2, null, null, null, null,
-                            8, 6, null, 3, 1, null, null, null, null,
-                            null, 4, 5, null, null, null, null, null, null,
-                            null, null, 9, null, null, null, 7, null, null,
-                            null, null, 6, 9, 5, null, null, null, 2,
-                            null, null, 1, null, null, 6, null, null, 8
-                        ]);
-                    }}>
-                        test puzzle
-                    </button> */}
                     <TopBtnBar solveClicked={(e) => solve(e)}
                         pullSize={pullSize}
                         pullDifficulty={pullDifficulty}
