@@ -12,7 +12,7 @@ export function Board() {
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);
     const [size, setSize] = useState("9x9");
-    // const [difficulty, setDifficulty] = useState("1");
+    const [difficulty, setDifficulty] = useState("easy");
 
     let windowClick = true;
 
@@ -112,8 +112,27 @@ export function Board() {
         e.preventDefault();
 
         const n = parseInt(size[0]);
+        let removeNum;
+        if (n === 6) {
+            if (difficulty === "easy") {
+                removeNum = 17;
+            } else if (difficulty === "medium") {
+                removeNum = 22;
+            } else if (difficulty === "hard") {
+                removeNum = 26;
+            }
+        } else if (n === 9) {
+            if (difficulty === "easy") {
+                removeNum = 43;
+            } else if (difficulty === "medium") {
+                removeNum = 51;
+            } else if (difficulty === "hard") {
+                removeNum = 56;
+            }
+        }
+        let puzzleJSON = newPuzzle(n, removeNum);
 
-        let puzzleJSON = newPuzzle(n, 43);
+
         let puzzleStr = puzzleJSON["puzzle"];
         let puzzleArr = [];
         let initialArr = [];
@@ -164,13 +183,13 @@ export function Board() {
     const pullDifficulty = (diff) => {
         switch (diff) {
             case "easy":
-                // setDifficulty(1);
+                setDifficulty("easy");
                 break;
             case "medium":
-                // setDifficulty(2);
+                setDifficulty("medium");
                 break;
             case "hard":
-                // setDifficulty(3);
+                setDifficulty("hard");
                 break;
             default:
                 break;
