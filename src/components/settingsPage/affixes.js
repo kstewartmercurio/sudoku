@@ -1,13 +1,22 @@
-import React from "react";
+import React, {useState} from "react";
 
 export function Affixes() {
+    const [seventeen, setSeventeen] = useState(false);
+
     return (
         <div id="affix-set">
             <div className="affix-wrapper">
                 <p className="affix-subheader">
                     17 clue
                     <label className="switch">
-                        <input type="checkbox"/>
+                        <input type="checkbox" onInput={(e) => {
+                            if (seventeen === false) {
+                                console.log("here");
+                                setSeventeen(true);
+                            } else {
+                                setSeventeen(false);
+                            }
+                        }}/>
                         <span className="slider round"></span>
                     </label>
                 </p>
