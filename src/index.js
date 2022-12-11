@@ -9,7 +9,9 @@ import "./styling/boardPage/topBtnBar.css";
 import "./styling/boardPage/board.css";
 import "./styling/boardPage/numBtnBar.css";
 import "./styling/welcome.css";
-import "./styling/settings.css";
+import "./styling/settings/settings.css";
+import "./styling/settings/affixContent.css";
+import "./styling/settings/themeContent.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

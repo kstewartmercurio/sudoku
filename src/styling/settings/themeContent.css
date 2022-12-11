@@ -1,0 +1,61 @@
+#theme-set {
+    position: relative;
+    margin-top: 22px;   
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+    transition: .15s;
+}
+
+.theme-btn {
+    font-family: "Roboto Mono";
+    border: none;
+    border-radius: 8px;
+    margin: 0 4px;
+    margin-bottom: 8px;
+    width: 22.35%;
+    height: 38.227px;
+    cursor: pointer;
+    transition: .15s;
+}
+
+#xanadu {
+    color: #344634;
+    background-color: #758173;
+}
+
+#harvest-gold {
+    color: #815c10;
+    background-color: #d79233;
+}
+
+#antique-brass {
+    color: #66674e;
+    background-color: #ce826f;
+}
+
+#oxford-blue {
+    color: #9496a8;
+    background-color: #04052e;
+}
+
+#brunswick-green {
+    color: #b9acc0;
+    background-color: #28524a;
+}
+
+#french-violet {
+    color: #c6e28d;
+    background-color: #732fc6;
+}
+
+#claret {
+    color: #bfada3;
+    background-color: #841f44;
+}
+
+#sage {
+    color: #0e8382;
+    background-color: #b3af8f;
+}
