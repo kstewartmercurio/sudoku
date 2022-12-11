@@ -4,6 +4,7 @@ import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
+// import {BottomBtnBar} from "./bottomBtnBar";
 import {newPuzzle} from "../../generator/clueRemover.js";
 
 export function Board() {
@@ -105,17 +106,19 @@ export function Board() {
                 }
             }
 
+            let newSolutionSquares = solutionSquares;
             if (solutionSquaresEmpty) {
-                let puzzle = new Puzzle(squares);
+                let puzzle = new Puzzle(squares.slice());
                 let solveObj = puzzle.solvePuzzle();
-
-                setSolutionSquares(solveObj["puzzleArr"]);
+                newSolutionSquares = solveObj["puzzleArr"];
             }
+            setSolutionSquares(newSolutionSquares);
 
-            let hintVal = solutionSquares[selected];
+            let hintVal = newSolutionSquares[selected];
 
             let squaresCopy = squares.slice();
             squaresCopy[selected] = hintVal;
+            
             let initialCopy = initial.slice();
             initialCopy[selected] = true;
 
@@ -269,6 +272,7 @@ export function Board() {
                     </div>
                 
                     <NumBtnBar shareNumClick={shareNumClick}/>
+                    {/* <BottomBtnBar/> */}
                 </div>
             </div>
         </>

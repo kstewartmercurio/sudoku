@@ -2,7 +2,6 @@ import React from "react";
 
 import {Navbar} from "./navbar";
 import {Board} from "./board";
-import {BottomBtnBar} from "./bottomBtnBar";
 
 export function BoardPage(props) {
     const shareNavbarClick = (clickType) => {
@@ -10,10 +9,9 @@ export function BoardPage(props) {
     }
 
     return (
-        <>  
+        <div>  
             <Navbar shareNavbarClick={shareNavbarClick}/>
             <Board/>
-            <BottomBtnBar/>
-        </>
+        </div>
     )
 }
