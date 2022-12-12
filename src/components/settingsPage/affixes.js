@@ -19,27 +19,15 @@ export function Affixes() {
     const handleToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
-                if (seventeen === false) {
-                    console.log("activating 17 clue");
-                }
                 setSeventeen(!seventeen);
                 break;
             case "blackout":
-                if (blackout === false) {
-                    console.log("activating blackout");
-                }
                 setBlackout(!blackout);
                 break;
             case "tornado":
-                if (tornado === false) {
-                    console.log("activating tornado");
-                }
                 setTornado(!tornado);
                 break;
             case "swim test":
-                if (swimTest === false) {
-                    console.log("activating swim test");
-                }
                 setSwimTest(!swimTest);
                 break;
             default:
