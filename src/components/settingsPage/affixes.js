@@ -9,12 +9,10 @@ swim test - start with the initial squares, everything disappears after the
     first move is made and the puzzle must be solved in your head
 */
 
-export function Affixes() {
+export function Affixes(props) {
     const [seventeen, setSeventeen] = useState(false);
-    const [blackout, setBlackout] = useState(false);
     const [tornado, setTornado] = useState(false);
     const [swimTest, setSwimTest] = useState(false);
-
 
     const handleToggle = (affixType) => {
         switch (affixType) {
@@ -22,7 +20,7 @@ export function Affixes() {
                 setSeventeen(!seventeen);
                 break;
             case "blackout":
-                setBlackout(!blackout);
+                props.toggleBlackout();
                 break;
             case "tornado":
                 setTornado(!tornado);

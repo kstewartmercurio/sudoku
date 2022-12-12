@@ -2,23 +2,24 @@ import React from "react";
 
 import {themeVals} from "./themesList";
 
-export function Themes() {
+export function Themes(props) {
     const updateTheme = (e, newTheme) => {
         e.preventDefault();
 
-        const uglyVals = ["red", "blue", "green", "purple", "orange", 
-            "yellow", "pink", "black", "white"];
+        props.updateStoredTheme(newTheme);
 
+        if (props.blackout === false) {
+            updateThemeWithoutBlackout(newTheme);
+        }
+    }
+
+    const updateThemeWithoutBlackout = (newTheme) => {
         let newThemeVals = [];
         for (let i = 0; i < themeVals.length; i++) {
             if (newTheme === themeVals[i][0]) {
                 newThemeVals = themeVals[i];
                 break;
             }
-        }
-
-        if (newThemeVals.length === 0) {
-            newThemeVals = uglyVals;
         }
         
         var r = document.querySelector(":root");
