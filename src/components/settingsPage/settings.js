@@ -9,7 +9,7 @@ export function Settings() {
         switch (activeSetting) {
             case "affixes":
                 return <Affixes/>
-            case "theme":
+            case "themes":
                 return <Themes/>
             default:
                 break;
@@ -22,15 +22,21 @@ export function Settings() {
                 <div id="settings-nav-column">
                     <button className="settings-nav-btn" id="affix-selector"
                         onClick={(e) => {
-                            setActiveSetting("affixes")
+                            setActiveSetting("affixes");
                     }}>
                         affix
                     </button>
                     <button className="settings-nav-btn" id="theme-selector"
                         onClick={() => {
-                            setActiveSetting("theme");
+                            setActiveSetting("themes");
                     }}>
                         theme
+                    </button>
+                    <button className="settings-nav-btn" id="variant-selector"
+                        onClick={() => {
+                            setActiveSetting("variants");
+                    }}>
+                        variant
                     </button>
                 </div>
                 <div id="settings-content">

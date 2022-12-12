@@ -11,18 +11,37 @@ swim test - start with the initial squares, everything disappears after the
 
 export function Affixes() {
     const [seventeen, setSeventeen] = useState(false);
+    const [blackout, setBlackout] = useState(false);
+    const [tornado, setTornado] = useState(false);
+    const [swimTest, setSwimTest] = useState(false);
+
 
     const handleToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
                 if (seventeen === false) {
                     console.log("activating 17 clue");
-                    setSeventeen(true);
-                } else {
-                    setSeventeen(false);
                 }
+                setSeventeen(!seventeen);
                 break;
-            
+            case "blackout":
+                if (blackout === false) {
+                    console.log("activating blackout");
+                }
+                setBlackout(!blackout);
+                break;
+            case "tornado":
+                if (tornado === false) {
+                    console.log("activating tornado");
+                }
+                setTornado(!tornado);
+                break;
+            case "swim test":
+                if (swimTest === false) {
+                    console.log("activating swim test");
+                }
+                setSwimTest(!swimTest);
+                break;
             default:
                 break;
         }
@@ -50,7 +69,9 @@ export function Affixes() {
                 <p className="affix-subheader">
                     blackout
                     <label className="switch">
-                        <input type="checkbox"/>
+                        <input type="checkbox" onInput={(e) => {
+                            handleToggle("blackout");
+                        }}/>
                         <span className="slider round"></span>
                     </label>
                 </p>
@@ -62,7 +83,9 @@ export function Affixes() {
                 <p className="affix-subheader">
                     tornado
                     <label className="switch">
-                        <input type="checkbox"/>
+                        <input type="checkbox" onInput={(e) => {
+                            handleToggle("tornado");
+                        }}/>
                         <span className="slider round"></span>
                     </label>
                 </p>
@@ -77,12 +100,16 @@ export function Affixes() {
                 <p className="affix-subheader">
                     swim test
                     <label className="switch">
-                        <input type="checkbox"/>
+                        <input type="checkbox" onInput={(e) => {
+                            handleToggle("swim test");
+                        }}/>
                         <span className="slider round"></span>
                     </label>
                 </p>
                 <p className="affix-p">
-                    
+                    dolphins can remember the whistles of their friends and tank
+                    mates for over 20 years. perhaps your memory can compare?
+                    i'd adivse that you not forget to remember.
                 </p>
             </div>
         </div>
