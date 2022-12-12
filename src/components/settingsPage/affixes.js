@@ -48,9 +48,9 @@ export function Affixes() {
                     </label>
                 </p>
                 <p className="affix-p">
-                    in order to have a unique solution you must start with at
-                    least 17 squares. consider this the option for when you
-                    want hard but hard's too easy.
+                    in order for a 9x9 puzzle to have a unique solution you 
+                    must start with at least 17 squares. consider this the 
+                    option for when you want hard but hard's too easy.
                 </p>
             </div>
             <div className="affix-wrapper">
