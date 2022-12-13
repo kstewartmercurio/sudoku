@@ -47,7 +47,6 @@
     font-size: 24px;
     text-align: center;
     outline: none;
-    transition: color .3s;
     transition: background-color .3s;
 }
 
@@ -60,12 +59,16 @@
     color: var(--initialSquareColor);
 }
 
+.blackout {
+    transition: color .1s;
+}
+
 .blackout:not(:hover) {
     color: transparent;
-    transition: color .3s;
+    transition: color .1s;
 }
 
 .initial + .blackout:not(:hover) {
     color: transparent;
-    transition: color .3s;
+    transition: color .1s;
 }
