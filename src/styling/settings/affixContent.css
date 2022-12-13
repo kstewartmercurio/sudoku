@@ -25,10 +25,7 @@
 .switch {
     position: relative;
     display: inline-block;
-    /* original width = 60px */
     width: var(--settingsAffixSwitchWidth);
-    /* original height = 34px = switch width * (17 / 30) */
-    /* height: 34px; */
     height: calc(var(--settingsAffixSwitchWidth) * (17 / 30));
     margin-left: 16px;
     vertical-align: middle;
@@ -57,14 +54,8 @@
   .slider:before {
     position: absolute;
     content: "";
-    /* original height, weight = 26px = switch width * (13 / 30) */
-    /* height: 26px;
-    width: 26px; */
     height: calc(var(--settingsAffixSwitchWidth) * (13 / 30));
     width: calc(var(--settingsAffixSwitchWidth) * (13 / 30));
-    /* original padding = 4px = switch width * (1 / 15) */
-    /* left: 4px;
-    bottom: 4px; */
     left: calc(var(--settingsAffixSwitchWidth) * (1 / 15));
     bottom: calc(var(--settingsAffixSwitchWidth) * (1 / 15));
     background-color: white;
@@ -73,7 +64,6 @@
   }
   
   input:checked + .slider {
-    /* background-color: #2196F3; */
     background-color: var(--settingsAffixColor2);
   }
   
@@ -82,10 +72,6 @@
   }
   
   input:checked + .slider:before {
-    /* original transform = 26px = switch width * (13 / 30) */
-    /* -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px); */
     -webkit-transform: translateX(calc(var(--settingsAffixSwitchWidth) * (13 / 30)));
     -ms-transform: translateX(calc(var(--settingsAffixSwitchWidth) * (13 / 30)));
     transform: translateX(calc(var(--settingsAffixSwitchWidth) * (13 / 30)));
@@ -93,7 +79,6 @@
   
   /* Rounded sliders */
   .slider.round {
-    /* original 34px */
     border-radius: 34px;
   }
   
