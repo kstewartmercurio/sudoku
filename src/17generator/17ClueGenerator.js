@@ -2,21 +2,13 @@ import { createReadStream } from "fs";
 import { createInterface } from "readline";
 import {Puzzle} from "../solver/puzzle.js";
 
-
-console.log("reading in 17clue.txt");
-var user_file = "./17puzzlesTEST.txt";
-var r = createInterface({
-    input: createReadStream(user_file)
-});
-r.on("line", function (text) {
-    console.log(text);
-
-    let puzzleArr = []
-    for (let i = 0; i < text.length; i++) {
-        if (text[i] === ".") {
+function puzzleStrToJSON(inStr) {
+    let puzzleArr = [];
+    for (let i = 0; i < inStr.length; i++) {
+        if (inStr[i] === ".") {
             puzzleArr.push(null);
         } else {
-            puzzleArr.push(parseInt(text[i]));
+            puzzleArr.push(parseInt(inStr[i]));
         }  
     }
 
@@ -29,5 +21,20 @@ r.on("line", function (text) {
         solutionStr += solutionArr[i].toString();
     }
 
-    console.log(solutionStr);
-});
+    return {
+        "puzzle": inStr,
+        "solution": solutionStr
+    }
+}
+
+function main() {
+    var user_file = "./17puzzlesTEST.txt";
+    var r = createInterface({
+        input: createReadStream(user_file)
+    });
+    r.on("line", function (text) {
+        console.log(puzzleStrToJSON(text));
+    });
+}
+
+main();
