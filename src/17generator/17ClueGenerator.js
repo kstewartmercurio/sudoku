@@ -14,12 +14,20 @@ r.on("line", function (text) {
     let puzzleArr = []
     for (let i = 0; i < text.length; i++) {
         if (text[i] === ".") {
-            puzzleArr.push(0);
+            puzzleArr.push(null);
         } else {
             puzzleArr.push(parseInt(text[i]));
         }  
     }
 
     let puzzleObj = new Puzzle(puzzleArr);
-    puzzleObj.testViewPuzzle();
+    let solutionJSON = puzzleObj.solvePuzzle();
+
+    let solutionStr = "";
+    let solutionArr = solutionJSON["puzzleArr"];
+    for (let i = 0; i < solutionArr.length; i++) {
+        solutionStr += solutionArr[i].toString();
+    }
+
+    console.log(solutionStr);
 });
