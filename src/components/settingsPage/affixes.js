@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useRef} from "react";
 
 /*
 17 clue - only 17 initial squares, the minimum required for a unique solution
@@ -10,26 +10,21 @@ swim test - start with the initial squares, everything disappears after the
 */
 
 export function Affixes(props) {
-    const [seventeen, setSeventeen] = useState(false);
-    const [tornado, setTornado] = useState(false);
-    const [swimTest, setSwimTest] = useState(false);
+    // seventeen.current is updating once, not every time setSeventeen is run
+    // from settings.js
+    const seventeen = useRef(props.seventeen);
 
-    const handleToggle = (affixType) => {
-        switch (affixType) {
-            case "17 clue":
-                setSeventeen(!seventeen);
-                break;
-            case "blackout":
-                props.toggleBlackout();
-                break;
-            case "tornado":
-                setTornado(!tornado);
-                break;
-            case "swim test":
-                setSwimTest(!swimTest);
-                break;
-            default:
-                break;
+    console.log(props.seventeen, seventeen.current);
+
+    const getSeventeenInputTag = () => {
+        if (seventeen.current === true) {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("17 clue");
+            }} checked/>
+        } else {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("17 clue");
+            }}/>
         }
     }
 
@@ -39,9 +34,10 @@ export function Affixes(props) {
                 <p className="affix-subheader">
                     17 clue
                     <label className="switch">
-                        <input type="checkbox" onInput={(e) => {
-                            handleToggle("17 clue");
-                        }}/>
+                        {/* <input type="checkbox" onInput={(e) => {
+                            props.handleToggle("17 clue");
+                        }}/> */}
+                        {getSeventeenInputTag()}
                         <span className="slider round"></span>
                     </label>
                 </p>
@@ -56,7 +52,7 @@ export function Affixes(props) {
                     blackout
                     <label className="switch">
                         <input type="checkbox" onInput={(e) => {
-                            handleToggle("blackout");
+                            props.handleToggle("blackout");
                         }}/>
                         <span className="slider round"></span>
                     </label>
@@ -70,7 +66,7 @@ export function Affixes(props) {
                     tornado
                     <label className="switch">
                         <input type="checkbox" onInput={(e) => {
-                            handleToggle("tornado");
+                            props.handleToggle("tornado");
                         }}/>
                         <span className="slider round"></span>
                     </label>
@@ -87,7 +83,7 @@ export function Affixes(props) {
                     swim test
                     <label className="switch">
                         <input type="checkbox" onInput={(e) => {
-                            handleToggle("swim test");
+                            props.handleToggle("swim test");
                         }}/>
                         <span className="slider round"></span>
                     </label>

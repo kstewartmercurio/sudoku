@@ -5,13 +5,39 @@ import {themeVals} from "./themesList";
 
 export function Settings() {
     const [activeSetting, setActiveSetting] = useState("affixes");
+
+    const [seventeen, setSeventeen] = useState(false);
     const [blackout, setBlackout] = useState(false);
+    const [tornado, setTornado] = useState(false);
+    const [swimTest, setSwimTest] = useState(false);
+
     const [storedTheme, setStoredTheme] = useState("xanadu");
 
-    const toggleBlackout = () => {
+    const handleToggle = (affixType) => {
+        switch (affixType) {
+            case "17 clue":
+                setSeventeen(!seventeen);
+                break;
+            case "blackout":
+                if (blackout === false) {
+                    toggleBlackoutStyling();
+                }
+                setBlackout(!blackout);
+                break;
+            case "tornado":
+                setTornado(!tornado)
+                break;
+            case "swim test":
+                setSwimTest(!swimTest);
+                break;
+            default:
+                break;
+        }
+    }
+
+    const toggleBlackoutStyling = () => {
         var r = document.querySelector(":root");
         if (blackout === false) {
-            // change style to blackout
             r.style.setProperty("--backgroundColor", "black");
             r.style.setProperty("--boardColor", "#525252");
             r.style.setProperty("--squareColor", "#cbcbcb");
@@ -72,7 +98,7 @@ export function Settings() {
     const renderActiveSetting = () => {
         switch (activeSetting) {
             case "affixes":
-                return <Affixes toggleBlackout={toggleBlackout}/>
+                return <Affixes seventeen={seventeen} handleToggle={handleToggle}/>
             case "themes":
                 return <Themes blackout={blackout} storedTheme={storedTheme} 
                     updateStoredTheme={updateStoredTheme}/>
