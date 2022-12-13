@@ -3,7 +3,7 @@ import {Affixes} from "./affixes";
 import {Themes} from "./themes";
 import {themeVals} from "./themesList";
 
-export function Settings() {
+export function Settings(props) {
     const [activeSetting, setActiveSetting] = useState("affixes");
 
     const [seventeen, setSeventeen] = useState(false);
@@ -19,9 +19,12 @@ export function Settings() {
                 setSeventeen(!seventeen);
                 break;
             case "blackout":
-                // if (blackout === false) {
-                //     toggleBlackoutStyling();
-                // }
+                if (blackout === false) {
+                    props.shareBlackoutStatus(true);
+                } else {
+                    props.shareBlackoutStatus(false);
+                }
+
                 toggleBlackoutStyling();
                 setBlackout(!blackout);
                 break;
@@ -117,19 +120,19 @@ export function Settings() {
                         onClick={(e) => {
                             setActiveSetting("affixes");
                     }}>
-                        affix
+                        affixes
                     </button>
                     <button className="settings-nav-btn" id="theme-selector"
                         onClick={() => {
                             setActiveSetting("themes");
                     }}>
-                        theme
+                        themes
                     </button>
                     <button className="settings-nav-btn" id="variant-selector"
                         onClick={() => {
                             setActiveSetting("variants");
                     }}>
-                        variant
+                        variants
                     </button>
                 </div>
                 <div id="settings-content">

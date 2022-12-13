@@ -4,10 +4,9 @@ import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
-// import {BottomBtnBar} from "./bottomBtnBar";
 import {newPuzzle} from "../../generator/clueRemover.js";
 
-export function Board() {
+export function Board(props) {
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [solutionSquares, setSolutionSquares] = useState(Array(81).fill(null));
@@ -35,6 +34,9 @@ export function Board() {
             if (initial[i] === true) {
                 classNameStr += " initial";
             }
+        }
+        if (props.blackout === true) {
+            classNameStr += " blackout";
         }
         
         let selBool;

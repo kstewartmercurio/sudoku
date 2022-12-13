@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {BoardPage} from "./components/boardPage/boardPage";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 
 function App() {
+  const [blackout, setBlackout] = useState(false);
+
   const infoRef = React.createRef();
   const settingsRef = React.createRef();
 
@@ -16,14 +18,18 @@ function App() {
     }
   }
 
+  const shareBlackoutStatus = (bool) => {
+    setBlackout(bool);
+  }
+
   return (
     <div className="App">
-      <BoardPage handleNavbarClick={handleNavbarClick}/>
+      <BoardPage blackout={blackout} handleNavbarClick={handleNavbarClick}/>
       <div ref={infoRef}>
         <Welcome/>
       </div>
       <div ref={settingsRef}>
-        <Settings/>
+        <Settings shareBlackoutStatus={shareBlackoutStatus}/>
       </div>
     </div>
   );

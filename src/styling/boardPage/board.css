@@ -56,5 +56,13 @@
 }
 
 .initial {
-    color: var(--initialSquareColor) !important;
+    color: var(--initialSquareColor);
+}
+
+.blackout:not(:hover) {
+    color: transparent;
+}
+
+.initial + .blackout:not(:hover) {
+    color: transparent;
 }
