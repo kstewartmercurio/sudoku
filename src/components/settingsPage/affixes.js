@@ -22,15 +22,48 @@ export function Affixes(props) {
         }
     }
 
+    const getBlackoutInputTag = () => {
+        if (props.blackout === true) {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("blackout");
+            }} checked/>
+        } else {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("blackout");
+            }}/>
+        }
+    }
+
+    const getTornadoInputTag = () => {
+        if (props.tornado === true) {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("tornado");
+            }} checked/>
+        } else {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("tornado");
+            }}/>
+        }
+    }
+
+    const getSwimTestInputTag = () => {
+        if (props.swimTest === true) {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("swim test");
+            }} checked/>
+        } else {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("swim test");
+            }}/>
+        }
+    }
+
     return (
         <div id="affix-set">
             <div className="affix-wrapper">
                 <p className="affix-subheader">
                     17 clue
                     <label className="switch">
-                        {/* <input type="checkbox" onInput={(e) => {
-                            props.handleToggle("17 clue");
-                        }}/> */}
                         {getSeventeenInputTag()}
                         <span className="slider round"></span>
                     </label>
@@ -45,9 +78,7 @@ export function Affixes(props) {
                 <p className="affix-subheader">
                     blackout
                     <label className="switch">
-                        <input type="checkbox" onInput={(e) => {
-                            props.handleToggle("blackout");
-                        }}/>
+                        {getBlackoutInputTag()}
                         <span className="slider round"></span>
                     </label>
                 </p>
@@ -59,9 +90,7 @@ export function Affixes(props) {
                 <p className="affix-subheader">
                     tornado
                     <label className="switch">
-                        <input type="checkbox" onInput={(e) => {
-                            props.handleToggle("tornado");
-                        }}/>
+                        {getTornadoInputTag()}
                         <span className="slider round"></span>
                     </label>
                 </p>
@@ -76,9 +105,7 @@ export function Affixes(props) {
                 <p className="affix-subheader">
                     swim test
                     <label className="switch">
-                        <input type="checkbox" onInput={(e) => {
-                            props.handleToggle("swim test");
-                        }}/>
+                        {getSwimTestInputTag()}
                         <span className="slider round"></span>
                     </label>
                 </p>

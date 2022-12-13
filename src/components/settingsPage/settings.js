@@ -19,9 +19,10 @@ export function Settings() {
                 setSeventeen(!seventeen);
                 break;
             case "blackout":
-                if (blackout === false) {
-                    toggleBlackoutStyling();
-                }
+                // if (blackout === false) {
+                //     toggleBlackoutStyling();
+                // }
+                toggleBlackoutStyling();
                 setBlackout(!blackout);
                 break;
             case "tornado":
@@ -91,14 +92,15 @@ export function Settings() {
     }
 
     const updateStoredTheme = (newTheme) => {
-        console.log("updating stored theme to " + newTheme);
         setStoredTheme(newTheme);
     }
 
     const renderActiveSetting = () => {
         switch (activeSetting) {
             case "affixes":
-                return <Affixes seventeen={seventeen} handleToggle={handleToggle}/>
+                return <Affixes seventeen={seventeen} blackout={blackout}
+                    tornado={tornado} swimTest={swimTest}
+                    handleToggle={handleToggle}/>
             case "themes":
                 return <Themes blackout={blackout} storedTheme={storedTheme} 
                     updateStoredTheme={updateStoredTheme}/>
