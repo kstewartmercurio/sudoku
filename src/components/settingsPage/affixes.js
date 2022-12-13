@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 
 /*
 17 clue - only 17 initial squares, the minimum required for a unique solution
@@ -10,14 +10,8 @@ swim test - start with the initial squares, everything disappears after the
 */
 
 export function Affixes(props) {
-    // seventeen.current is updating once, not every time setSeventeen is run
-    // from settings.js
-    const seventeen = useRef(props.seventeen);
-
-    console.log(props.seventeen, seventeen.current);
-
     const getSeventeenInputTag = () => {
-        if (seventeen.current === true) {
+        if (props.seventeen === true) {
             return <input type="checkbox" onChange={(e) => {
                 props.handleToggle("17 clue");
             }} checked/>
