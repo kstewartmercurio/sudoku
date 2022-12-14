@@ -34,29 +34,29 @@ export function Affixes(props) {
         }
     }
 
-    const getTornadoInputTag = () => {
-        if (props.tornado === true) {
-            return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("tornado");
-            }} checked/>
-        } else {
-            return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("tornado");
-            }}/>
-        }
-    }
+    // const getTornadoInputTag = () => {
+    //     if (props.tornado === true) {
+    //         return <input type="checkbox" onChange={(e) => {
+    //             props.handleToggle("tornado");
+    //         }} checked/>
+    //     } else {
+    //         return <input type="checkbox" onChange={(e) => {
+    //             props.handleToggle("tornado");
+    //         }}/>
+    //     }
+    // }
 
-    const getSwimTestInputTag = () => {
-        if (props.swimTest === true) {
-            return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("swim test");
-            }} checked/>
-        } else {
-            return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("swim test");
-            }}/>
-        }
-    }
+    // const getSwimTestInputTag = () => {
+    //     if (props.swimTest === true) {
+    //         return <input type="checkbox" onChange={(e) => {
+    //             props.handleToggle("swim test");
+    //         }} checked/>
+    //     } else {
+    //         return <input type="checkbox" onChange={(e) => {
+    //             props.handleToggle("swim test");
+    //         }}/>
+    //     }
+    // }
 
     return (
         <div id="affix-set">
@@ -86,7 +86,7 @@ export function Affixes(props) {
                     did you bring your flashlight?
                 </p>
             </div>
-            <div className="affix-wrapper">
+            {/* <div className="affix-wrapper">
                 <p className="affix-subheader">
                     tornado
                     <label className="switch">
@@ -114,11 +114,7 @@ export function Affixes(props) {
                     mates for over 20 years. perhaps your memory can compare?
                     i'd adivse that you not forget to remember.
                 </p>
-            </div>
+            </div> */}
         </div>
-
-        // <div id="affix-set">
-        //     <p className="affix-p">stay tuned</p>
-        // </div>
     )
 }

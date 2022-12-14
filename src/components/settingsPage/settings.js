@@ -124,12 +124,12 @@ export function Settings(props) {
                     }}>
                         themes
                     </button>
-                    <button className="settings-nav-btn" id="variant-selector"
+                    {/* <button className="settings-nav-btn" id="variant-selector"
                         onClick={() => {
                             setActiveSetting("variants");
                     }}>
                         variants
-                    </button>
+                    </button> */}
                 </div>
                 <div id="settings-content">
                     {renderActiveSetting()}
