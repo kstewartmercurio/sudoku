@@ -54,7 +54,6 @@ export class Puzzle {
                         "success": false,
                         "puzzleArr": this.puzzleArr
                     }
-                    // return this.puzzleArr;
                 }
             if (this.deadend() === true) {
                 this.backtrack();
