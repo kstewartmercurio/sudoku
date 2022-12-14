@@ -307,6 +307,45 @@ export function Board(props) {
         setSelected(null);
     }
 
+    const handleTornado = (n, m) => {
+        let solutionSquaresEmpty = true;
+        for (let i = 0; i < solutionSquares.length; i++) {
+            if (solutionSquares[i] !== null) {
+                solutionSquaresEmpty = false;
+                break;
+            }
+        }
+
+        let nIndices = [];
+        let mIndices = [];
+        let squaresCopy = squares.slice();
+        let solutionSquaresCopy = solutionSquares.slice();
+        if (solutionSquaresEmpty === false) {
+            for (let i = 0; i < solutionSquaresCopy.length; i++) {
+                if (solutionSquaresCopy[i] === n) {
+                    nIndices.push(i);
+                } else if (solutionSquaresCopy[i] === m) {
+                    mIndices.push(i);
+                }
+            }
+
+            for (let i = 0; i < nIndices.length; i++) {
+                if (squaresCopy[nIndices[i]] !== null) {
+                    squaresCopy[nIndices[i]] = m;
+                }
+                solutionSquaresCopy[nIndices[i]] = m;
+
+                if (squaresCopy[mIndices[i]] !== null) {
+                    squaresCopy[mIndices[i]] = n;
+                }
+                solutionSquaresCopy[mIndices[i]] = n;
+            }
+
+            setSquares(squaresCopy);
+            setSolutionSquares(solutionSquaresCopy);
+        }
+    }
+
     return (
         <>
             <div className="section" id="board-page" onClick={(e) => {
@@ -327,6 +366,12 @@ export function Board(props) {
                         generate17Clicked={(e) => generate17Puzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>
 
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        handleTornado(1, 2);
+                    }}>
+                        test
+                    </button>
                     <div className="board">
                         {buildSquares().map(ele => ele)}
                     </div>
