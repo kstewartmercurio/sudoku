@@ -5,6 +5,7 @@ import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 
 function App() {
+  const [seventeen, setSeventeen] = useState(false);
   const [blackout, setBlackout] = useState(false);
 
   const infoRef = React.createRef();
@@ -18,18 +19,24 @@ function App() {
     }
   }
 
-  const shareBlackoutStatus = (bool) => {
-    setBlackout(bool);
+  const shareSeventeenStatus = (status) => {
+    setSeventeen(status);
+  }
+
+  const shareBlackoutStatus = (status) => {
+    setBlackout(status);
   }
 
   return (
     <div className="App">
-      <BoardPage blackout={blackout} handleNavbarClick={handleNavbarClick}/>
+      <BoardPage seventeen={seventeen} blackout={blackout} 
+        handleNavbarClick={handleNavbarClick}/>
       <div ref={infoRef}>
         <Welcome/>
       </div>
       <div ref={settingsRef}>
-        <Settings shareBlackoutStatus={shareBlackoutStatus}/>
+        <Settings shareSeventeenStatus={shareSeventeenStatus} 
+          shareBlackoutStatus={shareBlackoutStatus}/>
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Square} from "./square";
 import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
 import {newPuzzle} from "../../generator/clueRemover.js";
+
+import {seventeenPuzzles} from "../../17generator/17puzzles";
 
 export function Board(props) {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -15,6 +17,12 @@ export function Board(props) {
     const [difficulty, setDifficulty] = useState("easy");
 
     let windowClick = true;
+
+    useEffect(() => {
+        if (props.seventeen === true) {
+            setSize("9x9");
+        }
+    }, [props.seventeen]);
 
     const renderSquare = (i) => {
         let classNameStr = "square ";
@@ -131,7 +139,7 @@ export function Board(props) {
         }
     }
 
-    const pullSize = (size) => {
+    const shareSize = (size) => {
         let n;
         switch (size) {
             case "6x6":
@@ -151,7 +159,7 @@ export function Board(props) {
         setSelected(null);
     }
 
-    const pullDifficulty = (diff) => {
+    const shareDifficulty = (diff) => {
         switch (diff) {
             case "easy":
                 setDifficulty("easy");
@@ -170,12 +178,23 @@ export function Board(props) {
     const solve = (e) => {
         e.preventDefault();
 
-        // given an invalid input, an invalid output will be returned, instead
-        // we want the solving attempt to halt
-        let puzzle = new Puzzle(squares);
-        let solveObj = puzzle.solvePuzzle();
+        let solutionSquaresEmpty = true;
+        for (let i = 0; i < solutionSquares.length; i++) {
+            if (solutionSquares[i] !== null) {
+                solutionSquaresEmpty = false;
+                break;
+            }
+        }
 
-        setSquares(solveObj["puzzleArr"]);
+        if (solutionSquaresEmpty === true) {
+            let puzzle = new Puzzle(squares);
+            let solveObj = puzzle.solvePuzzle();
+
+            setSquares(solveObj["puzzleArr"]);
+        } else {
+            setSquares(solutionSquares.slice());
+        }
+
         setInitial(initial.slice());
         setSelected(null);
     }
@@ -228,6 +247,36 @@ export function Board(props) {
         setSelected(null);
     }
 
+    const generate17Puzzle = (e) => {
+        e.preventDefault();
+
+        let i = Math.floor(Math.random() * seventeenPuzzles.length);
+        let puzzleJSON = seventeenPuzzles[i];
+        let puzzleJSONStr = puzzleJSON["puzzle"];
+        let puzzleJSONSolutionStr = puzzleJSON["solution"];
+
+        let puzzleArr = [];
+        let solutionArr = [];
+        let initialArr = [];
+
+        for (let i = 0; i < puzzleJSONStr.length; i++) {
+            if (puzzleJSONStr[i] === ".") {
+                puzzleArr.push(null);
+                initialArr.push(false);
+            } else {
+                puzzleArr.push(parseInt(puzzleJSONStr[i]));
+                initialArr.push(true);
+            }
+            // Isabelle wrote this line of code
+            solutionArr.push(puzzleJSONSolutionStr[i]);
+        }
+
+        setSquares(puzzleArr);
+        setSolutionSquares(solutionArr);
+        setInitial(initialArr);
+        setSelected(null);
+    }
+
     const clearBoard = (e) => {
         e.preventDefault();
 
@@ -262,11 +311,15 @@ export function Board(props) {
                 windowClick = true;
             }}>
                 <div id="board-page-center-content">
-                    <TopBtnBar hintClicked={(e) => giveHint()}
-                        pullSize={pullSize}
-                        pullDifficulty={pullDifficulty}
+                    <TopBtnBar seventeen={props.seventeen}
+                        hintClicked={(e) => giveHint()}
+                        size={size}
+                        difficulty={difficulty}
+                        shareSize={shareSize}
+                        shareDifficulty={shareDifficulty}
                         solveClicked={(e) => solve(e)}
                         generateClicked={(e) => generatePuzzle(e)}
+                        generate17Clicked={(e) => generate17Puzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>
 
                     <div className="board">
@@ -274,7 +327,6 @@ export function Board(props) {
                     </div>
                 
                     <NumBtnBar shareNumClick={shareNumClick}/>
-                    {/* <BottomBtnBar/> */}
                 </div>
             </div>
         </>

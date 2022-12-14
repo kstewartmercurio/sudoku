@@ -16,15 +16,11 @@ export function Settings(props) {
     const handleToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
+                props.shareSeventeenStatus(!seventeen);
                 setSeventeen(!seventeen);
                 break;
             case "blackout":
-                if (blackout === false) {
-                    props.shareBlackoutStatus(true);
-                } else {
-                    props.shareBlackoutStatus(false);
-                }
-
+                props.shareBlackoutStatus(!blackout);
                 toggleBlackoutStyling();
                 setBlackout(!blackout);
                 break;
