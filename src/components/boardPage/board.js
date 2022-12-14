@@ -7,6 +7,7 @@ import {NumBtnBar} from "./numBtnBar";
 import {newPuzzle} from "../../generator/clueRemover.js";
 
 import {seventeenPuzzles} from "../../17generator/17puzzles";
+import {shuffleArr} from "../../generator/mfgGenerator";
 
 export function Board(props) {
     const [squares, setSquares] = useState(Array(81).fill(null));
@@ -355,7 +356,6 @@ export function Board(props) {
             } else if ((n === m) && (m === puzzleSize)) {
                 m = 1;
             }
-            console.log("tornado swapping " + n.toString() + " and " + m.toString());
 
             let nIndices = [];
             let mIndices = [];
@@ -387,6 +387,28 @@ export function Board(props) {
         }
     }
 
+    const tornadoSwapX = () => {
+        let solutionSquaresEmpty = true;
+        for (let i = 0; i < solutionSquares.length; i++) {
+            if (solutionSquares[i] !== null) {
+                solutionSquaresEmpty = false;
+                break;
+            }
+        }
+
+        if (solutionSquaresEmpty === false) {
+            const n = parseInt(size[0]);
+            let valsArr;
+            if (n === 6) {
+                valsArr = shuffleArr([1, 2, 3, 4, 5, 6]);
+            } else {
+                valsArr = shuffleArr([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            }
+
+            
+        }
+    }
+
     return (
         <>
             <div className="section" id="board-page" onClick={(e) => {
@@ -406,12 +428,15 @@ export function Board(props) {
                         generateClicked={(e) => generatePuzzle(e)}
                         generate17Clicked={(e) => generate17Puzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>
-
+                    
+                    <button onClick={(e) => tornadoSwapX()}>
+                        test
+                    </button>
                     <div className="board">
                         {buildSquares().map(ele => ele)}
                     </div>
                 
-                    <NumBtnBar shareNumClick={shareNumClick}/>
+                    <NumBtnBar size={size} shareNumClick={shareNumClick}/>
                 </div>
             </div>
         </>

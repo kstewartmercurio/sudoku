@@ -122,7 +122,7 @@ class Puzzle {
 
 
 
-const shuffleArr = (inArr) => {
+export const shuffleArr = (inArr) => {
     let index = inArr.length;
     let randomIndex;
 
