@@ -2,7 +2,9 @@ import {createReadStream, createWriteStream, write} from "fs";
 import {createInterface} from "readline";
 import {Puzzle} from "../solver/puzzle.js";
 
-function puzzleStrToJSON(inStr) {
+import {seventeenPuzzles} from "./17puzzles.js";
+
+function puzzleStrToJSON(n, inStr) {
     let puzzleArr = [];
     for (let i = 0; i < inStr.length; i++) {
         if (inStr[i] === ".") {
@@ -22,6 +24,7 @@ function puzzleStrToJSON(inStr) {
     }
 
     return {
+        "id": n,
         "puzzle": inStr,
         "solution": solutionStr
     }
@@ -34,11 +37,14 @@ function main() {
         output: createWriteStream("./output.txt", {flags: "w"})
     });
 
+    let i = 1;
     r.on("line", function (text) {
-        // console.log(puzzleStrToJSON(text));
-        r.output.write(JSON.stringify(puzzleStrToJSON(text)) + "\n");
+        console.log(i);
+        r.output.write(JSON.stringify(puzzleStrToJSON(i, text)) + "\n");
+        i++;
     });
 }
 
-main();
+// main();
+console.log(seventeenPuzzles);
 
