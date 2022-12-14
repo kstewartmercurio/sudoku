@@ -110,6 +110,9 @@ export function Board(props) {
     }
 
     const giveHint = () => {
+        // if solutionSquares has a solution, then get the hint value from
+        // solutionSquares
+
         if (selected !== null) {
             let solutionSquaresEmpty = true;
             for (let i = 0; i < solutionSquares.length; i++) {
@@ -137,7 +140,6 @@ export function Board(props) {
 
             setSquares(squaresCopy);
             setInitial(initialCopy);
-            setSolutionSquares(Array(parseInt(size[0])).fill(null));
             setSelected(null);
         }
     }
