@@ -22,6 +22,9 @@ export function Board(props) {
         if (props.seventeen === true) {
             setSize("9x9");
         }
+        setSquares(Array(81).fill(null));
+        setInitial(Array(81).fill(false));
+        setSolutionSquares(Array(81).fill(null));
     }, [props.seventeen]);
 
     const renderSquare = (i) => {
