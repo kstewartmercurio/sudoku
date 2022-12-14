@@ -35,8 +35,8 @@ function main() {
     });
 
     r.on("line", function (text) {
-        console.log(puzzleStrToJSON(text));
-        r.output.write("test\n");
+        // console.log(puzzleStrToJSON(text));
+        r.output.write(JSON.stringify(puzzleStrToJSON(text)) + "\n");
     });
 }
 
