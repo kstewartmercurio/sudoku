@@ -25,6 +25,7 @@ export function Settings(props) {
                 setBlackout(!blackout);
                 break;
             case "tornado":
+                props.shareTornadoStatus(!tornado);
                 setTornado(!tornado)
                 break;
             case "swim test":

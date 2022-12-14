@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {Square} from "./square";
 import {Puzzle} from "../../solver/puzzle.js";
 
@@ -16,6 +16,8 @@ export function Board(props) {
     const [size, setSize] = useState("9x9");
     const [difficulty, setDifficulty] = useState("easy");
 
+    const tornadoMoveCount = useRef(0);
+
     let windowClick = true;
 
     useEffect(() => {
@@ -26,6 +28,26 @@ export function Board(props) {
         setInitial(Array(81).fill(false));
         setSolutionSquares(Array(81).fill(null));
     }, [props.seventeen]);
+
+    useEffect(() => {
+        setSquares(Array(81).fill(null));
+        setInitial(Array(81).fill(false));
+        setSolutionSquares(Array(81).fill(null));
+    }, [props.blackout]);
+
+    useEffect(() => {
+        tornadoMoveCount.current = 0;
+        setSquares(Array(81).fill(null));
+        setInitial(Array(81).fill(false));
+        setSolutionSquares(Array(81).fill(null));
+    }, [props.tornado]);
+
+    useEffect(() => {
+        if (tornadoMoveCount.current === 1) {
+            tornadoMoveCount.current = 0;
+            tornadoSwap();
+        }
+    }, [tornadoMoveCount.current]);
 
     const renderSquare = (i) => {
         let classNameStr = "square ";
@@ -102,6 +124,11 @@ export function Board(props) {
                 squaresCopy[selected] = null;
             } else {
                 squaresCopy[selected] = parseInt(e.key);
+            }
+
+            if (props.tornado === true) {
+                tornadoMoveCount.current++;
+                console.log(tornadoMoveCount.current);
             }
 
             setSquares(squaresCopy);
@@ -307,7 +334,7 @@ export function Board(props) {
         setSelected(null);
     }
 
-    const handleTornado = (n, m) => {
+    const tornadoSwap = () => {
         let solutionSquaresEmpty = true;
         for (let i = 0; i < solutionSquares.length; i++) {
             if (solutionSquares[i] !== null) {
@@ -316,11 +343,22 @@ export function Board(props) {
             }
         }
 
-        let nIndices = [];
-        let mIndices = [];
-        let squaresCopy = squares.slice();
-        let solutionSquaresCopy = solutionSquares.slice();
         if (solutionSquaresEmpty === false) {
+            const puzzleSize = parseInt(size[0]);
+            let n = (Math.floor(Math.random() * puzzleSize) + 1);
+            let m = (Math.floor(Math.random() * puzzleSize) + 1);
+            if ((n === m) && (m !== puzzleSize)) {
+                m++;
+            } else if ((n === m) && (m === puzzleSize)) {
+                m = 1;
+            }
+            console.log("tornado swapping " + n.toString() + " and " + m.toString());
+
+            let nIndices = [];
+            let mIndices = [];
+            let squaresCopy = squares.slice();
+            let solutionSquaresCopy = solutionSquares.slice();
+
             for (let i = 0; i < solutionSquaresCopy.length; i++) {
                 if (solutionSquaresCopy[i] === n) {
                     nIndices.push(i);
@@ -366,12 +404,6 @@ export function Board(props) {
                         generate17Clicked={(e) => generate17Puzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>
 
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        handleTornado(1, 2);
-                    }}>
-                        test
-                    </button>
                     <div className="board">
                         {buildSquares().map(ele => ele)}
                     </div>

@@ -34,17 +34,17 @@ export function Affixes(props) {
         }
     }
 
-    // const getTornadoInputTag = () => {
-    //     if (props.tornado === true) {
-    //         return <input type="checkbox" onChange={(e) => {
-    //             props.handleToggle("tornado");
-    //         }} checked/>
-    //     } else {
-    //         return <input type="checkbox" onChange={(e) => {
-    //             props.handleToggle("tornado");
-    //         }}/>
-    //     }
-    // }
+    const getTornadoInputTag = () => {
+        if (props.tornado === true) {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("tornado");
+            }} checked/>
+        } else {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("tornado");
+            }}/>
+        }
+    }
 
     // const getSwimTestInputTag = () => {
     //     if (props.swimTest === true) {
@@ -86,7 +86,7 @@ export function Affixes(props) {
                     did you bring your flashlight?
                 </p>
             </div>
-            {/* <div className="affix-wrapper">
+            <div className="affix-wrapper">
                 <p className="affix-subheader">
                     tornado
                     <label className="switch">
@@ -101,7 +101,7 @@ export function Affixes(props) {
                     for you; that'd be kind of me. 
                 </p>
             </div>
-            <div className="affix-wrapper">
+            {/* <div className="affix-wrapper">
                 <p className="affix-subheader">
                     swim test
                     <label className="switch">
