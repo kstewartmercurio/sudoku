@@ -348,64 +348,55 @@ export function Board(props) {
         }
 
         if (solutionSquaresEmpty === false) {
-            const puzzleSize = parseInt(size[0]);
-            let n = (Math.floor(Math.random() * puzzleSize) + 1);
-            let m = (Math.floor(Math.random() * puzzleSize) + 1);
-            if ((n === m) && (m !== puzzleSize)) {
-                m++;
-            } else if ((n === m) && (m === puzzleSize)) {
-                m = 1;
+            const n = parseInt(size[0]);
+            let valsArr;
+            let pairsArr;
+            if (n === 6) {
+                valsArr = shuffleArr([1, 2, 3, 4, 5, 6]);
+                pairsArr = [[valsArr[0], valsArr[1]], [valsArr[2], valsArr[3]], 
+                    [valsArr[4], valsArr[5]]];
+            } else {
+                valsArr = shuffleArr([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+                valsArr.pop();
+                pairsArr = [[valsArr[0], valsArr[1]], [valsArr[2], valsArr[3]], 
+                    [valsArr[4], valsArr[5]], [valsArr[6], valsArr[7]]];
             }
 
-            let nIndices = [];
-            let mIndices = [];
+            let x;
+            let y;
+            let xIndices;
+            let yIndices;
             let squaresCopy = squares.slice();
             let solutionSquaresCopy = solutionSquares.slice();
+            for (let i = 0; i < pairsArr.length; i++) {
+                x = pairsArr[i][0];
+                y = pairsArr[i][1];
 
-            for (let i = 0; i < solutionSquaresCopy.length; i++) {
-                if (solutionSquaresCopy[i] === n) {
-                    nIndices.push(i);
-                } else if (solutionSquaresCopy[i] === m) {
-                    mIndices.push(i);
+                xIndices = [];
+                yIndices = [];
+                for (let i = 0; i < solutionSquaresCopy.length; i++) {
+                    if (solutionSquaresCopy[i] === x) {
+                        xIndices.push(i);
+                    } else if (solutionSquaresCopy[i] === y) {
+                        yIndices.push(i);
+                    }
                 }
-            }
 
-            for (let i = 0; i < nIndices.length; i++) {
-                if (squaresCopy[nIndices[i]] !== null) {
-                    squaresCopy[nIndices[i]] = m;
-                }
-                solutionSquaresCopy[nIndices[i]] = m;
+                for (let i = 0; i < xIndices.length; i++) {
+                    if (squaresCopy[xIndices[i]] !== null) {
+                        squaresCopy[xIndices[i]] = y;
+                    }
+                    solutionSquaresCopy[xIndices[i]] = y;
 
-                if (squaresCopy[mIndices[i]] !== null) {
-                    squaresCopy[mIndices[i]] = n;
+                    if (squaresCopy[yIndices[i]] !== null) {
+                        squaresCopy[yIndices[i]] = x;
+                    }
+                    solutionSquaresCopy[yIndices[i]] = x;
                 }
-                solutionSquaresCopy[mIndices[i]] = n;
             }
 
             setSquares(squaresCopy);
             setSolutionSquares(solutionSquaresCopy);
-        }
-    }
-
-    const tornadoSwapX = () => {
-        let solutionSquaresEmpty = true;
-        for (let i = 0; i < solutionSquares.length; i++) {
-            if (solutionSquares[i] !== null) {
-                solutionSquaresEmpty = false;
-                break;
-            }
-        }
-
-        if (solutionSquaresEmpty === false) {
-            const n = parseInt(size[0]);
-            let valsArr;
-            if (n === 6) {
-                valsArr = shuffleArr([1, 2, 3, 4, 5, 6]);
-            } else {
-                valsArr = shuffleArr([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-            }
-
-            
         }
     }
 
@@ -429,9 +420,6 @@ export function Board(props) {
                         generate17Clicked={(e) => generate17Puzzle(e)}
                         clearClicked={(e) => clearBoard(e)}/>
                     
-                    <button onClick={(e) => tornadoSwapX()}>
-                        test
-                    </button>
                     <div className="board">
                         {buildSquares().map(ele => ele)}
                     </div>
