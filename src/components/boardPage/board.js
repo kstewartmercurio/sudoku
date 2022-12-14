@@ -128,7 +128,6 @@ export function Board(props) {
 
             if (props.tornado === true) {
                 tornadoMoveCount.current++;
-                console.log(tornadoMoveCount.current);
             }
 
             setSquares(squaresCopy);
@@ -329,6 +328,10 @@ export function Board(props) {
             }
             
             setSquares(squaresCopy);
+        }
+
+        if (props.tornado === true) {
+            tornadoMoveCount.current++;
         }
 
         setSelected(null);
