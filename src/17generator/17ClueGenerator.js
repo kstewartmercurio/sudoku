@@ -37,10 +37,11 @@ function main() {
         output: createWriteStream("./output.txt", {flags: "w"})
     });
 
-    let i = 1;
+    let i = 41;
     r.on("line", function (text) {
-        console.log(i);
+        console.log("starting #" + i.toString());
         r.output.write(JSON.stringify(puzzleStrToJSON(i, text)) + "\n");
+        console.log("finished #" + i.toString());
         i++;
     });
 }
