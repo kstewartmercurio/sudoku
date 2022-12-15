@@ -1,3 +1,9 @@
+#welcome-content {
+    margin-top: 2%;
+    display: inline-block;
+    text-align: center;
+}
+
 #header-do {
     color: var(--welcomeColor3);
 }
@@ -6,10 +12,17 @@
     color: var(--welcomeColor2);
 }
 
+#welcome-header-wrapper {
+    width: 100%;
+    margin-top: 0;
+    display: inline-block;
+    text-align: center;
+}
+
 #welcome-header {
     color: var(--welcomeColor1);
     position: relative;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: 50px;
     width: max-content;
     font-family: "Roboto Mono";

@@ -1,23 +1,45 @@
 import React, {useState} from "react";
 
+import {Navbar} from "./components/boardPage/navbar";
 import {BoardPage} from "./components/boardPage/boardPage";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 
 function App() {
+  const [activePage, setActivePage] = useState("board");
+
   const [seventeen, setSeventeen] = useState(false);
   const [blackout, setBlackout] = useState(false);
   const [tornado, setTornado] = useState(false);
   const [swimTest, setSwimTest] = useState(false);
 
-  const infoRef = React.createRef();
-  const settingsRef = React.createRef();
+  const getActivePageTag = () => {
+    switch (activePage) {
+      case "board":
+        return <BoardPage activePage={activePage} seventeen={seventeen} 
+          blackout={blackout} tornado={tornado} swimTest={swimTest}/>
+      case "info":
+        return <Welcome/>
+      case "settings":
+        return <Settings shareAffixStatus={shareAffixStatus}/>
+      default:
+        return null;
+    }
+  }
 
-  const handleNavbarClick = (clickType) => {
-    if (clickType === "info") {
-      infoRef.current.scrollIntoView({behavior: "smooth"});
-    } else if (clickType === "settings") {
-      settingsRef.current.scrollIntoView({behavior: "smooth"});
+  const shareNavbarClick = (clickType) => {
+    switch (clickType) {
+      case "board":
+        setActivePage("board");
+        break;
+      case "info":
+        setActivePage("info");
+        break;
+      case "settings":
+        setActivePage("settings");
+        break;
+      default:
+        break;
     }
   }
 
@@ -42,14 +64,8 @@ function App() {
 
   return (
     <div className="App">
-      <BoardPage seventeen={seventeen} blackout={blackout} tornado={tornado}
-        swimTest={swimTest} handleNavbarClick={handleNavbarClick}/>
-      <div ref={infoRef}>
-        <Welcome/>
-      </div>
-      <div ref={settingsRef}>
-        <Settings shareAffixStatus={shareAffixStatus}/>
-      </div>
+      <Navbar activePage={activePage} shareNavbarClick={shareNavbarClick}/>
+      {getActivePageTag()}
     </div>
   );
 }

@@ -4,16 +4,18 @@ export function Welcome() {
     return (
         <>
             <div className="section" id="welcome-page">
-                <div id="welcome-header">
-                    <p id="header-line-1">
-                        i make, <span id="header-u">you </span><span id="header-do">do</span>
-                    </p>
-                    <p id="header-line-2">
-                        we love <span id="header-sudoku">sudoku</span>
-                    </p>
-                </div>
-
                 <div id="welcome-content">
+                    <div id="welcome-header-wrapper">
+                        <div id="welcome-header">
+                            <p id="header-line-1">
+                                i make, <span id="header-u">you </span><span id="header-do">do</span>
+                            </p>
+                            <p id="header-line-2">
+                                we love <span id="header-sudoku">sudoku</span>
+                            </p>
+                        </div>
+                    </div>
+
                     <p className="welcome-subheader">project overview</p>
                     <p id="p1">
                         welcome to my sudoku app! i've made this web app for
