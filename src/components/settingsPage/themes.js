@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {themeVals} from "./themesList";
 
 export function Themes(props) {
+    const [open, setOpen] = useState(true);
+
     const updateTheme = (e, newTheme) => {
         e.preventDefault();
 
@@ -44,48 +46,69 @@ export function Themes(props) {
         r.style.setProperty("--settingsNavBackgroundColor", newThemeVals[3][1]);
     }
 
+    const handleOpen = () => {
+        setOpen(!open);
+    }
+
+    const getThemesDropdownTags = () => {
+        if (open === true) {
+            return (
+                <div id="theme-set">
+                    <button className="theme-btn" id="xanadu" onClick={(e) => {
+                        updateTheme(e, "xanadu")
+                    }}>
+                        xanadu
+                    </button>
+                    <button className="theme-btn" id="harvest-gold" onClick={(e) => {
+                        updateTheme(e, "harvest gold")
+                    }}>
+                        harvest gold
+                    </button>
+                    <button className="theme-btn" id="antique-brass" onClick={(e) => {
+                        updateTheme(e, "antique brass")
+                    }}>
+                        antique brass
+                    </button>
+                    <button className="theme-btn" id="oxford-blue" onClick={(e) => {
+                        updateTheme(e, "oxford blue")
+                    }}>
+                        oxford blue
+                    </button>
+                    <button className="theme-btn" id="brunswick-green" onClick={(e) => {
+                        updateTheme(e, "brunswick green")
+                    }}>
+                        brunswick green
+                    </button>
+                    <button className="theme-btn" id="french-violet" onClick={(e) => {
+                        updateTheme(e, "french violet")
+                    }}>
+                        french violet
+                    </button>
+                    <button className="theme-btn" id="claret" onClick={(e) => {
+                        updateTheme(e, "claret")
+                    }}>
+                        claret
+                    </button>
+                    <button className="theme-btn" id="sage" onClick={(e) => {
+                        updateTheme(e, "sage")
+                    }}>
+                        sage
+                    </button>
+                </div>
+            )
+        } else {
+            return null;
+        }
+    }
+
     return (
-        <div id="theme-set">
-            <button className="theme-btn" id="xanadu" onClick={(e) => {
-                updateTheme(e, "xanadu")
-            }}>
-                xanadu
-            </button>
-            <button className="theme-btn" id="harvest-gold" onClick={(e) => {
-                updateTheme(e, "harvest gold")
-            }}>
-                harvest gold
-            </button>
-            <button className="theme-btn" id="antique-brass" onClick={(e) => {
-                updateTheme(e, "antique brass")
-            }}>
-                antique brass
-            </button>
-            <button className="theme-btn" id="oxford-blue" onClick={(e) => {
-                updateTheme(e, "oxford blue")
-            }}>
-                oxford blue
-            </button>
-            <button className="theme-btn" id="brunswick-green" onClick={(e) => {
-                updateTheme(e, "brunswick green")
-            }}>
-                brunswick green
-            </button>
-            <button className="theme-btn" id="french-violet" onClick={(e) => {
-                updateTheme(e, "french violet")
-            }}>
-                french violet
-            </button>
-            <button className="theme-btn" id="claret" onClick={(e) => {
-                updateTheme(e, "claret")
-            }}>
-                claret
-            </button>
-            <button className="theme-btn" id="sage" onClick={(e) => {
-                updateTheme(e, "sage")
-            }}>
-                sage
-            </button>
-        </div>
+        <>
+            <div className="dd-wrapper" id="theme-dd-wrapper">
+                <button className="settings-dd" onClick={handleOpen}>
+                    themes
+                </button>
+            </div>
+            {getThemesDropdownTags()}
+        </>
     )
 }

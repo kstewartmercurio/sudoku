@@ -21,6 +21,7 @@
   --settingsAffixColor1: var(--welcomeColor3);
   --settingsAffixColor2: var(--welcomeColor2);
   
+  --settingsDropdownMarginBottom: 0;
   --settingsAffixSwitchWidth: 38px;
 }
 

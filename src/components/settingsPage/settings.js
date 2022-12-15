@@ -4,8 +4,6 @@ import {Themes} from "./themes";
 import {themeVals} from "./themesList";
 
 export function Settings(props) {
-    const [activeSetting, setActiveSetting] = useState("affixes");
-
     const [seventeen, setSeventeen] = useState(false);
     const [blackout, setBlackout] = useState(false);
     const [tornado, setTornado] = useState(false);
@@ -94,47 +92,18 @@ export function Settings(props) {
 
     const updateStoredTheme = (newTheme) => {
         setStoredTheme(newTheme);
-    }
-
-    const renderActiveSetting = () => {
-        switch (activeSetting) {
-            case "affixes":
-                return <Affixes seventeen={seventeen} blackout={blackout}
-                    tornado={tornado} swimTest={swimTest}
-                    handleToggle={handleToggle}/>
-            case "themes":
-                return <Themes blackout={blackout} storedTheme={storedTheme} 
-                    updateStoredTheme={updateStoredTheme}/>
-            default:
-                break;
-        }
-    }
+    } 
 
     return (
         <>
             <div className="section" id="settings-page">
-                <div id="settings-nav-column">
-                    <button className="settings-nav-btn" id="affix-selector"
-                        onClick={(e) => {
-                            setActiveSetting("affixes");
-                    }}>
-                        affixes
-                    </button>
-                    <button className="settings-nav-btn" id="theme-selector"
-                        onClick={() => {
-                            setActiveSetting("themes");
-                    }}>
-                        themes
-                    </button>
-                    {/* <button className="settings-nav-btn" id="variant-selector"
-                        onClick={() => {
-                            setActiveSetting("variants");
-                    }}>
-                        variants
-                    </button> */}
-                </div>
                 <div id="settings-content">
-                    {renderActiveSetting()}
+                    {/* {renderActiveSetting()} */}
+                    <Affixes seventeen={seventeen} blackout={blackout}
+                    tornado={tornado} swimTest={swimTest}
+                    handleToggle={handleToggle}/>
+                    <Themes blackout={blackout} storedTheme={storedTheme} 
+                    updateStoredTheme={updateStoredTheme}/>
                 </div>
             </div>
         </>
