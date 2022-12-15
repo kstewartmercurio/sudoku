@@ -16,19 +16,20 @@ export function Settings(props) {
     const handleToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
-                props.shareSeventeenStatus(!seventeen);
+                props.shareAffixStatus("17 clue", !seventeen);
                 setSeventeen(!seventeen);
                 break;
             case "blackout":
-                props.shareBlackoutStatus(!blackout);
+                props.shareAffixStatus("blackout", !blackout);
                 toggleBlackoutStyling();
                 setBlackout(!blackout);
                 break;
             case "tornado":
-                props.shareTornadoStatus(!tornado);
+                props.shareAffixStatus("tornado", !tornado);
                 setTornado(!tornado)
                 break;
             case "swim test":
+                props.shareAffixStatus("swim test", !swimTest);
                 setSwimTest(!swimTest);
                 break;
             default:

@@ -12,7 +12,7 @@ export function BoardPage(props) {
         <div>  
             <Navbar shareNavbarClick={shareNavbarClick}/>
             <Board seventeen={props.seventeen} blackout={props.blackout}
-                tornado={props.tornado}/>
+                tornado={props.tornado} swimTest={props.swimTest}/>
         </div>
     )
 }

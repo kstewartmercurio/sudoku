@@ -8,6 +8,7 @@ function App() {
   const [seventeen, setSeventeen] = useState(false);
   const [blackout, setBlackout] = useState(false);
   const [tornado, setTornado] = useState(false);
+  const [swimTest, setSwimTest] = useState(false);
 
   const infoRef = React.createRef();
   const settingsRef = React.createRef();
@@ -20,29 +21,34 @@ function App() {
     }
   }
 
-  const shareSeventeenStatus = (status) => {
-    setSeventeen(status);
-  }
-
-  const shareBlackoutStatus = (status) => {
-    setBlackout(status);
-  }
-
-  const shareTornadoStatus = (status) => {
-    setTornado(status);
+  const shareAffixStatus = (affix, status) => {
+    switch (affix) {
+      case "17 clue":
+        setSeventeen(status);
+        break;
+      case "blackout":
+        setBlackout(status);
+        break;
+      case "tornado":
+        setTornado(status);
+        break;
+      case "swim test":
+        setSwimTest(status);
+        break;
+      default:
+        break;
+    }
   }
 
   return (
     <div className="App">
       <BoardPage seventeen={seventeen} blackout={blackout} tornado={tornado}
-        handleNavbarClick={handleNavbarClick}/>
+        swimTest={swimTest} handleNavbarClick={handleNavbarClick}/>
       <div ref={infoRef}>
         <Welcome/>
       </div>
       <div ref={settingsRef}>
-        <Settings shareSeventeenStatus={shareSeventeenStatus} 
-          shareBlackoutStatus={shareBlackoutStatus}
-          shareTornadoStatus={shareTornadoStatus}/>
+        <Settings shareAffixStatus={shareAffixStatus}/>
       </div>
     </div>
   );

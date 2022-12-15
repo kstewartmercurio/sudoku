@@ -5,8 +5,9 @@ import React from "react";
 blackout - blackout theme, hover over a square to see its value
 tornado - every n moves switch all six/nine x value squares and all six/nine y
     value squares
-swim test - start with the initial squares, everything disappears after the
-    first move is made and the puzzle must be solved in your head
+swim test - start with the initial squares, initial square values disappear
+    after making the first move and puzzle must be completed without seeing
+    initial values
 */
 
 export function Affixes(props) {
@@ -46,17 +47,17 @@ export function Affixes(props) {
         }
     }
 
-    // const getSwimTestInputTag = () => {
-    //     if (props.swimTest === true) {
-    //         return <input type="checkbox" onChange={(e) => {
-    //             props.handleToggle("swim test");
-    //         }} checked/>
-    //     } else {
-    //         return <input type="checkbox" onChange={(e) => {
-    //             props.handleToggle("swim test");
-    //         }}/>
-    //     }
-    // }
+    const getSwimTestInputTag = () => {
+        if (props.swimTest === true) {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("swim test");
+            }} checked/>
+        } else {
+            return <input type="checkbox" onChange={(e) => {
+                props.handleToggle("swim test");
+            }}/>
+        }
+    }
 
     return (
         <div id="affix-set">
@@ -101,7 +102,7 @@ export function Affixes(props) {
                     for you; that'd be kind of me. 
                 </p>
             </div>
-            {/* <div className="affix-wrapper">
+            <div className="affix-wrapper">
                 <p className="affix-subheader">
                     swim test
                     <label className="switch">
@@ -114,7 +115,7 @@ export function Affixes(props) {
                     mates for over 20 years. perhaps your memory can compare?
                     i'd adivse that you not forget to remember.
                 </p>
-            </div> */}
+            </div>
         </div>
     )
 }

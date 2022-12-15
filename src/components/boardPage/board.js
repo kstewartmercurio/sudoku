@@ -10,6 +10,8 @@ import {seventeenPuzzles} from "../../17generator/17puzzles";
 import {shuffleArr} from "../../generator/mfgGenerator";
 
 export function Board(props) {
+    let windowClick = true;
+
     const [squares, setSquares] = useState(Array(81).fill(null));
     const [initial, setInitial] = useState(Array(81).fill(false));
     const [solutionSquares, setSolutionSquares] = useState(Array(81).fill(null));
@@ -18,8 +20,7 @@ export function Board(props) {
     const [difficulty, setDifficulty] = useState("easy");
 
     const tornadoMoveCount = useRef(0);
-
-    let windowClick = true;
+    const [firstMoveMade, setFirstMoveMade] = useState(false);
 
     useEffect(() => {
         if (props.seventeen === true) {
@@ -34,7 +35,7 @@ export function Board(props) {
         setSquares(Array(81).fill(null));
         setInitial(Array(81).fill(false));
         setSolutionSquares(Array(81).fill(null));
-    }, [props.blackout]);
+    }, [props.blackout, props.swimTest]);
 
     useEffect(() => {
         tornadoMoveCount.current = 0;
@@ -71,6 +72,9 @@ export function Board(props) {
         }
         if (props.blackout === true) {
             classNameStr += " blackout";
+        }
+        if ((props.swimTest === true) && (firstMoveMade === true)) {
+            classNameStr += " dolphin";
         }
         
         let selBool;
@@ -129,6 +133,9 @@ export function Board(props) {
 
             if (props.tornado === true) {
                 tornadoMoveCount.current++;
+            }
+            if ((props.swimTest === true) && (firstMoveMade === false)) {
+                setFirstMoveMade(true);
             }
 
             setSquares(squaresCopy);
@@ -273,6 +280,10 @@ export function Board(props) {
             solutionArr.push(parseInt(solutionStr[i]));
         }
 
+        if (props.swimTest === true) {
+            setFirstMoveMade(false);
+        }
+
         setSquares(puzzleArr);
         setSolutionSquares(solutionArr);
         setInitial(initialArr);
@@ -303,6 +314,10 @@ export function Board(props) {
             solutionArr.push(puzzleJSONSolutionStr[i]);
         }
 
+        if (props.swimTest === true) {
+            setFirstMoveMade(false);
+        }
+
         setSquares(puzzleArr);
         setSolutionSquares(solutionArr);
         setInitial(initialArr);
@@ -311,6 +326,10 @@ export function Board(props) {
 
     const clearBoard = (e) => {
         e.preventDefault();
+
+        if (props.swimTest === true) {
+            setFirstMoveMade(false);
+        }
 
         const n = parseInt(size[0]);
         setSquares(Array(n * n).fill(null));
@@ -333,6 +352,9 @@ export function Board(props) {
 
         if (props.tornado === true) {
             tornadoMoveCount.current++;
+        }
+        if ((props.swimTest === true) && (firstMoveMade === false)) {
+            setFirstMoveMade(true);
         }
 
         setSelected(null);
