@@ -62,7 +62,6 @@ export function Board(props) {
             let restoreColor = rs.getPropertyValue("--squareBackgroundColor");
             r.style.setProperty("--squareBackgroundColor", flashColor);
 
-
             setTimeout(function() {
                 r.style.setProperty("--squareBackgroundColor", restoreColor);
             }, 250);
@@ -89,7 +88,10 @@ export function Board(props) {
             }
         }
         if (props.blackout === true) {
-            classNameStr += " blackout";
+            let p = new Puzzle(squares.slice());
+            if (p.complete() === false) {
+                classNameStr += " blackout";
+            }
         }
         if ((props.swimTest === true) && (firstMoveMade === true)) {
             classNameStr += " dolphin";
