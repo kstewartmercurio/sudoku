@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 
 import {Navbar} from "./components/boardPage/navbar";
-import {BoardPage} from "./components/boardPage/boardPage";
+// import {BoardPage} from "./components/boardPage/boardPage";
+import {Board} from "./components/boardPage/board";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 
@@ -16,8 +17,8 @@ function App() {
   const getActivePageTag = () => {
     switch (activePage) {
       case "board":
-        return <BoardPage activePage={activePage} seventeen={seventeen} 
-          blackout={blackout} tornado={tornado} swimTest={swimTest}/>
+        return <Board seventeen={seventeen} blackout={blackout} 
+          tornado={tornado} swimTest={swimTest} />
       case "info":
         return <Welcome/>
       case "settings":

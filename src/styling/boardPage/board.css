@@ -3,6 +3,10 @@
     display: inline-block;
 }
 
+#board-page-center-content {
+    margin-top: 1%;
+}
+
 .board6x6-row-0, .board9x9-row-0 {
     border-top: 5px solid var(--boardColor) !important;
 }

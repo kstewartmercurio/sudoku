@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-import "./styling/boardPage/boardPage.css";
 import "./styling/boardPage/navbar.css";
 import "./styling/boardPage/topBtnBar.css";
 import "./styling/boardPage/board.css";

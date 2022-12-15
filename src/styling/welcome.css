@@ -22,7 +22,6 @@
 #welcome-header {
     color: var(--welcomeColor1);
     position: relative;
-    /* margin-top: 50px; */
     margin-bottom: 50px;
     width: max-content;
     font-family: "Roboto Mono";

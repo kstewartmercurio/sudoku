@@ -1,5 +1,10 @@
+#settings-page {
+    background-color: var(--backgroundColor);
+    transition: background-color .3s;
+}
+
 #settings-content {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
     display: inline-block;
     font-family: "Roboto Mono";
     margin: 1.5% 6% 3.75% 3.75%;
