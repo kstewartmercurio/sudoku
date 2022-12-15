@@ -49,7 +49,7 @@ export function Board(props) {
             tornadoMoveCount.current = 0;
             tornadoSwap();
         }
-    }, [tornadoMoveCount.current]);
+    });
 
     useEffect(() => {
         let currentPuzzle = new Puzzle(squares.slice());
