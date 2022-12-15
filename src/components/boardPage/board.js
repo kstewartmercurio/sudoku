@@ -51,6 +51,24 @@ export function Board(props) {
         }
     }, [tornadoMoveCount.current]);
 
+    useEffect(() => {
+        let currentPuzzle = new Puzzle(squares.slice());
+        if ((currentPuzzle.complete() === true) && 
+            (currentPuzzle.checkInvalidPuzzle() === false)) {
+            var r = document.querySelector(":root");
+            var rs = getComputedStyle(r);
+            
+            let flashColor = rs.getPropertyValue("--selectedSquareColor");
+            let restoreColor = rs.getPropertyValue("--squareBackgroundColor");
+            r.style.setProperty("--squareBackgroundColor", flashColor);
+
+
+            setTimeout(function() {
+                r.style.setProperty("--squareBackgroundColor", restoreColor);
+            }, 250);
+        }
+    }, [squares])
+
     const renderSquare = (i) => {
         let classNameStr = "square ";
         if (size === "6x6") {

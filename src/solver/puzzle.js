@@ -417,16 +417,13 @@ export class Puzzle {
     checkInvalidPuzzle() {
         for (let i = 0; i < this.rows.length; i++) {
             if (this.rows[i].checkForInvalidContents() === true) {
-                console.log("invalid solution: check row " + i.toString());
                 return true;
             }
 
             if (this.columns[i].checkForInvalidContents() === true) {
-                console.log("invalid solution: check column " + i.toString());
                 return true;
             }
             if (this.boxes[i].checkForInvalidContents() === true) {
-                console.log("invalid solution: check box " + i.toString());
                 return true;
             }
         }
