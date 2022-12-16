@@ -1,9 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Affixes} from "./affixes";
 import {Themes} from "./themes";
 import {themeVals} from "./themesList";
 
 export function Settings(props) {
+    useEffect(() => {
+        var r = document.querySelector(":root");
+        var rs = getComputedStyle(r);
+        let storedColor = rs.getPropertyValue("--bottomBarBackgroundColor");
+        r.style.setProperty("--bottomBarBackgroundColor", "transparent");
+        return () => {
+            r.style.setProperty("--bottomBarBackgroundColor", storedColor);
+        }
+    })
+
     const [storedTheme, setStoredTheme] = useState("xanadu");
 
     const handleToggle = (affixType) => {

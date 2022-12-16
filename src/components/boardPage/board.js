@@ -66,7 +66,7 @@ export function Board(props) {
                 r.style.setProperty("--squareBackgroundColor", restoreColor);
             }, 250);
         }
-    }, [squares])
+    }, [squares]);
 
     const renderSquare = (i) => {
         let classNameStr = "square ";

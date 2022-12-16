@@ -1,5 +1,5 @@
 #bottom-bar {
-    background-color: transparent;
+    background-color: var(--bottomBarBackgroundColor);
     width: 100%;
     height: 62.5px;
     display: table;
@@ -22,12 +22,13 @@
 
 .bottom-bar-btn {
     color: var(--navbarColor);
+    margin-right: 24px;
     text-decoration: none;
     font-family: "Roboto Mono";
     font-size: 14px;
     transition: color .3s;
 }
 
-#fa-code {
+#fa-code, #fa-coffee {
     margin: 0;
 }

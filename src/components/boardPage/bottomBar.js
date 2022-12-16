@@ -9,6 +9,11 @@ export function BottomBar() {
                     rel="noopener noreferrer" target="_blank">
                     <i className="fa-solid fa-code" id="fa-code"></i> github
                 </a>
+                <a className="bottom-bar-btn" id="coffee-btn"
+                    href="https://www.buymeacoffee.com/stewartmercurio"
+                    rel="noopener noreferer" target="_blank">
+                    <i className="fa-solid fa-mug-hot" id="fa-coffee"></i> buy me a coffee
+                </a>
             </div>
         </div>
     )

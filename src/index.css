@@ -20,7 +20,8 @@
   --settingsNavBackgroundColor: #a9c5a0;
   --settingsAffixColor1: var(--welcomeColor3);
   --settingsAffixColor2: var(--welcomeColor2);
-  
+
+  --bottomBarBackgroundColor: var(--backgroundColor);
   --settingsDropdownMarginBottom: 0;
   --settingsAffixSwitchWidth: 38px;
 }
@@ -42,6 +43,8 @@ body {
   height: 100%;
   margin: 0;
   transition: background-color .3s;
+  /* changing scale for buy me a coffee cover photo screenshots */
+  /* scale: .36;  */
 }
 
 .section {
