@@ -39,6 +39,7 @@ export function Sounds(props) {
                     break;
                 case "typewriter":
                     typewriterId = "selected-sound";
+                    break;
                 default:
                     break;
             }

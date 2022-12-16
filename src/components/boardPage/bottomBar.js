@@ -11,7 +11,7 @@ export function BottomBar() {
                 </a>
                 <a className="bottom-bar-btn" id="coffee-btn"
                     href="https://www.buymeacoffee.com/stewartmercurio"
-                    rel="noopener noreferer" target="_blank">
+                    rel="noopener noreferrer" target="_blank">
                     <i className="fa-solid fa-mug-hot" id="fa-coffee"></i> buy me a coffee
                 </a>
             </div>
