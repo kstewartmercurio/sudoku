@@ -18,7 +18,7 @@ function Index() {
   const [tornado, setTornado] = useState(false);
   const [swimTest, setSwimTest] = useState(false);
 
-  const shareAffixStatus = (affix, status) => {
+  const shareAffixStatus = (affix) => {
     switch (affix) {
       case "17 clue":
         setSeventeen(!seventeen);
