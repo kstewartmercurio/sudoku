@@ -18,9 +18,10 @@ import typewriterSfx from "../../static/sound/frontend_static_sound_click5_click
 export function Board(props) {
     let windowClick = true;
 
+    const [complete, setComplete] = useState(false);
     const [squares, setSquares] = useState(Array(81).fill(null));
-    const [initial, setInitial] = useState(Array(81).fill(false));
     const [solutionSquares, setSolutionSquares] = useState(Array(81).fill(null));
+    const [initial, setInitial] = useState(Array(81).fill(false));
     const [selected, setSelected] = useState(null);
     const [size, setSize] = useState("9x9");
     const [difficulty, setDifficulty] = useState("easy");
@@ -36,6 +37,8 @@ export function Board(props) {
         let currentPuzzle = new Puzzle(squares.slice());
         if ((currentPuzzle.complete() === true) && 
             (currentPuzzle.checkInvalidPuzzle() === false)) {
+            setComplete(true);
+
             var r = document.querySelector(":root");
             var rs = getComputedStyle(r);
             
@@ -163,28 +166,31 @@ export function Board(props) {
                 break;
         }
 
-        if (initial[selected] === true) {
-            setSelected(null);
-        } else if ((selected !== null) && ((parseInt(e.key) >= 0) && 
-            (parseInt(e.key) <= 9))) {
-            let squaresCopy = squares.slice();
+        if (complete === false) {
+            if (initial[selected] === true) {
+                setSelected(null);
+            } else if ((selected !== null) && ((parseInt(e.key) >= 0) && 
+                (parseInt(e.key) <= 9))) {
+                let squaresCopy = squares.slice();
 
-            if (parseInt(e.key) === 0) {
-                squaresCopy[selected] = null;
-            } else {
-                squaresCopy[selected] = parseInt(e.key);
-            }
+                if (parseInt(e.key) === 0) {
+                    squaresCopy[selected] = null;
+                } else {
+                    squaresCopy[selected] = parseInt(e.key);
+                }
 
-            if (props.tornado === true) {
-                tornadoMoveCount.current++;
-            }
-            if ((props.swimTest === true) && (firstMoveMade === false)) {
-                setFirstMoveMade(true);
-            }
+                if (props.tornado === true) {
+                    tornadoMoveCount.current++;
+                }
+                if ((props.swimTest === true) && (firstMoveMade === false)) {
+                    setFirstMoveMade(true);
+                }
 
-            setSquares(squaresCopy);
-            setSelected(null);
+                setSquares(squaresCopy);
+            }
         }
+
+        setSelected(null);
     }
 
     const giveHint = () => {
@@ -382,23 +388,25 @@ export function Board(props) {
     }
 
     const shareNumClick = (n) => {
-        if ((selected !== null) && (initial[selected] === false)) {
-            let squaresCopy = squares.slice();
+        if (complete === false) {
+            if ((selected !== null) && (initial[selected] === false)) {
+                let squaresCopy = squares.slice();
 
-            if (n === 0) {
-                squaresCopy[selected] = null;
-            } else {
-                squaresCopy[selected] = n;
+                if (n === 0) {
+                    squaresCopy[selected] = null;
+                } else {
+                    squaresCopy[selected] = n;
+                }
+                
+                setSquares(squaresCopy);
             }
-            
-            setSquares(squaresCopy);
-        }
 
-        if (props.tornado === true) {
-            tornadoMoveCount.current++;
-        }
-        if ((props.swimTest === true) && (firstMoveMade === false)) {
-            setFirstMoveMade(true);
+            if (props.tornado === true) {
+                tornadoMoveCount.current++;
+            }
+            if ((props.swimTest === true) && (firstMoveMade === false)) {
+                setFirstMoveMade(true);
+            }
         }
 
         setSelected(null);
