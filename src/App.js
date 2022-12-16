@@ -13,13 +13,16 @@ function App(props) {
     switch (activePage) {
       case "board":
         return <Board seventeen={props.seventeen} blackout={props.blackout} 
-          tornado={props.tornado} swimTest={props.swimTest} />
+          tornado={props.tornado} swimTest={props.swimTest}
+          activeSound={props.activeSound} />
       case "info":
         return <Welcome/>
       case "settings":
         return <Settings shareAffixStatus={props.shareAffixStatus}
           seventeen={props.seventeen} blackout={props.blackout} 
           tornado={props.tornado} swimTest={props.swimTest}
+          activeSound={props.activeSound} 
+          shareActiveSound={props.shareActiveSound}
         />
       default:
         return null;

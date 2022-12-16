@@ -10,14 +10,17 @@ import "./styling/boardPage/board.css";
 import "./styling/boardPage/numBtnBar.css";
 import "./styling/welcome.css";
 import "./styling/settings/settings.css";
-import "./styling/settings/affixContent.css";
-import "./styling/settings/themeContent.css";
+import "./styling/settings/affixes.css";
+import "./styling/settings/sounds.css";
+import "./styling/settings/themes.css";
 
 function Index() {
   const [seventeen, setSeventeen] = useState(false);
   const [blackout, setBlackout] = useState(false);
   const [tornado, setTornado] = useState(false);
   const [swimTest, setSwimTest] = useState(false);
+  
+  const [activeSound, setActiveSound] = useState("off");
 
   const shareAffixStatus = (affix) => {
     switch (affix) {
@@ -38,10 +41,24 @@ function Index() {
     }
   }
 
+  const shareActiveSound = (newActiveSound) => {
+    switch (newActiveSound) {
+      case "off":
+        setActiveSound("off");
+        break;
+      case "click":
+        setActiveSound("click");
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <App shareAffixStatus={shareAffixStatus}
       seventeen={seventeen} blackout={blackout} tornado={tornado} 
-      swimTest={swimTest}
+      swimTest={swimTest} activeSound={activeSound}
+      shareActiveSound={shareActiveSound}
     />
   )
 }

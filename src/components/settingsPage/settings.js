@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Affixes} from "./affixes";
+import {Sounds} from "./sounds";
 import {Themes} from "./themes";
 import {themeVals} from "./themesList";
 
@@ -16,7 +17,7 @@ export function Settings(props) {
 
     const [storedTheme, setStoredTheme] = useState("xanadu");
 
-    const handleToggle = (affixType) => {
+    const handleAffixToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
                 props.shareAffixStatus("17 clue", props.seventeen);
@@ -101,7 +102,10 @@ export function Settings(props) {
                 <div id="settings-content">
                     <Affixes seventeen={props.seventeen} 
                     blackout={props.blackout} tornado={props.tornado} 
-                    swimTest={props.swimTest} handleToggle={handleToggle}/>
+                    swimTest={props.swimTest} 
+                    handleAffixToggle={handleAffixToggle}/>
+                    <Sounds activeSound={props.activeSound}
+                        shareActiveSound={props.shareActiveSound}/>
                     <Themes blackout={props.blackout} storedTheme={storedTheme} 
                     updateStoredTheme={updateStoredTheme}/>
                 </div>

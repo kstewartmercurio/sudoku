@@ -16,11 +16,11 @@ export function Affixes(props) {
     const getSeventeenInputTag = () => {
         if (props.seventeen === true) {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("17 clue");
+                props.handleAffixToggle("17 clue");
             }} checked/>
         } else {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("17 clue");
+                props.handleAffixToggle("17 clue");
             }}/>
         }
     }
@@ -28,11 +28,11 @@ export function Affixes(props) {
     const getBlackoutInputTag = () => {
         if (props.blackout === true) {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("blackout");
+                props.handleAffixToggle("blackout");
             }} checked/>
         } else {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("blackout");
+                props.handleAffixToggle("blackout");
             }}/>
         }
     }
@@ -40,11 +40,11 @@ export function Affixes(props) {
     const getTornadoInputTag = () => {
         if (props.tornado === true) {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("tornado");
+                props.handleAffixToggle("tornado");
             }} checked/>
         } else {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("tornado");
+                props.handleAffixToggle("tornado");
             }}/>
         }
     }
@@ -52,11 +52,11 @@ export function Affixes(props) {
     const getSwimTestInputTag = () => {
         if (props.swimTest === true) {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("swim test");
+                props.handleAffixToggle("swim test");
             }} checked/>
         } else {
             return <input type="checkbox" onChange={(e) => {
-                props.handleToggle("swim test");
+                props.handleAffixToggle("swim test");
             }}/>
         }
     }

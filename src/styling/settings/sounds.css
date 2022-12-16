@@ -1,0 +1,29 @@
+#sound-set {
+    position: relative;
+    margin-top: 22px;
+}
+
+#selected-sound {
+    color: var(--buttonBackgroundColor);
+    background-color: var(--buttonColor);
+}
+
+.sound-btn:hover {
+    color: var(--welcomeColor2);
+    background-color: var(--topButtonBarHoverColor);
+    transition: .15s;
+}
+
+.sound-btn {
+    color: var(--buttonColor);
+    background-color: var(--buttonBackgroundColor);
+    font-family: "Roboto Mono";
+    border: none;
+    border-radius: 8px;
+    margin: 0 4px;
+    margin-bottom: 8px;
+    width: 20%;
+    height: 38.227px;
+    cursor: pointer;
+    transition: .15s;
+}

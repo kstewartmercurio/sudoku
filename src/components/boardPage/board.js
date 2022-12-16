@@ -9,6 +9,9 @@ import {newPuzzle} from "../../generator/clueRemover.js";
 import {seventeenPuzzles} from "../../17generator/17puzzles";
 import {shuffleArr} from "../../generator/mfgGenerator";
 
+import useSound from "use-sound";
+import clickSfx from "../../sounds/frontend_static_sound_click1_click1_1.mp3";
+
 export function Board(props) {
     let windowClick = true;
 
@@ -21,6 +24,8 @@ export function Board(props) {
 
     const tornadoMoveCount = useRef(0);
     const [firstMoveMade, setFirstMoveMade] = useState(false);
+
+    const [playClick] = useSound(clickSfx);
 
     useEffect(() => {
         if (props.seventeen === true) {
@@ -139,6 +144,14 @@ export function Board(props) {
     }
 
     const handleKeyPress = (e) => {
+        switch (props.activeSound) {
+            case "click":
+                playClick();
+                break;
+            default:
+                break;
+        }
+
         if (initial[selected] === true) {
             setSelected(null);
         } else if ((selected !== null) && ((parseInt(e.key) >= 0) && 
