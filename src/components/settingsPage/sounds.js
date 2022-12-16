@@ -1,13 +1,17 @@
 import React, {useState} from "react";
 
 import useSound from "use-sound";
-import clickSfx from "../../sounds/frontend_static_sound_click1_click1_1.mp3";
+import clickSfx from "../../static/sound/frontend_static_sound_click1_click1_1.mp3";
+import creamSfx from "../../static/sound/frontend_static_sound_click4_click4_1.mp3";
+import typewriterSfx from "../../static/sound/frontend_static_sound_click5_click5_1.mp3";
 
 export function Sounds(props) {
     const [open, setOpen] = useState(true);
 
     const [playClick] = useSound(clickSfx);
-
+    const [playCream] = useSound(creamSfx);
+    const [playTypewriter] = useSound(typewriterSfx);
+ 
     const handleClick = (newActiveSound) => {
         props.shareActiveSound(newActiveSound);
     }
@@ -20,6 +24,8 @@ export function Sounds(props) {
         if (open === true) {
             let offId = "off";
             let clickId = "click";
+            let creamId = "cream";
+            let typewriterId = "typewriter";
 
             switch (props.activeSound) {
                 case "off":
@@ -28,6 +34,11 @@ export function Sounds(props) {
                 case "click":
                     clickId = "selected-sound";
                     break;
+                case "nkcream":
+                    creamId = "selected-sound";
+                    break;
+                case "typewriter":
+                    typewriterId = "selected-sound";
                 default:
                     break;
             }
@@ -44,6 +55,18 @@ export function Sounds(props) {
                         handleClick("click");
                     }}>
                         click
+                    </button>
+                    <button className="sound-btn" id={creamId} onClick={(e) => {
+                        playCream();
+                        handleClick("nkcream");
+                    }}>
+                        nkcream
+                    </button>
+                    <button className="sound-btn" id={typewriterId} onClick={(e) => {
+                        playTypewriter();
+                        handleClick("typewriter");
+                    }}>
+                        typewriter
                     </button>
                 </div>
             );

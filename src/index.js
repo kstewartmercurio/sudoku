@@ -49,6 +49,12 @@ function Index() {
       case "click":
         setActiveSound("click");
         break;
+      case "nkcream":
+        setActiveSound("nkcream");
+        break;
+      case "typewriter":
+        setActiveSound("typewriter");
+        break;
       default:
         break;
     }
