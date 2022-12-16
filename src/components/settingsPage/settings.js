@@ -4,32 +4,22 @@ import {Themes} from "./themes";
 import {themeVals} from "./themesList";
 
 export function Settings(props) {
-    // const [seventeen, setSeventeen] = useState(false);
-    const [blackout, setBlackout] = useState(false);
-    const [tornado, setTornado] = useState(false);
-    const [swimTest, setSwimTest] = useState(false);
-
     const [storedTheme, setStoredTheme] = useState("xanadu");
 
     const handleToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
-                console.log("toggle received in settings");
                 props.shareAffixStatus("17 clue", props.seventeen);
-                // setSeventeen(!seventeen);
                 break;
             case "blackout":
-                props.shareAffixStatus("blackout", !blackout);
+                props.shareAffixStatus("blackout", props.blackout);
                 toggleBlackoutStyling();
-                setBlackout(!blackout);
                 break;
             case "tornado":
-                props.shareAffixStatus("tornado", !tornado);
-                setTornado(!tornado)
+                props.shareAffixStatus("tornado", props.tornado);
                 break;
             case "swim test":
-                props.shareAffixStatus("swim test", !swimTest);
-                setSwimTest(!swimTest);
+                props.shareAffixStatus("swim test", props.swimTest);
                 break;
             default:
                 break;
@@ -38,7 +28,7 @@ export function Settings(props) {
 
     const toggleBlackoutStyling = () => {
         var r = document.querySelector(":root");
-        if (blackout === false) {
+        if (props.blackout === false) {
             r.style.setProperty("--backgroundColor", "black");
             r.style.setProperty("--boardColor", "#525252");
             r.style.setProperty("--squareColor", "#cbcbcb");
@@ -88,7 +78,7 @@ export function Settings(props) {
             r.style.setProperty("--settingsNavBackgroundColor", storedThemeVals[3][1]);
             }
 
-        setBlackout(!blackout);
+        // setBlackout(!blackout);
     }
 
     const updateStoredTheme = (newTheme) => {
@@ -99,10 +89,10 @@ export function Settings(props) {
         <>
             <div className="section" id="settings-page">
                 <div id="settings-content">
-                    <Affixes seventeen={props.seventeen} blackout={blackout}
-                    tornado={tornado} swimTest={swimTest}
-                    handleToggle={handleToggle}/>
-                    <Themes blackout={blackout} storedTheme={storedTheme} 
+                    <Affixes seventeen={props.seventeen} 
+                    blackout={props.blackout} tornado={props.tornado} 
+                    swimTest={props.swimTest} handleToggle={handleToggle}/>
+                    <Themes blackout={props.blackout} storedTheme={storedTheme} 
                     updateStoredTheme={updateStoredTheme}/>
                 </div>
             </div>

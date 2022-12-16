@@ -1,31 +1,27 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 import {Navbar} from "./components/boardPage/navbar";
 import {Board} from "./components/boardPage/board";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 
-function App() {
+function App(props) {
   const [activePage, setActivePage] = useState("board");
 
-  const [seventeen, setSeventeen] = useState(false);
-  const [blackout, setBlackout] = useState(false);
-  const [tornado, setTornado] = useState(false);
   const [swimTest, setSwimTest] = useState(false);
-
-  useEffect(() => {
-    console.log("running useEffect");
-  }, []);
 
   const getActivePageTag = () => {
     switch (activePage) {
       case "board":
-        return <Board seventeen={seventeen} blackout={blackout} 
-          tornado={tornado} swimTest={swimTest} />
+        return <Board seventeen={props.seventeen} blackout={props.blackout} 
+          tornado={props.tornado} swimTest={props.swimTest} />
       case "info":
         return <Welcome/>
       case "settings":
-        return <Settings shareAffixStatus={shareAffixStatus}/>
+        return <Settings shareAffixStatus={props.shareAffixStatus}
+          seventeen={props.seventeen} blackout={props.blackout} 
+          tornado={props.tornado} swimTest={props.swimTest}
+        />
       default:
         return null;
     }
@@ -47,25 +43,25 @@ function App() {
     }
   }
 
-  const shareAffixStatus = (affix, status) => {
-    switch (affix) {
-      case "17 clue":
-        console.log("toggle received in app");
-        setSeventeen(!seventeen);
-        break;
-      case "blackout":
-        setBlackout(status);
-        break;
-      case "tornado":
-        setTornado(status);
-        break;
-      case "swim test":
-        setSwimTest(status);
-        break;
-      default:
-        break;
-    }
-  }
+  // const shareAffixStatus = (affix, status) => {
+  //   switch (affix) {
+  //     case "17 clue":
+  //       console.log("toggle received in app");
+  //       setSeventeen(!seventeen);
+  //       break;
+  //     case "blackout":
+  //       setBlackout(status);
+  //       break;
+  //     case "tornado":
+  //       setTornado(status);
+  //       break;
+  //     case "swim test":
+  //       setSwimTest(status);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   return (
     <div className="App">
