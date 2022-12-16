@@ -17,35 +17,39 @@ export function Sounds(props) {
     }
 
     const getSoundsDropdownTags = () => {
-        let offId = "off";
-        let clickId = "click";
+        if (open === true) {
+            let offId = "off";
+            let clickId = "click";
 
-        switch (props.activeSound) {
-            case "off":
-                offId = "selected-sound";
-                break;
-            case "click":
-                clickId = "selected-sound";
-                break;
-            default:
-                break;
+            switch (props.activeSound) {
+                case "off":
+                    offId = "selected-sound";
+                    break;
+                case "click":
+                    clickId = "selected-sound";
+                    break;
+                default:
+                    break;
+            }
+
+            return (
+                <div id="sound-set">
+                    <button className="sound-btn" id={offId} onClick={(e) => {
+                        handleClick("off");
+                    }}>
+                        off
+                    </button>
+                    <button className="sound-btn" id={clickId} onClick={(e) => {
+                        playClick();
+                        handleClick("click");
+                    }}>
+                        click
+                    </button>
+                </div>
+            );
+        } else {
+            return null;
         }
-
-        return (
-            <div id="sound-set">
-                <button className="sound-btn" id={offId} onClick={(e) => {
-                    handleClick("off");
-                }}>
-                    off
-                </button>
-                <button className="sound-btn" id={clickId} onClick={(e) => {
-                    playClick();
-                    handleClick("click");
-                }}>
-                    click
-                </button>
-            </div>
-        );
     }
 
     return (

@@ -20,7 +20,7 @@
     margin-bottom: var(--settingsDropdownMarginBottom);
 }
 
-#theme-dd-wrapper {
+#sounds-dd-wrapper, #theme-dd-wrapper {
     margin-top: 20px;
 }
 
