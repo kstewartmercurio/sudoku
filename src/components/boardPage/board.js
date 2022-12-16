@@ -32,6 +32,22 @@ export function Board(props) {
     const [playCream] = useSound(creamSfx);
     const [playTypewriter] = useSound(typewriterSfx);
 
+    useEffect(() => {
+        let currentPuzzle = new Puzzle(squares.slice());
+        if ((currentPuzzle.complete() === true) && 
+            (currentPuzzle.checkInvalidPuzzle() === false)) {
+            var r = document.querySelector(":root");
+            var rs = getComputedStyle(r);
+            
+            let flashColor = rs.getPropertyValue("--selectedSquareColor");
+            let restoreColor = rs.getPropertyValue("--squareBackgroundColor");
+            r.style.setProperty("--squareBackgroundColor", flashColor);
+
+            setTimeout(function() {
+                r.style.setProperty("--squareBackgroundColor", restoreColor);
+            }, 250);
+        }
+    }, [squares]);
 
     useEffect(() => {
         if (props.seventeen === true) {
@@ -61,23 +77,6 @@ export function Board(props) {
             tornadoSwap();
         }
     });
-
-    useEffect(() => {
-        let currentPuzzle = new Puzzle(squares.slice());
-        if ((currentPuzzle.complete() === true) && 
-            (currentPuzzle.checkInvalidPuzzle() === false)) {
-            var r = document.querySelector(":root");
-            var rs = getComputedStyle(r);
-            
-            let flashColor = rs.getPropertyValue("--selectedSquareColor");
-            let restoreColor = rs.getPropertyValue("--squareBackgroundColor");
-            r.style.setProperty("--squareBackgroundColor", flashColor);
-
-            setTimeout(function() {
-                r.style.setProperty("--squareBackgroundColor", restoreColor);
-            }, 250);
-        }
-    }, [squares]);
 
     const renderSquare = (i) => {
         let classNameStr = "square ";
