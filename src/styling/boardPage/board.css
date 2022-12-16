@@ -4,7 +4,9 @@
 }
 
 #board-page-center-content {
-    margin-top: 1%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-55%);
 }
 
 .board6x6-row-0, .board9x9-row-0 {

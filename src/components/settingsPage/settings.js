@@ -4,7 +4,7 @@ import {Themes} from "./themes";
 import {themeVals} from "./themesList";
 
 export function Settings(props) {
-    const [seventeen, setSeventeen] = useState(false);
+    // const [seventeen, setSeventeen] = useState(false);
     const [blackout, setBlackout] = useState(false);
     const [tornado, setTornado] = useState(false);
     const [swimTest, setSwimTest] = useState(false);
@@ -14,8 +14,9 @@ export function Settings(props) {
     const handleToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
-                props.shareAffixStatus("17 clue", !seventeen);
-                setSeventeen(!seventeen);
+                console.log("toggle received in settings");
+                props.shareAffixStatus("17 clue", props.seventeen);
+                // setSeventeen(!seventeen);
                 break;
             case "blackout":
                 props.shareAffixStatus("blackout", !blackout);
@@ -98,8 +99,7 @@ export function Settings(props) {
         <>
             <div className="section" id="settings-page">
                 <div id="settings-content">
-                    {/* {renderActiveSetting()} */}
-                    <Affixes seventeen={seventeen} blackout={blackout}
+                    <Affixes seventeen={props.seventeen} blackout={blackout}
                     tornado={tornado} swimTest={swimTest}
                     handleToggle={handleToggle}/>
                     <Themes blackout={blackout} storedTheme={storedTheme} 

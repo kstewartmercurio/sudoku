@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import {Navbar} from "./components/boardPage/navbar";
-// import {BoardPage} from "./components/boardPage/boardPage";
 import {Board} from "./components/boardPage/board";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
@@ -13,6 +12,10 @@ function App() {
   const [blackout, setBlackout] = useState(false);
   const [tornado, setTornado] = useState(false);
   const [swimTest, setSwimTest] = useState(false);
+
+  useEffect(() => {
+    console.log("running useEffect");
+  }, []);
 
   const getActivePageTag = () => {
     switch (activePage) {
@@ -47,7 +50,8 @@ function App() {
   const shareAffixStatus = (affix, status) => {
     switch (affix) {
       case "17 clue":
-        setSeventeen(status);
+        console.log("toggle received in app");
+        setSeventeen(!seventeen);
         break;
       case "blackout":
         setBlackout(status);
