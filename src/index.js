@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 
 import "./styling/boardPage/navbar.css";
+import "./styling/boardPage/bottomBar.css";
 import "./styling/boardPage/topBtnBar.css";
 import "./styling/boardPage/board.css";
 import "./styling/boardPage/numBtnBar.css";

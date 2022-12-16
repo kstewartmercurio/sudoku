@@ -6,7 +6,7 @@
 #board-page-center-content {
     position: relative;
     top: 50%;
-    transform: translateY(-55%);
+    transform: translateY(-50%);
 }
 
 .board6x6-row-0, .board9x9-row-0 {

@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 
 import {Navbar} from "./components/boardPage/navbar";
+import {BottomBar} from "./components/boardPage/bottomBar";
 import {Board} from "./components/boardPage/board";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 
 function App(props) {
   const [activePage, setActivePage] = useState("board");
-
-  const [swimTest, setSwimTest] = useState(false);
 
   const getActivePageTag = () => {
     switch (activePage) {
@@ -43,30 +42,11 @@ function App(props) {
     }
   }
 
-  // const shareAffixStatus = (affix, status) => {
-  //   switch (affix) {
-  //     case "17 clue":
-  //       console.log("toggle received in app");
-  //       setSeventeen(!seventeen);
-  //       break;
-  //     case "blackout":
-  //       setBlackout(status);
-  //       break;
-  //     case "tornado":
-  //       setTornado(status);
-  //       break;
-  //     case "swim test":
-  //       setSwimTest(status);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
-
   return (
     <div className="App">
       <Navbar activePage={activePage} shareNavbarClick={shareNavbarClick}/>
       {getActivePageTag()}
+      <BottomBar/>
     </div>
   );
 }

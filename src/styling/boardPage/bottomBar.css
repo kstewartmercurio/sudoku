@@ -1,0 +1,33 @@
+#bottom-bar {
+    background-color: transparent;
+    width: 100%;
+    height: 62.5px;
+    display: table;
+}
+
+#bottom-bar-content {
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#github-btn {
+    margin-left: 2.5%;
+}
+
+.bottom-bar-btn:hover {
+    color: var(--topButtonBarHoverColor);
+    transition: color .3s;
+}
+
+.bottom-bar-btn {
+    color: var(--navbarColor);
+    text-decoration: none;
+    font-family: "Roboto Mono";
+    font-size: 14px;
+    transition: color .3s;
+}
+
+#fa-code {
+    margin: 0;
+}
