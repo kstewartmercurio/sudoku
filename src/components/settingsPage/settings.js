@@ -6,11 +6,11 @@ import {themeVals} from "./themesList";
 export function Settings(props) {
     useEffect(() => {
         var r = document.querySelector(":root");
-        var rs = getComputedStyle(r);
-        let storedColor = rs.getPropertyValue("--bottomBarBackgroundColor");
         r.style.setProperty("--bottomBarBackgroundColor", "transparent");
         return () => {
-            r.style.setProperty("--bottomBarBackgroundColor", storedColor);
+            var rs = getComputedStyle(r);
+            let bgColor = rs.getPropertyValue("--bottomBarBackgroundColor");
+            r.style.setProperty("--bottomBarBackgroundColor", bgColor);
         }
     })
 
