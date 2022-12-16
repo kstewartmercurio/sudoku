@@ -388,6 +388,20 @@ export function Board(props) {
     }
 
     const shareNumClick = (n) => {
+        switch (props.activeSound) {
+            case "click":
+                playClick();
+                break;
+            case "nkcream":
+                playCream();
+                break;
+            case "typewriter":
+                playTypewriter();
+                break;
+            default:
+                break;
+        }
+
         if (complete === false) {
             if ((selected !== null) && (initial[selected] === false)) {
                 let squaresCopy = squares.slice();
