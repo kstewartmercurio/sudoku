@@ -5,8 +5,7 @@ import {BottomBar} from "./components/boardPage/bottomBar";
 import {Board} from "./components/boardPage/board";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
-import {Contact} from "./components/forms/contact";
-import {BugReport} from "./components/forms/bugReport";
+import {Form} from "./components/forms/form";
 
 function App(props) {
   const [activePage, setActivePage] = useState("board");
@@ -41,9 +40,9 @@ function App(props) {
   const getActiveFormTag = () => {
     switch (activeForm) {
       case "contact":
-        return <Contact/>
+        return <Form/>
       case "bug report":
-        return <BugReport/>
+        return <Form/>
       default:
         return null;
     }
