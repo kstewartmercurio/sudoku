@@ -13,6 +13,7 @@ import "./styling/settings/settings.css";
 import "./styling/settings/affixes.css";
 import "./styling/settings/sounds.css";
 import "./styling/settings/themes.css";
+import "./styling/forms/contact.css";
 
 function Index() {
   const [seventeen, setSeventeen] = useState(false);

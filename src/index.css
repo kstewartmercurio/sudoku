@@ -24,6 +24,7 @@
   --bottomBarBackgroundColor: var(--backgroundColor);
   --settingsDropdownMarginBottom: 0;
   --settingsAffixSwitchWidth: 38px;
+  --blurValue: blur(0px);
 }
 
 #root {
@@ -47,6 +48,10 @@ body {
   /* scale: .36;  */
 }
 
+.App {
+  position: relative;
+}
+
 .section {
   background-color: var(--backgroundColor);
   width: 100%;
@@ -54,6 +59,8 @@ body {
   text-align: center;
   display: inline-block;
   transition: background-color .3s;
+  filter: var(--blurValue);
+  transition: filter .15s;
 }
 
 

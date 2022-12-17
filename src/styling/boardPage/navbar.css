@@ -5,6 +5,8 @@
     height: 62.5px;
     display: table;
     transition: background-color .3s;
+    filter: var(--blurValue);
+    transition: filter .15s;
 }
 
 #nav-left {
