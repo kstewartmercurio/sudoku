@@ -59,6 +59,11 @@ export function Settings(props) {
 
             r.style.setProperty("--settingsNavColor", "#959595");
             r.style.setProperty("--settingsNavBackgroundColor", "#1f1f1f");
+            
+            r.style.setProperty("--formColor", "#c3c3c3");
+            r.style.setProperty("--formBackgroundColor", "#191919");
+            r.style.setProperty("--formSubmitBackgroundColor", "#194b00");
+            r.style.setProperty("--formSubmitBackgroundHoverColor", "#133a00")
         } else {
             let storedThemeVals = [];
             for (let i = 0; i < themeVals.length; i++) {
@@ -87,9 +92,12 @@ export function Settings(props) {
 
             r.style.setProperty("--settingsNavColor", storedThemeVals[3][0]);
             r.style.setProperty("--settingsNavBackgroundColor", storedThemeVals[3][1]);
-            }
 
-        // setBlackout(!blackout);
+            r.style.setProperty("--formColor", storedThemeVals[4][0]);
+            r.style.setProperty("--formBackgroundColor", storedThemeVals[4][1]);
+            r.style.setProperty("--formSubmitBackgroundColor", storedThemeVals[4][2]);
+            r.style.setProperty("--formSubmitBackgroundHoverColor", storedThemeVals[4][3])
+        }
     }
 
     const updateStoredTheme = (newTheme) => {

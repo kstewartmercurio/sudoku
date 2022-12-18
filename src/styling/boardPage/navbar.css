@@ -52,7 +52,7 @@
     margin-right: 0;
 }
 
-.board-page-nav-btn:hover {
+.nav-btn:hover {
     color: var(--navbarAccentColor);
     transition: .3s;
 }

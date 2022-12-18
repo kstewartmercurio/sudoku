@@ -62,7 +62,7 @@ export function Form(props) {
                 </div>
                 <textarea name="message" placeholder="your message..." required/>
             
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="submit"/>
             </form>
         </div>
     );

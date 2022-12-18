@@ -21,6 +21,12 @@
   --settingsAffixColor1: var(--welcomeColor3);
   --settingsAffixColor2: var(--welcomeColor2);
 
+  --formColor: #ccd3ca;
+  --formBackgroundColor: #001a00;
+  --formSubmitColor: var(--formColor);
+  --formSubmitBackgroundColor: #508e53;
+  --formSubmitBackgroundHoverColor: #437947;
+
   --bottomBarBackgroundColor: var(--backgroundColor);
   --settingsDropdownMarginBottom: 0;
   --settingsAffixSwitchWidth: 38px;

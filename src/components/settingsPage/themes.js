@@ -44,6 +44,11 @@ export function Themes(props) {
 
         r.style.setProperty("--settingsNavColor", newThemeVals[3][0]);
         r.style.setProperty("--settingsNavBackgroundColor", newThemeVals[3][1]);
+
+        r.style.setProperty("--formColor", newThemeVals[4][0]);
+        r.style.setProperty("--formBackgroundColor", newThemeVals[4][1]);
+        r.style.setProperty("--formSubmitBackgroundColor", newThemeVals[4][2]);
+        r.style.setProperty("--formSubmitBackgroundHoverColor", newThemeVals[4][3]);
     }
 
     const handleOpen = () => {
