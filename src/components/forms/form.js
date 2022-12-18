@@ -7,13 +7,13 @@ export function Form(props) {
     const sendEmail = (e) => {
         e.preventDefault();
 
-        // emailjs.sendForm('service_oymwvco', 'template_f4tnezm', form.current, 'xuNn2NKsvRoT6hZIp')
-        // .then((result) => {
-        //     // console.log(result.text);
-        //     return null;
-        // }, (error) => {
-        //     console.log(error.text);
-        // });
+        emailjs.sendForm('service_oymwvco', 'template_f4tnezm', form.current, 'xuNn2NKsvRoT6hZIp')
+        .then((result) => {
+            // console.log(result.text);
+            return null;
+        }, (error) => {
+            console.log(error.text);
+        });
         props.shareFormClick("submit");
     }
 
