@@ -24,13 +24,15 @@ export function Form(props) {
                     <p className="form-p">
                         want to get in touch? feel free to contact me using the form below and i'll get back to you as soon as i can.
                     </p>
-                )
+                );
             case "bug report":
                 return (
                     <p className="form-p">
                         found a bug? please be as descriptive as possible so i can replicate the issue and do my best to fix what's wrong.
                     </p>
-                )
+                );
+            default:
+                return null;
         }
     }
 

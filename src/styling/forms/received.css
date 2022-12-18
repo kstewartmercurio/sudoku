@@ -13,7 +13,7 @@
 }
 
 #received {
-    background-color: #2c2c2c;
+    background-color: var(--formBackgroundColor);
     width: 560px;
     height: 160px;
     border-radius: 34px;
@@ -52,7 +52,7 @@
 }
 
 #received-p-contact, #received-p-bug-report {
-    color: #8b8b8b;
+    color: var(--formColor);
     width: 95%;
     margin-left: 2.5%;
     margin-right: 2.5%;
