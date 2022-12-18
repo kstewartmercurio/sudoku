@@ -14,6 +14,7 @@ import "./styling/settings/affixes.css";
 import "./styling/settings/sounds.css";
 import "./styling/settings/themes.css";
 import "./styling/forms/form.css";
+import "./styling/forms/received.css";
 
 function Index() {
   const [seventeen, setSeventeen] = useState(false);

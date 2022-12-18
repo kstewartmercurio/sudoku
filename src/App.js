@@ -6,10 +6,12 @@ import {Board} from "./components/boardPage/board";
 import {Welcome} from "./components/welcomePage/welcome";
 import {Settings} from "./components/settingsPage/settings";
 import {Form} from "./components/forms/form";
+import {Received} from "./components/forms/received";
 
 function App(props) {
   const [activePage, setActivePage] = useState("board");
   const [activeForm, setActiveForm] = useState(null);
+  const [inactiveForm, setInactiveForm] = useState(null);
 
   const getActivePageTag = () => {
     switch (activePage) {
@@ -43,6 +45,8 @@ function App(props) {
         return <Form p={"contact"} shareFormClick={shareFormClick}/>
       case "bug report":
         return <Form p={"bug report"} shareFormClick={shareFormClick}/>
+      case "received":
+        return <Received p={inactiveForm} shareFormClick={shareFormClick}/>
       default:
         return null;
     }
@@ -72,14 +76,20 @@ function App(props) {
       case "contact":
         r.style.setProperty("--blurValue", "blur(2px)");
         setActiveForm("contact");
+        setInactiveForm("contact");
         break;
       case "bug report":
         r.style.setProperty("--blurValue", "blur(2px)");
         setActiveForm("bug report");
+        setInactiveForm("bug report")
         break;
       case "close":
         r.style.setProperty("--blurValue", "blur(0px)");
         setActiveForm(null);
+        setInactiveForm(null);
+        break;
+      case "submit":
+        setActiveForm("received");
         break;
       default:
         break;

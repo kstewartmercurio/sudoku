@@ -1,29 +1,20 @@
 import React, {useRef} from "react";
-
-{/* <form className="form" ref={form}>
-    <div id="close-btn-row">
-        <button id="close-btn">
-            x
-        </button>
-    </div>
-    <p className="form-header">
-        want to reach out? feel free to contact me using the
-        following form and i'll get back to you as soon as i can.
-    </p>
-    <label className="form-label">name</label>
-    <input className="form-input" type="text" name="user_name" />
-    <label className="form-label">email</label>
-    <input className="form-input" type="email" name="user_email" />
-    <label className="form-label">message</label>
-    <textarea className="form-input" name="message" />
-    <input id="send-btn" type="submit" value="Send" />
-</form> */}
+import emailjs from '@emailjs/browser';
 
 export function Form(props) {
     const form = useRef();
 
     const sendEmail = (e) => {
         e.preventDefault();
+
+        // emailjs.sendForm('service_oymwvco', 'template_f4tnezm', form.current, 'xuNn2NKsvRoT6hZIp')
+        // .then((result) => {
+        //     // console.log(result.text);
+        //     return null;
+        // }, (error) => {
+        //     console.log(error.text);
+        // });
+        props.shareFormClick("submit");
     }
 
     const getActivePTag = () => {
@@ -57,19 +48,19 @@ export function Form(props) {
                     {getActivePTag()}
                 </div>
                 <div className="form-label-wrapper">
-                    <label className="form-label" htmlFor="fname">name </label>
+                    <label className="form-label" htmlFor="name">name </label>
                 </div>
-                <input type="text" id="fname" name="firstname" placeholder="your name.."/>
+                <input type="text" id="fname" name="name" placeholder="your name.." required/>
 
                 <div className="form-label-wrapper">
-                    <label className="form-label" htmlFor="lname">email</label>
+                    <label className="form-label" htmlFor="email">email</label>
                 </div>
-                <input type="email" id="lname" name="lastname" placeholder="your email.."/>
+                <input type="email" id="lname" name="email" placeholder="your email.." required/>
 
                 <div className="form-label-wrapper">
                     <label className="form-label" htmlFor="message">message</label>
                 </div>
-                <textarea name="message" placeholder="your message..."/>
+                <textarea name="message" placeholder="your message..." required/>
             
                 <input type="submit" value="Submit"/>
             </form>
