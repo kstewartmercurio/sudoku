@@ -40,9 +40,9 @@ function App(props) {
   const getActiveFormTag = () => {
     switch (activeForm) {
       case "contact":
-        return <Form/>
+        return <Form p={"contact"} shareFormClick={shareFormClick}/>
       case "bug report":
-        return <Form/>
+        return <Form p={"bug report"} shareFormClick={shareFormClick}/>
       default:
         return null;
     }
@@ -68,14 +68,18 @@ function App(props) {
 
   const shareFormClick = (clickType) => {
     var r = document.querySelector(":root");
-    r.style.setProperty("--blurValue", "blur(2px)");
-
     switch (clickType) {
       case "contact":
+        r.style.setProperty("--blurValue", "blur(2px)");
         setActiveForm("contact");
         break;
       case "bug report":
+        r.style.setProperty("--blurValue", "blur(2px)");
         setActiveForm("bug report");
+        break;
+      case "close":
+        r.style.setProperty("--blurValue", "blur(0px)");
+        setActiveForm(null);
         break;
       default:
         break;

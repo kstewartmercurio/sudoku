@@ -13,9 +13,11 @@
 }
 
 .form {
-    background-color: #222e22;
+    background-color: #2c2c2c;
     border-radius: 34px;
     width: 480px;
+    /* height: 480px; */
+    height: max-content;
     margin: 0;
     font-size: 48px;
     position: relative;
@@ -25,53 +27,98 @@
     filter: blur(0px) !important;
 }
 
-.form-header {
-    color: #bfd8c5;
-    margin: 0;
-    font-family: "Roboto Mono";
-    font-size: 18px;
+.form-btn-wrapper {
+    /* background-color: rgb(77, 15, 134); */
+    width: 100%;
+    height: max-content;
+    display: table
 }
 
+.form-btn:hover {
+    color: var(--topButtonBarHoverColor);
+    transition: color .3s;
+}
+
+.form-btn {
+    color: var(--buttonColor);
+    background-color: transparent;
+    /* background-color: orange; */
+    margin-right: 8%;
+    border: none;
+    padding: 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    display: table-cell;
+    vertical-align: middle;
+    transition: color .3s;
+    cursor: pointer;
+}
+
+.form-p-wrapper {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+
+.form-p {
+    color: #8b8b8b;
+    width: 95%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Roboto Mono";
+    font-size: 18px;
+    margin-top: 12px;
+}
+ 
 .form-label-wrapper {
-    background-color: red;
-    /* width: max-content;
-    height: 50px;
-    display: inline-block; */
+    width: 100%;
+    display: inline-block;
+    text-align: left;
 }
 
 .form-label {
-    color: #bfd8c5;
+    color: #8b8b8b;
     font-family: "Roboto Mono";
     font-size: 18px;
-    width: max-content;
-    height: max-content;
+    margin-left: 5%;
 }
 
-.form-input {
-    background-color: rgb(107, 113, 107);
-    border: none;
-    border-radius: 4px;
-    padding: 0;
+input[type=text], input[type=email], textarea {
     width: 90%;
-}
-
-#close-btn-row {
-    background-color: transparent;
-    width: 100%;
-    height: max-content;
-}
-
-#close-btn {
-    border: none;
     margin: 0;
-    padding: 0;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-family: "Roboto Mono";
+    display: inline-block;
+    box-sizing: border-box;
 }
 
-#send-btn {
-    background-color: #bfd8c5;
+textarea {
+    height: 80px;
+    resize: none;
+}
+  
+input[type=submit] {
+    width: 18%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 12px;
     border: none;
     border-radius: 4px;
-    padding: 0;
-    width: 20%;
-    height: 25px;
+    cursor: pointer;
 }
+  
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+  
+  /* div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  } */
