@@ -8,6 +8,7 @@
   --buttonColor: #498349;
   --buttonBackgroundColor: #a9c5a0;
   --navbarColor: #344634;
+  --navbarBackgroundColor: var(--backgroundColor);
   --navbarAccentColor: #a9c5a0;
   --topButtonBarSelectedColor: #035600;
   --topButtonBarHoverColor: #eff8f0;

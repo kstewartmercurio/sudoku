@@ -1,6 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 export function Navbar(props) {
+    useEffect(() => {
+        if (props.activePage === "settings") {
+            var r = document.querySelector(":root");
+            r.style.setProperty("--navbarBackgroundColor", "transparent");
+
+            return () => {
+                var rs = getComputedStyle(r);
+                let nbgColor = rs.getPropertyValue("--navbarBackgroundColor");
+                r.style.setProperty("--navbarBackgroundColor", nbgColor);
+            }
+        }
+    })
+
     const getBackButtonTag = () => {
         if (props.activePage !== "board") {
             return <button className="nav-btn" id="back-btn"
