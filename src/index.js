@@ -19,6 +19,7 @@ import "./styling/forms/received.css";
 function Index() {
   const [seventeen, setSeventeen] = useState(false);
   const [blackout, setBlackout] = useState(false);
+  const [storedTheme, setStoredTheme] = useState("xanadu");
   const [tornado, setTornado] = useState(false);
   const [swimTest, setSwimTest] = useState(false);
   
@@ -43,6 +44,10 @@ function Index() {
     }
   }
 
+  const shareStoredTheme = (newTheme) => {
+    setStoredTheme(newTheme);
+  }
+
   const shareActiveSound = (newActiveSound) => {
     switch (newActiveSound) {
       case "off":
@@ -64,9 +69,9 @@ function Index() {
 
   return (
     <App shareAffixStatus={shareAffixStatus}
-      seventeen={seventeen} blackout={blackout} tornado={tornado} 
-      swimTest={swimTest} activeSound={activeSound}
-      shareActiveSound={shareActiveSound}
+      seventeen={seventeen} blackout={blackout} storedTheme={storedTheme}
+      shareStoredTheme={shareStoredTheme} tornado={tornado} swimTest={swimTest} 
+      activeSound={activeSound} shareActiveSound={shareActiveSound}
     />
   )
 }

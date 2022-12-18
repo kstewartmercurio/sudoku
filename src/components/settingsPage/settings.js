@@ -15,8 +15,6 @@ export function Settings(props) {
         }
     })
 
-    const [storedTheme, setStoredTheme] = useState("xanadu");
-
     const handleAffixToggle = (affixType) => {
         switch (affixType) {
             case "17 clue":
@@ -67,7 +65,7 @@ export function Settings(props) {
         } else {
             let storedThemeVals = [];
             for (let i = 0; i < themeVals.length; i++) {
-                if (storedTheme === themeVals[i][0]) {
+                if (props.storedTheme === themeVals[i][0]) {
                     storedThemeVals = themeVals[i];
                     break;
                 }
@@ -100,10 +98,6 @@ export function Settings(props) {
         }
     }
 
-    const updateStoredTheme = (newTheme) => {
-        setStoredTheme(newTheme);
-    } 
-
     return (
         <>
             <div className="section" id="settings-page">
@@ -114,8 +108,8 @@ export function Settings(props) {
                     handleAffixToggle={handleAffixToggle}/>
                     <Sounds activeSound={props.activeSound}
                         shareActiveSound={props.shareActiveSound}/>
-                    <Themes blackout={props.blackout} storedTheme={storedTheme} 
-                    updateStoredTheme={updateStoredTheme}/>
+                    <Themes blackout={props.blackout}
+                    shareStoredTheme={props.shareStoredTheme}/>
                 </div>
             </div>
         </>

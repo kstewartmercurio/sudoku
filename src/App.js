@@ -30,8 +30,9 @@ function App(props) {
       case "settings":
         return <Settings shareAffixStatus={props.shareAffixStatus}
           seventeen={props.seventeen} blackout={props.blackout} 
-          tornado={props.tornado} swimTest={props.swimTest}
-          activeSound={props.activeSound} 
+          storedTheme={props.storedTheme} 
+          shareStoredTheme={props.shareStoredTheme} tornado={props.tornado} 
+          swimTest={props.swimTest} activeSound={props.activeSound} 
           shareActiveSound={props.shareActiveSound}
         />
       default:

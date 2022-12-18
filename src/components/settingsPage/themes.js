@@ -8,7 +8,7 @@ export function Themes(props) {
     const updateTheme = (e, newTheme) => {
         e.preventDefault();
 
-        props.updateStoredTheme(newTheme);
+        props.shareStoredTheme(newTheme);
 
         if (props.blackout === false) {
             updateThemeWithoutBlackout(newTheme);
