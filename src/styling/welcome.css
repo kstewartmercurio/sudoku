@@ -1,7 +1,4 @@
 #welcome-content {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     display: inline-block;
     text-align: center;
 }
@@ -72,4 +69,23 @@
     font-family: "Roboto Mono";
     font-size: 18px;
     text-align: left;
+}
+
+@media (min-width: 702px) {
+    #welcome-content {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 485px) {
+    #welcome-header-wrapper {
+        width: 100vw;
+        text-align: left;
+    }
+
+    #welcome-header {
+        width: 100vw;
+    }
 }
