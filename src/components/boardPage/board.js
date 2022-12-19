@@ -4,8 +4,8 @@ import {Puzzle} from "../../solver/puzzle.js";
 
 import {TopBtnBar} from "./topBtnBar";
 import {NumBtnBar} from "./numBtnBar";
-import {newPuzzle} from "../../generator/clueRemover.js";
 
+import {newPuzzle} from "../../generator/clueRemover.js";
 import {seventeenPuzzles} from "../../static/17generator/17puzzles";
 import {shuffleArr} from "../../generator/mfgGenerator";
 
@@ -13,7 +13,6 @@ import useSound from "use-sound";
 import clickSfx from "../../static/sound/frontend_static_sound_click1_click1_1.mp3";
 import creamSfx from "../../static/sound/frontend_static_sound_click4_click4_1.mp3";
 import typewriterSfx from "../../static/sound/frontend_static_sound_click5_click5_1.mp3";
-
 
 export function Board(props) {
     let windowClick = true;

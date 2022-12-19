@@ -8,9 +8,12 @@
 }
 
 .num-btn-bar-btn-grp {
-    width: 100%;
+    width: 90%;
+    max-width: max-content;
     display: flex;
-    justify-content: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #erase-btn {
@@ -20,7 +23,7 @@
 .num-btn-bar-btn {
     color: var(--buttonColor);
     background-color: var(--buttonBackgroundColor);
-    margin: 0px 4px;
+    margin: 0 4px;
     padding: 8px 14px;
     font-family: "Roboto Mono";
     font-size: 1em;
@@ -37,4 +40,50 @@
     color: var(--buttonBackgroundColor);
     background-color: var(--buttonColor);
     transition: .3s;
+}
+
+@media (max-width: 510px) {
+    .num-btn-bar-btn {
+        margin: 0 3px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 450px) {
+    .num-btn-bar-btn {
+        margin: 0 2.25px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 425px) {
+    .num-btn-bar-btn {
+        scale: .8;
+        margin: 0;
+        padding: 8px 11px;
+    }
+}
+
+@media (max-width: 375px) {
+    .num-btn-bar-btn {
+        scale: .7;
+        padding: 8px 10px;
+    }
+
+    #erase-btn {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 325px) {
+    .num-btn-bar-btn {
+        scale: .7;
+        padding: 6px 8px;
+    }
+
+    #erase-btn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
 }

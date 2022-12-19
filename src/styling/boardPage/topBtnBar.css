@@ -10,12 +10,15 @@
 .top-btn-bar-btn-grp {
     overflow: visible;
     background-color: var(--buttonBackgroundColor);
-    width: max-content;
+    width: 90%;
+    max-width: max-content;
     height: 100%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 8px;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 .top-btn-bar-btn:hover {
