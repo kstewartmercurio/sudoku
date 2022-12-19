@@ -384,6 +384,7 @@ export function Board(props) {
         setSquares(Array(n * n).fill(null));
         setInitial(Array(n * n).fill(false));
         setSelected(null);
+        setComplete(false);
     }
 
     const shareNumClick = (n) => {
