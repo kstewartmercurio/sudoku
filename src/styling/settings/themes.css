@@ -14,7 +14,6 @@
     border-radius: 8px;
     margin: 0 4px;
     margin-bottom: 8px;
-    /* width: 22.35%; */
     width: 20%;
     height: 38.227px;
     cursor: pointer;
@@ -59,4 +58,23 @@
 #sage {
     color: #0e8382;
     background-color: #b3af8f;
+}
+
+@media (max-width: 768px) {
+    .theme-btn {
+        width: 140px;
+    }
+}
+
+@media (max-width: 655px) {
+    #theme-set {
+        overflow: auto;
+    }
+}
+
+@media (max-width: 327px) {
+    .theme-btn {
+        width: 130px;
+        font-size: 12.5px;
+    }
 }

@@ -27,3 +27,22 @@
     cursor: pointer;
     transition: .15s;
 }
+
+@media (max-width: 768px) {
+    .sound-btn {
+        width: 140px;
+    }
+}
+
+@media (max-width: 655px) {
+    #sound-set {
+        overflow: auto;
+    }
+}
+
+@media (max-width: 327px) {
+    .sound-btn {
+        width: 130px;
+        font-size: 12.5px;
+    }
+}
